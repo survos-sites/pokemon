@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+  {% block stylesheets %}
+  {{ parent() }}
+
+{#  <link rel="stylesheet" href="components/loader.css">#}
+{#  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">#}
+{#  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">#}
+{#  <link rel="stylesheet" href="css/style.css">#}
+  {% endblock %}
+
+  {% block javascripts %}
+  {{ parent() }}
+    <script src="components/loader.js"></script>
+    <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script>
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+      const navigator = document.querySelector('#navigator');
+      // navigator.resetToPage('home.html');
+    });
+
+    const loadPage = (page) => {
+      document.querySelector('#menu').close();
+      document.querySelector('#navigator').bringPageTop(page, { animation: 'fade' });
+    };
+
+    const clearLocalStorage = () => {
+      localStorage.clear();
+      ons.notification.alert('Cleared local storage');
+    };
+
+  </script>
+  {% endblock %}
+
+  {% block body %}
+<ons-splitter>
+  <!-- The side menu -->
+  <ons-splitter-side id="menu" collapse>
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="loadPage('about')">About</ons-list-item>
+        <ons-list-item onclick="loadPage('login.html')">Login</ons-list-item>
+        <ons-list-item onclick="clearLocalStorage()">
+          Clear local storage
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+
+  <!-- Everything not in the side menu -->
+  <ons-splitter-content>
+    <ons-navigator id="navigator" page="home.html"></ons-navigator>
+  </ons-splitter-content>
+</ons-splitter>
+
+  {% endblock %}
