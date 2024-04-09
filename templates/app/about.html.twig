@@ -1,13 +1,10 @@
-<ons-page id="about">
-    <ons-toolbar>
-        <div class="left">
-            <ons-back-button></ons-back-button>
-        </div>
+{% extends 'onsPage.html.twig' %}
 
-        <div class="center">About</div>
-    </ons-toolbar>
-
-    <div>
-        This is the about page, served from twig.  {{ 'now'|date }}
-    </div>
-</ons-page>
+{% block pageId 'about' %}
+{% block toolbar %}
+    {{ parent() }}
+    <div class="center">About</div>
+{% endblock %}
+{% block body %}
+    This is a Symfony version of the pokemon tutorial from onsenUI.
+{% endblock %}

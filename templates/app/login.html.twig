@@ -1,4 +1,12 @@
-<ons-page id="login">
+{% extends "onsPage.html.twig" %}
+
+{% block pageId 'login' %}
+{% block toolbar %}
+{{ parent() }}
+    <div class="center">Login</div>
+{% endblock %}
+
+{% block body %}
     <script>
         const login = () => {
             const username = document.querySelector('#username').value;
@@ -7,7 +15,7 @@
             if (username === '' && password === '') {
                 // call the navigator to move to the new page
                 const navigator = document.querySelector('#navigator');
-                navigator.resetToPage('home.html');
+                navigator.resetToPage('home');
             } else {
                 ons.notification.alert('Wrong username/password combination');
             }
@@ -34,4 +42,4 @@
         </p>
     </div>
 
-</ons-page>
+{% endblock %}

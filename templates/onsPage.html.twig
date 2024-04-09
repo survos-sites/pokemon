@@ -1,0 +1,17 @@
+<ons-page id="{{ block('pageId')|default('no-id') }}">
+
+    <ons-toolbar>
+        {% block toolbar %}
+        <div class="left">
+            <ons-back-button></ons-back-button>
+        </div>
+
+        {% endblock %}
+    </ons-toolbar>
+
+    <div>
+        {% block body %}
+        This is the about page, served from twig.  {{ 'now'|date }}
+        {% endblock %}
+    </div>
+</ons-page>

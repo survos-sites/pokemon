@@ -13,11 +13,17 @@
     </style>
 
     <script>
+
+        console.log('js in saved.html.twig')
         let savedPokemon = [];
+
+        // Now add some values.
+
 
         const addPokemonToGrid = pokenumber => {
             // we save a list so we can pass it to the gallery
             savedPokemon.push(pokenumber);
+
 
             // now add the new pokemon to the grid
             const grid = document.querySelector('#grid');
@@ -32,6 +38,10 @@
             grid.appendChild(cell);
         };
     </script>
+
+    Current Count:
+    <span {{ stimulus_target('app','savedCount') }}>count here.</span>
+
 
     <div id="content">
         <div id="grid"></div>
