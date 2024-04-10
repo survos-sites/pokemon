@@ -6,11 +6,10 @@
             document.querySelector('#menu').open();
         };
 
-        const addPokemonToGrid = (row) => {
+        const addPokemonToGrid = (row, grid) => {
             console.log('adding ', row);
             const pokenumber = row.id;
             // now add the new pokemon to the grid
-            const grid = document.querySelector('#grid');
             const cell = document.createElement('div');
             cell.onclick = () => document.querySelector('#navigator')
                 .bringPageTop('gallery.html', { data: { pokenumber, savedPokemon } });
@@ -29,8 +28,11 @@
             let pageName = tabItem.getAttribute('page');
             console.log('prechange', target, tabItem, pageName);
             if (pageName == 'saved') {
+                const grid = document.querySelector('#grid');
+                grid.innerHTML = '';
+
                 db.savedTable.filter(n => n.owned).each( row => {
-                    addPokemonToGrid(row);
+                    addPokemonToGrid(row, grid);
                     console.log('row ', row);
                     // this.savedCountTarget.innerHTML = count;
                 });
