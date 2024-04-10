@@ -23,6 +23,12 @@ export default class extends Controller {
         this.menuTarget.open();
     }
 
+    clear()
+    {
+        this.menuTarget.close();
+        db.delete().then (()=>db.open());
+    }
+
     add(e)
     {
         console.log(e.params);

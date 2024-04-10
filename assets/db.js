@@ -2,13 +2,14 @@
 import Dexie from 'dexie';
 var db = new Dexie('pokemon');
 
-// db.delete().then (()=>db.open());
+export function clearLocalStorage()  {
+  // db.delete().then (()=>db.open());
+}
 
 db.version(3).stores({
     savedTable: "++id,name,owned",
     productTable: "++id,price,brand,category"
 });
-console.log('async vipDB')
 db.on('ready', async vipDB => {
     // db.savedTable.bulkPut([
     //             { id: 100, name: "my pokemon", owned: true},
@@ -26,7 +27,7 @@ db.on('ready', async vipDB => {
         const data = await loadData();
         let withId = await data.map( (x, id) => {
             x.id = id+1;
-            x.owned = id < 3;
+            x.owned = false; //  id < 3;
             return x;
         });
 

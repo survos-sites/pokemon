@@ -7,18 +7,34 @@
   {{ parent() }}
 {#    <script src="components/loader.js"></script>#}
 {#    <script src="lib/onsenui/js/onsenui.min.js"></script>#}
-  <script>
+
+    <script type="module">
+      // import {clearLocalStorage} from './../../assets/db.js';
+      // window.clearLocalStorage = clearLocalStorage(); // hack!
+      import db from './../../assets/db.js';
+
+      export function clearLocalStorage(x) {
+        db.delete().then (()=>db.open());
+
+        {#let navigator = document.getElementById('navigator');#}
+        {#navigator.resetToPage('about', {x: {{ random(9999) }} });#}
+        {#console.warn('resetting to page ', x);#}
+      }
+      window.clearLocalStorage = clearLocalStorage;
+    </script>
+
+    <script>
     const loadPage = (page) => {
       document.querySelector('#menu').close();
       console.log('loading page ' + page);
       document.querySelector('#navigator').bringPageTop(page, { animation: 'fade' });
     };
 
-    const clearLocalStorage =  () => {
-      localStorage.clear();
-      db.delete().then (()=>db.open());
-      ons.notification.alert('Cleared local storage');
-    };
+    // const clearLocalStorage =  () => {
+    //   localStorage.clear();
+    //   db.delete().then (()=>db.open());
+    //   ons.notification.alert('Cleared local storage');
+    // };
 
 
 
@@ -43,7 +59,7 @@
         {#                  onclick="loadPage('{{ route }}')"#}
 {#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item>#}
 {#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item>#}
-        <ons-list-item onclick="clearLocalStorage()">
+        <ons-list-item xxonclick="clearLocalStorage()" {{ stimulus_action('app', 'clear', 'click') }}>
           Clear local storage
         </ons-list-item>
       </ons-list>
