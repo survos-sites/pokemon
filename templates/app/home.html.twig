@@ -33,6 +33,8 @@
 
         <ons-tab page="pokemon" label="Pokémon" icon="fa-twitter"></ons-tab>
         <ons-tab page="saved" label="Saved">
+            <span class="notification" {{ stimulus_target('app', 'savedCount') }}>
+            </span>
 
         </ons-tab>
     </ons-tabbar>

@@ -1,28 +1,36 @@
 // import Dexie from 'https://cdn.jsdelivr.net/npm/dexie@4.0.1/+esm';
 import Dexie from 'dexie';
 var db = new Dexie('pokemon');
+
 // db.delete().then (()=>db.open());
 
-db.version(1).stores({
-    savedTable: "++id,name",
+db.version(3).stores({
+    savedTable: "++id,name,owned",
     productTable: "++id,price,brand,category"
 });
 console.log('async vipDB')
 db.on('ready', async vipDB => {
-    db.savedTable.bulkPut([
-                { id: 1, name: "test pokemon"}
-            ]).then(
-                (db) => {
-                    console.log('db pokemon.saved saved, now counting');
-                    db.savedTable.count().then(c => document.getElementById('count').innerHTML = c)
-                });
-
-    const count = await vipDB.productTable.count();
+    // db.savedTable.bulkPut([
+    //             { id: 100, name: "my pokemon", owned: true},
+    //             { id: 101, name: "unowned pokemon", owned: false}
+    //         ]).then(
+    //             (db) => {
+    //                 console.log('db pokemon.saved saved, now counting');
+    //                 db.savedTable.count().then(c => document.getElementById('count').innerHTML = c)
+    //             });
+    //
+    const count = await vipDB.savedTable.count();
     if (count > 0) {
         console.log("Already populated, count: " + count);
     } else {
         const data = await loadData();
-        const addPromise = await vipDB.productTable.bulkAdd(data).then( (x) => console.log(x));
+        let withId = await data.map( (x, id) => {
+            x.id = id;
+            x.owned = id < 3;
+            return x;
+        });
+
+        await vipDB.savedTable.bulkAdd(data).then( (x) => console.log(x));
         console.log ("Done populating.", data);
     }
 });
@@ -33,13 +41,13 @@ db.open();
 console.log('count');
 db.productTable.count().then( (c) => {console.log(c); document.getElementById('count').innerText = c});
 async function loadData() {
-    let url = 'https://dummyjson.com/products';
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=100';
     const response = await fetch(url);
-    return await response.json().then(data => data.products)
+    // @todo: fetch all pages
+    // add the id!
+
+    return await response.json().then(data => data.results)
 }
-
-
-
 
 export default db;
 

@@ -21,13 +21,17 @@
 
     const loadPage = (page) => {
       document.querySelector('#menu').close();
+      console.log('loading page ' + page);
       document.querySelector('#navigator').bringPageTop(page, { animation: 'fade' });
     };
 
-    const clearLocalStorage = () => {
+    const clearLocalStorage =  () => {
       localStorage.clear();
+      db.delete().then (()=>db.open());
       ons.notification.alert('Cleared local storage');
     };
+
+
 
   </script>
   {% endblock %}
@@ -38,8 +42,18 @@
   <ons-splitter-side id="menu" collapse {{ stimulus_target('app','menu') }}>
     <ons-page>
       <ons-list>
-        <ons-list-item onclick="loadPage('about')">About</ons-list-item>
-        <ons-list-item onclick="loadPage('login')">Login</ons-list-item>
+        {% for route in ['about','login'] %}
+          <ons-list-item
+            {{ stimulus_action('app', 'loadPage', 'click', {
+              route: route
+            }) }}
+            >
+            {{ route|title }}
+          </ons-list-item>
+        {% endfor %}
+        {#                  onclick="loadPage('{{ route }}')"#}
+{#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item>#}
+{#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item>#}
         <ons-list-item onclick="clearLocalStorage()">
           Clear local storage
         </ons-list-item>
@@ -49,7 +63,7 @@
 
   <!-- Everything not in the side menu -->
   <ons-splitter-content>
-    <ons-navigator id="navigator" page="home">
+    <ons-navigator id="navigator" {{ stimulus_target('app', 'navigator') }}page="home">
 
     </ons-navigator>
   </ons-splitter-content>

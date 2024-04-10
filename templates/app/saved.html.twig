@@ -1,4 +1,4 @@
-<ons-page id="saved">
+<ons-page id="saved" {{ stimulus_controller('saved') }}>
     <style>
         #grid {
             display: grid;
@@ -39,11 +39,9 @@
         };
     </script>
 
-    Current Count:
-    <span {{ stimulus_target('app','savedCount') }}>count here.</span>
-
-
     <div id="content">
-        <div id="grid"></div>
+        <div id="grid">
+            grid values
+        </div>
     </div>
 </ons-page>
