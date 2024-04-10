@@ -6,5 +6,25 @@
     <div class="center">About</div>
 {% endblock %}
 {% block body %}
-    This is a Symfony version of the pokemon tutorial from onsenUI.
+    <script type="module">
+        export function doSomething(x) {
+            let navigator = document.getElementById('navigator');
+            navigator.resetToPage('about', {x: {{ random(9999) }} });
+            console.warn('resetting to page ', x);
+        }
+        window.doSomething = doSomething;
+    </script>
+    <p>
+        This is a Symfony version of the pokemon tutorial from onsenUI.
+    </p>
+    <p>
+        This page does <b>NOT</b> have the tabs at the bottom.
+    </p>
+    <p>
+        {{ random(9999) }}
+        <ons-button onclick="doSomething('abc')">
+            Refresh
+        </ons-button>
+    </p>
+
 {% endblock %}

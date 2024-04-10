@@ -14,5 +14,5 @@ import './components/loader.js';
 // import './db.js';
 
 import 'https://cdn.jsdelivr.net/npm/onsenui@2.12.8/js/onsenui.min.js';
-window.ons = ons;
+window.ons = ons; // make global
 // console.log('ons');

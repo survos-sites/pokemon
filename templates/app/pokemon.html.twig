@@ -1,12 +1,8 @@
 {% set _sc = 'pokemon' %}
 <ons-page id="pokemon" {{ stimulus_controller(_sc, {max: 3}) }}>
 
-    <div {{ stimulus_controller('hello') }}>
-        Hola!
-    </div>
-
     <span {{ stimulus_target('app', 'message') }}>
-        message
+
     </span>
 
     <h3>Pokemon-list</h3>

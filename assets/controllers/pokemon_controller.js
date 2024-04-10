@@ -100,7 +100,7 @@ export default class extends Controller {
         };
 
         // get the first set of results as soon as the page is initialised
-        get();
+        // get();
 
         // at the bottom of the list get the next set of results and append them
         this.element.onInfiniteScroll = (done) => {

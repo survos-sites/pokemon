@@ -25,7 +25,7 @@ db.on('ready', async vipDB => {
     } else {
         const data = await loadData();
         let withId = await data.map( (x, id) => {
-            x.id = id;
+            x.id = id+1;
             x.owned = id < 3;
             return x;
         });

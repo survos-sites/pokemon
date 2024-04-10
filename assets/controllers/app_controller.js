@@ -12,28 +12,34 @@ export default class extends Controller {
 
     connect() {
         super.connect();
-        db.tables.map(t => console.log(t));
-        // this.menuTarget.open();
+        // db.tables.map(t => console.log(t));
+        ons.ready( (x) => {
+            console.warn("ons is ready, " + this.identifier)
+        })
+    }
 
+    openMenu()
+    {
+        this.menuTarget.open();
     }
 
     add(e)
     {
         console.log(e.params);
-        db.savedTable.get(e.params.id).then( (row) =>
-        {
-            row.owned = e.target.closest("ons-switch").checked;
-            db.savedTable.put(row).then( () => this.updateSavedCount());
-        }).catch( e=>{
-            console.error(e);
-        });
+        db.savedTable.get(e.params.id)
+            .then( (row) =>
+                {
+                    row.owned = e.target.closest("ons-switch").checked;
+                    db.savedTable.put(row).then( () => this.updateSavedCount());
+                })
+            .catch( e=> console.error(e) );
 
 
     }
 
 
     messageTargetConnected(element) {
-            this.messageTarget.innerHTML = 'message here...'
+        // this.messageTarget.innerHTML = ''
     }
 
     savedCountTargetConnected(element) {
@@ -50,8 +56,12 @@ export default class extends Controller {
     {
             this.menuTarget.close();
             let page = e.params.route;
-            this.navigatorTarget.bringPageTop(page, { animation: 'fade' });
-            console.log('loading page ' + page);
+            if (page) {
+                this.navigatorTarget.bringPageTop(page, { animation: 'fade' });
+                console.log('loading page ' + page);
+            } else {
+                console.error('missing page ', e.params);
+            }
 
     }
 
