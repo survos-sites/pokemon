@@ -1,8 +1,8 @@
 {% extends "layout.html.twig" %}
         {% block stylesheets %}
             {{ parent() }}
-            <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-            <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+{#            <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">#}
+{#            <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">#}
 
         {% endblock %}
 
@@ -31,6 +31,7 @@
                 //     }
                 // };
             </script>
+            <!-- onsen is loaded in app.js -->
             {#            <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.12.8/js/onsenui.min.js" integrity="sha512-gTBYvF3IPbzY0LLzGILVeSPCbNEGdttGGwFmU/It7aX3UXZzfyn9TaQO9vegWAV24ChabN/YsjZoYrJkdJrOTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
 {#            <script src="https://cdn.jsdelivr.net/npm/onsenui@2.12.8/js/onsenui.min.js"></script>#}
             {{ parent() }}

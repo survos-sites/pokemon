@@ -28,4 +28,19 @@ return [
     'dexie' => [
         'version' => '4.0.1',
     ],
+    'onsenui' => [
+        'version' => '2.12.8',
+    ],
+    'onsenui/css/onsenui.min.css' => [
+        'version' => '2.12.8',
+        'type' => 'css',
+    ],
+    'onsenui/css/onsen-css-components.min.css' => [
+        'version' => '2.12.8',
+        'type' => 'css',
+    ],
+    'onsenui/css/onsenui-fonts.min.css' => [
+        'version' => '2.12.8',
+        'type' => 'css',
+    ],
 ];
