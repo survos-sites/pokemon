@@ -1,4 +1,12 @@
-<ons-page id="saved" {{ stimulus_controller('saved') }}>
+{% extends 'onsPage.html.twig' %}
+
+{% block pageId 'saved' %}
+{% block toolbar %}
+{#    {{ parent() }}#}
+{#    <div class="center">{{ 'my-collection'|trans }}</div>#}
+{% endblock %}
+
+{% block body %}
     <style>
         #grid {
             display: grid;
@@ -12,37 +20,10 @@
         }
     </style>
 
-    <script>
-
-        console.log('js in saved.html.twig')
-        let savedPokemon = [];
-
-        // Now add some values.
-
-
-        // const addPokemonToGrid = pokenumber => {
-        //     // we save a list so we can pass it to the gallery
-        //     savedPokemon.push(pokenumber);
-        //
-        //
-        //     // now add the new pokemon to the grid
-        //     const grid = document.querySelector('#grid');
-        //     const cell = document.createElement('div');
-        //     cell.onclick = () => document.querySelector('#navigator')
-        //         .bringPageTop('gallery.html', { data: { pokenumber, savedPokemon } });
-        //
-        //     const image = document.createElement('img');
-        //     image.setAttribute('src', `img/${pokenumber}.png`);
-        //
-        //     cell.appendChild(image);
-        //     grid.appendChild(cell);
-        // };
-    </script>
-
-    <div id="content">
+    <div id="content"  {{ stimulus_controller('saved') }}>
         <div id="grid">
             grid values.
             Random: {{ random(9999) }}
         </div>
     </div>
-</ons-page>
+{% endblock body %}

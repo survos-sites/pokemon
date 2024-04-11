@@ -1,13 +1,16 @@
+{# add stimulus controller for title? #}
 <ons-page id="{{ block('pageId')|default('no-id') }}">
 
+    {% set toolbarContent = block('toolbar')|default(false) %}
+    {% if toolbarContent %}
     <ons-toolbar>
         {% block toolbar %}
         <div class="left">
             <ons-back-button></ons-back-button>
         </div>
-
         {% endblock %}
     </ons-toolbar>
+    {% endif %}
 
     <div>
         {% block body %}
