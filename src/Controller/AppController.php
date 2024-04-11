@@ -26,6 +26,13 @@ class AppController extends AbstractController
         return $this->render('app/home.html.twig', [
         ]);
     }
+    #[Route('/share', name: 'app_share')]
+    public function share(): Response
+    {
+        return $this->render('app/share.html.twig', [
+        ]);
+    }
+
     #[Route('/pokemon', name: 'app_pokemon')]
     public function pokemon(): Response
     {

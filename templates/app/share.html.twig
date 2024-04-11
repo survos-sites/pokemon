@@ -1,0 +1,14 @@
+{% extends 'onsPage.html.twig' %}
+
+{% block pageId 'share' %}
+{% block toolbar %}
+    {{ parent() }}
+    <div class="center">Share</div>
+{% endblock %}
+{% block body %}
+
+    {% set url = absolute_url(path('app_index')) %}
+    <img src="{{ qr_code_url(url) }}" />
+    <br />{{ url }}
+
+{% endblock %}
