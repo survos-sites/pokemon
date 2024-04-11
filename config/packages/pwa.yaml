@@ -1,0 +1,43 @@
+#imports:
+#    - { resource: pwa_screenshots.yaml }
+pwa:
+    image_processor: 'pwa.image_processor.imagick'
+    manifest:
+        enabled: true
+        background_color: "#c026d3"
+        theme_color: "#c026d3"
+        name: 'Pokemon Collector'
+        short_name: 'pokemon'
+        description: 'OnsenUI tutorial, in Symfony'
+        orientation: "any"
+        display: "standalone"
+        scope: "/"
+        display_override: ['fullscreen', 'minimal-ui', 'window-controls-overlay']
+        id: "/"
+        start_url: "/"
+        icons:
+            - src: "images/pokemon.svg"
+              sizes: "any"
+        screenshots:
+            -
+                src: homepage/screenshot-600x800.png
+                width: 600
+                height: 800
+                reference: 'https://127.0.0.1:8001/'
+                format: image/png
+        categories: []
+        shortcuts: []
+        edge_side_panel:
+            preferred_width: 280
+        widgets: []
+        related_applications:
+            - platform: "webapp"
+              url: "https://localhost:8000/site.webmanifest"
+    serviceworker:
+        enabled: true
+        src: "sw.js"
+        skip_waiting: true
+        workbox:
+            resource_caches:
+            offline_fallback:
+                page: 'app_index'
