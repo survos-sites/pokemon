@@ -15,16 +15,24 @@
         window.doSomething = doSomething;
     </script>
     <p>
-        This is a Symfony version of the pokemon tutorial from onsenUI.
+        This is a Symfony version of the
+        <a href="https://onsen.io/v2/guide/tutorial.html" target="_blank">
+        pokemon tutorial from onsenUI.
+        </a>
+
+        A mobile pokemon-collection app,
+        based on
+
     </p>
     <p>
-        This page does <b>NOT</b> have the tabs at the bottom.
+        This page does <b>NOT</b> have the tabs at the bottom.  Use the back arrow above
+        to navigate to the previous page.
     </p>
-    <p>
-        {{ random(9999) }}
-        <ons-button onclick="doSomething('abc')">
-            Refresh
-        </ons-button>
-    </p>
+{#    <p>#}
+{#        {{ random(9999) }}#}
+{#        <ons-button onclick="doSomething('abc')">#}
+{#            Refresh#}
+{#        </ons-button>#}
+{#    </p>#}
 
 {% endblock %}
