@@ -1,12 +1,22 @@
 {% set _sc = 'pokemon' %}
 <ons-page id="pokemon" {{ stimulus_controller(_sc, {max: 3}) }}>
 
+    {% set payload = {name: 'Tac', zip: 22740} %}
+    <twig:DetailRender
+            :caller="_self"
+            :payload="payload" id="detail">
+            payload?
+        <twig:block name="template">
+            <b>{{ name }}</b>
+            <br />ZIP: {{ zip }}
+        </twig:block>
+    </twig:DetailRender>
     <span {{ stimulus_target('app', 'message') }}>
 
     </span>
 
     <h3>Pokemon-list</h3>
-    <ons-list id="pokemon-list" {{ stimulus_target(_sc, 'list') }}>
+    <ons-list {{ stimulus_target(_sc, 'list') }}>
         <ons-list-item>TEST</ons-list-item>
     </ons-list>
 

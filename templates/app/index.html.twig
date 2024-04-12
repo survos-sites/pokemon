@@ -44,7 +44,11 @@
   {% block body %}
 <ons-splitter>
   <!-- The side menu -->
-  <ons-splitter-side id="menu" collapse {{ stimulus_target('app','menu') }}>
+  <ons-splitter-side
+          label="menu"
+          icon="users"
+
+          id="menu" collapse {{ stimulus_target('app','menu') }}>
     <ons-page>
       <ons-list>
         {% for route in ['about','login'] %}
@@ -90,5 +94,6 @@
     </ons-navigator>
   </ons-splitter-content>
 </ons-splitter>
+
 
   {% endblock %}

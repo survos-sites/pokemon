@@ -1,0 +1,9 @@
+<div{{ attributes }} {{ stimulus_controller('render', {
+    payload: payload,
+    twigTemplate: this.blocks.template|default("missing block 'template'")
+}) }}>
+    Payload: {{ payload|json_encode }}
+    <div {{ stimulus_target('render', 'content') }}>
+        content here.
+    </div>
+</div>

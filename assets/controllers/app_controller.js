@@ -1,13 +1,18 @@
 import { Controller } from '@hotwired/stimulus';
 
 import db from '../db.js';
+import Twig from 'twig';
+
 /*
 * The following line makes this controller "lazy": it won't be downloaded until needed
 * See https://github.com/symfony/stimulus-bridge#lazy-controllers
 */
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-    static targets = ['menu', 'title','savedCount','message','menu','navigator']
+    static targets = ['menu', 'title',
+        'detail',
+        'twigTemplate',
+        'savedCount','message','menu','navigator']
     // ...
 
     connect() {
@@ -27,6 +32,35 @@ export default class extends Controller {
     {
         this.menuTarget.close();
         db.delete().then (()=>db.open());
+    }
+
+    async test(e) {
+        const id = e.params.payload.id - 1;
+        console.log('fetching from database: ', id);
+        const data = db.savedTable.get(id).then(
+            (data) => {
+                this.navigatorTarget.pushPage('p_detail', {data: data}).then(
+                    (p) => {
+                        console.warn(p, p.data, data);
+                        //
+                        if (this.hasTwigTemplateTarget) {
+                            let template = Twig.twig({
+                                data: this.twigTemplateTarget.innerHTML
+                            });
+                        let html = template.render(data);
+                        console.error(html, this.twigTemplateTarget.innerHTML);
+                            if (this.hasDetailTarget) {
+                                this.detailTarget.innerHTML = html;
+                            } else {
+                                console.error('no detail target');
+                            }
+                        }
+                    }
+                );
+
+            }
+        );
+
     }
 
     add(e)

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -46,6 +47,13 @@ class AppController extends AbstractController
         return $this->render('app/saved.html.twig', [
         ]);
     }
+    #[Route('/detail', name: 'app_detail')]
+    #[Template('app/detail.html.twig')]
+    public function detail(): array
+    {
+        return [];
+    }
+
     #[Route('/login', name: 'app_login')]
     public function login(): Response
     {
@@ -54,9 +62,16 @@ class AppController extends AbstractController
     }
 
     #[Route('/about', name: 'app_about')]
-    public function about(): Response
+    #[Template('app/about.html.twig')]
+    public function about(): array
     {
-        return $this->render('app/about.html.twig', [
-        ]);
+        return [];
+    }
+
+    #[Route('/p_detail', name: 'app_poke_detail')]
+    #[Template('app/detail.html.twig')]
+    public function poke_details(): array
+    {
+        return [];
     }
 }

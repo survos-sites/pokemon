@@ -17,6 +17,7 @@ import 'https://cdn.jsdelivr.net/npm/onsenui@2.12.8/js/onsenui.min.js';
 window.ons = ons; // make global
 // console.log('ons');
 
-import 'onsenui/css/onsenui.min.css'
-import 'onsenui/css/onsen-css-components.min.css'
-import 'onsenui/css/onsenui-fonts.min.css'
+// import 'onsenui/css/onsenui.min.css'
+// import 'onsenui/css/onsen-css-components.min.css'
+// //
+// import 'onsenui/css/onsenui-fonts.min.css'
