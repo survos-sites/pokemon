@@ -23,20 +23,19 @@ export default class extends Controller {
         let checked = row.owned ? 'checked': '';
         let element = `
         <ons-list-item>
-        <ons-button data-action="click->app#test" 
+        <a data-action="click->app#test" 
         data-app-id-param="${pokenumber}" >
-        View ${pokenumber}
-    </ons-button>
+         ${row.name}
+        </a>
     
     <ons-switch class="right" ${checked} data-action="click->app#add" 
         data-app-id-param="${pokenumber}" >
-</ons-switch>
-<a data-action="click->app#test"
->
-          ${pokenumber} ${row.name}
-          </a>
+    </ons-switch>
         </ons-list-item>
       `;
+// <a data-action="click->app#test">
+//           ${pokenumber} ${row.name}
+//           </a>
         // console.log('adding item to list', element);
         this.listTarget.appendChild(window.ons.createElement(element));
     }

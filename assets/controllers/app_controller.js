@@ -36,19 +36,12 @@ export default class extends Controller {
 
     async test(e) {
         const id = e.params.id;
-        console.log('fetching from database: ', id);
-        db.savedTable.get(e.params.id)
-            .then( (row) =>
-            {
-                console.error(row);
-            })
-            .catch( e=> console.error(e) );
-
         const data = db.savedTable.get(id).then(
             (data) => {
                 console.assert(data, "Missing data for " + id);
                 this.navigatorTarget.pushPage('p_detail', {data: data}).then(
                     (p) => {
+                        this.titleTarget.innerHTML = "@Todo: twig for " + id;
                         if (this.hasTwigTemplateTarget) {
                             let template = Twig.twig({
                                 data: this.twigTemplateTarget.innerHTML
@@ -70,7 +63,7 @@ export default class extends Controller {
 
     add(e)
     {
-        console.log(e.params);
+        // get the row and toggle the 'owned' property
         db.savedTable.get(e.params.id)
             .then( (row) =>
                 {
@@ -114,7 +107,6 @@ export default class extends Controller {
     updateSavedCount()
     {
         db.savedTable.filter(n => n.owned).count().then ( count => {
-            console.log('saved: ' + count);
             this.savedCountTarget.innerHTML = count;
         });
 

@@ -35,13 +35,17 @@ db.on('ready', async vipDB => {
 
         await vipDB.savedTable.bulkAdd(withId).then( (x) => console.log(x));
         console.log ("Done populating.", data[1]);
+        // move to target
+
     }
+    // document.getElementById('after-list').style.display = 'none';
+
 });
 
 db.open();
 db.productTable.count().then( (c) => {console.log(c); document.getElementById('count').innerText = c});
 async function loadData() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=12';
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=100';
     const response = await fetch(url);
     // @todo: fetch all pages
     // add the id!

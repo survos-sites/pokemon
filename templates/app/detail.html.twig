@@ -3,7 +3,7 @@
 {% block pageId 'detail' %}
 {% block toolbar %}
     {{ parent() }}
-    <div class="center">Detail NN</div>
+    <div class="center" {{ stimulus_target('app','title') }}>Detail NN</div>
 {% endblock %}
 {% block body %}
     <script type="module">
@@ -26,6 +26,8 @@
 <h1>Pokemon ID: {{ id }}</h1>
 <img src="/img/{{ id }}.png" />
         <b>{{ name }}</b>
+More at <a href="{{ url }}" target="_blank">{{ url }}</a>
+{{ owned ? "OWNED!" }}
         {% endverbatim %}
     </template>
 

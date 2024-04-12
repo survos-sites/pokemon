@@ -10,7 +10,8 @@
         <ons-list-item>TEST</ons-list-item>
     </ons-list>
 
-    <div id="after-list" style="margin: 20px; text-align: center;">
+    <div {{ stimulus_target('app','spinner') }}
+            id="after-list" style="display:none; margin: 20px; text-align: center;">
         <ons-icon icon="fa-spinner" size="26px" spin></ons-icon>
     </div>
 
