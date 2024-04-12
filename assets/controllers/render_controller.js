@@ -19,7 +19,6 @@ export default class extends Controller {
 
     connect() {
         super.connect();
-        console.error(this.payloadValue, this.twigTemplateValue);
         // cache?
         this.template = Twig.twig({
             data: this.twigTemplateValue

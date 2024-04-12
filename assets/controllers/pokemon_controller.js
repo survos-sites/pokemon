@@ -23,11 +23,10 @@ export default class extends Controller {
         let checked = row.owned ? 'checked': '';
         let element = `
         <ons-list-item>
-        
-        <button data-action="click->app#test" 
-        data-app-payload-param="{&quot;id&quot;:&quot;${pokenumber}&quot;}">
-        Click ${pokenumber}
-    </button>
+        <ons-button data-action="click->app#test" 
+        data-app-id-param="${pokenumber}" >
+        View ${pokenumber}
+    </ons-button>
     
     <ons-switch class="right" ${checked} data-action="click->app#add" 
         data-app-id-param="${pokenumber}" >
@@ -51,9 +50,6 @@ export default class extends Controller {
 
     listTargetConnected()
     {
-        console.log(ons.name);
-        console.warn('listTargetConnected!');
-        // local storage keys
         const URL = 'pokemon__url';
         const PREFIX = 'pokemon__';
 
@@ -78,7 +74,7 @@ export default class extends Controller {
 
         // we could do this, or we could save it locally, set it in PWA, etc.
         if (!localStorage.getItem(URL)) {
-            localStorage.setItem(URL, 'https://pokeapi.co/api/v2/pokemon?limit=100');
+            localStorage.setItem(URL, 'https://pokeapi.co/api/v2/pokemon?limit=12');
         }
 
         const get = async () => {

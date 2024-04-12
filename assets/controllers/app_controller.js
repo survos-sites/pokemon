@@ -35,20 +35,25 @@ export default class extends Controller {
     }
 
     async test(e) {
-        const id = e.params.payload.id - 1;
+        const id = e.params.id;
         console.log('fetching from database: ', id);
+        db.savedTable.get(e.params.id)
+            .then( (row) =>
+            {
+                console.error(row);
+            })
+            .catch( e=> console.error(e) );
+
         const data = db.savedTable.get(id).then(
             (data) => {
+                console.assert(data, "Missing data for " + id);
                 this.navigatorTarget.pushPage('p_detail', {data: data}).then(
                     (p) => {
-                        console.warn(p, p.data, data);
-                        //
                         if (this.hasTwigTemplateTarget) {
                             let template = Twig.twig({
                                 data: this.twigTemplateTarget.innerHTML
                             });
                         let html = template.render(data);
-                        console.error(html, this.twigTemplateTarget.innerHTML);
                             if (this.hasDetailTarget) {
                                 this.detailTarget.innerHTML = html;
                             } else {

@@ -21,6 +21,7 @@
         };
 
         // prechange happens on tabs only
+        // @Todo: move this to stimulus, not html
         document.addEventListener('prechange', ({ target, tabItem }) => {
             let pageName = tabItem.getAttribute('page');
             console.log('prechange', target, tabItem, pageName);
@@ -30,7 +31,6 @@
 
                 db.savedTable.filter(n => n.owned).each( row => {
                     addPokemonToGrid(row, grid);
-                    console.log('row ', row);
                     // this.savedCountTarget.innerHTML = count;
                 });
 

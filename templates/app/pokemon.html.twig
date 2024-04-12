@@ -1,16 +1,6 @@
 {% set _sc = 'pokemon' %}
 <ons-page id="pokemon" {{ stimulus_controller(_sc, {max: 3}) }}>
 
-    {% set payload = {name: 'Tac', zip: 22740} %}
-    <twig:DetailRender
-            :caller="_self"
-            :payload="payload" id="detail">
-            payload?
-        <twig:block name="template">
-            <b>{{ name }}</b>
-            <br />ZIP: {{ zip }}
-        </twig:block>
-    </twig:DetailRender>
     <span {{ stimulus_target('app', 'message') }}>
 
     </span>
@@ -25,3 +15,16 @@
     </div>
 
 </ons-page>
+
+{#{% block test_render %}#}
+{#    {% set payload = {name: 'Tac', zip: 22740} %}#}
+{#<twig:DetailRender#}
+{#        :caller="_self"#}
+{#        :payload="payload" id="detail">#}
+{#    payload?#}
+{#    <twig:block name="template">#}
+{#        <b>{{ name }}</b>#}
+{#        <br />ZIP: {{ zip }}#}
+{#    </twig:block>#}
+{#</twig:DetailRender>#}
+{#{% endblock %}#}

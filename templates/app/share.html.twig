@@ -1,9 +1,9 @@
 {% extends 'onsPage.html.twig' %}
 
 {% block pageId 'share' %}
+{# since share is a tab page, it's not necessary to change the header, like a menu page #}
 {% block toolbar %}
-    {{ parent() }}
-    <div class="center">Share</div>
+{#    {{ parent() }}#} {#  this will add the back button #}
 {% endblock %}
 {% block body %}
 

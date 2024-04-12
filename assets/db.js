@@ -5,9 +5,10 @@ var db = new Dexie('pokemon');
 export function clearLocalStorage()  {
   // db.delete().then (()=>db.open());
 }
+// db.delete().then (()=>db.open());
 
 db.version(3).stores({
-    savedTable: "++id,name,owned",
+    savedTable: "id,name,owned",
     productTable: "++id,price,brand,category"
 });
 db.on('ready', async vipDB => {
@@ -27,22 +28,20 @@ db.on('ready', async vipDB => {
         const data = await loadData();
         let withId = await data.map( (x, id) => {
             x.id = id+1;
-            x.owned = false; //  id < 3;
+            x.owned = id < 3;
             return x;
         });
+        console.error(data, withId);
 
-        await vipDB.savedTable.bulkAdd(data).then( (x) => console.log(x));
-        console.log ("Done populating.", data);
+        await vipDB.savedTable.bulkAdd(withId).then( (x) => console.log(x));
+        console.log ("Done populating.", data[1]);
     }
 });
 
-console.log('open db');
 db.open();
-
-console.log('count');
 db.productTable.count().then( (c) => {console.log(c); document.getElementById('count').innerText = c});
 async function loadData() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=100';
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=12';
     const response = await fetch(url);
     // @todo: fetch all pages
     // add the id!

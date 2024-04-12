@@ -10,26 +10,24 @@
         console.log("Need the data, maybe do this in app?");
     </script>
 
-{#    {% set payload = {name: 'Tac', zip: 22740} %}#}
-{#    <twig:DetailRender#}
-{#            :caller="_self"#}
-{#            :payload="payload"#}
-{#            id="detail">#}
-{#        <twig:block name="template">#}
-{#            <b>{{ name }}</b>#}
-{#            <br />ZIP: {{ zip }}#}
-{#        </twig:block>#}
-{#    </twig:DetailRender>#}
+    {#    {% set payload = {name: 'Tac', zip: 22740} %} #}
+    {#    <twig:DetailRender #}
+    {#            :caller="_self" #}
+    {#            :payload="payload" #}
+    {#            id="detail"> #}
+    {#        <twig:block name="template"> #}
+    {#            <b>{{ name }}</b> #}
+    {#            <br />ZIP: {{ zip }} #}
+    {#        </twig:block> #}
+    {#    </twig:DetailRender> #}
 
     <template id="twigTemplate" {{ stimulus_target('app', 'twigTemplate') }}>
         {% verbatim %}
-<h1>
-Pokemon ID: {{ id }}
-</h1>
+<h1>Pokemon ID: {{ id }}</h1>
 <img src="/img/{{ id }}.png" />
         <b>{{ name }}</b>
-    </template>
         {% endverbatim %}
+    </template>
 
     <p id="detailPage" {{ stimulus_target('app', 'detail') }}>
         render the twigjs template?
