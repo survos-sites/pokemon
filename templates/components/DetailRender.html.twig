@@ -1,9 +1,12 @@
 <div{{ attributes }} {{ stimulus_controller('render', {
-    payload: payload,
-    twigTemplate: this.blocks.template|default("missing block 'template'")
-}) }}>
-    Payload: {{ payload|json_encode }}
+    twigTemplates: this.blocks
+},
+    controllerOutlets = { 'render': '.app' }) }}>
+
     <div {{ stimulus_target('render', 'content') }}>
         content here.
+    </div>
+    <div {{ stimulus_target('app', 'title') }}>
+        title is here, but should be in toolbar
     </div>
 </div>

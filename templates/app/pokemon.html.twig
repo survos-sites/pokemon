@@ -1,5 +1,7 @@
 {% set _sc = 'pokemon' %}
-<ons-page id="pokemon" {{ stimulus_controller(_sc, {max: 3}) }}>
+<ons-page id="pokemon" {{ stimulus_controller(_sc, {max: 3},
+    controllerOutlets = { 'app': '.app' }) }}>
+) }}>
 
     <span {{ stimulus_target('app', 'message') }}>
 

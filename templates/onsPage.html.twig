@@ -1,21 +1,27 @@
 {# add stimulus controller for title? #}
-<ons-page id="{{ block('pageId')|default('no-id') }}">
+{% set _sc = pageController|default('render') %}
+<ons-page id="{{ block('pageId')|default('no-id') }}" {{ stimulus_controller(_sc) }}>
 
     {% set toolbarContent = block('toolbar')|default(false) %}
     {% if toolbarContent %}
     <ons-toolbar>
         {% block toolbar %}
         <div class="left">
-            {# issue with font not loading #}
+            {# issue with font not loading if css loaded in app.js #}
             <ons-back-button></ons-back-button>
         </div>
+
+        <div class="center" {{ stimulus_target('app','title') }}>
+            {{ block('pageId') }} title
+        </div>
+
         {% endblock %}
     </ons-toolbar>
     {% endif %}
 
-    <div>
+    <div {{ stimulus_target('app', 'content') }}>
         {% block body %}
-        This is the about page, served from twig.  {{ 'now'|date }}
+        This is the  page, served from twig.  {{ 'now'|date }}
         {% endblock %}
     </div>
 </ons-page>

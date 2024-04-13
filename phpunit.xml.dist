@@ -9,6 +9,8 @@
          convertDeprecationsToExceptions="false"
 >
     <php>
+        <env name="SMOKE_TESTING_ROUTES_METHODS" value="disabled" />
+
         <ini name="display_errors" value="1" />
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />

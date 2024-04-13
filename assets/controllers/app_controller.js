@@ -9,8 +9,10 @@ import Twig from 'twig';
 */
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-    static targets = ['menu', 'title',
+    static targets = [
+        'menu',
         'detail',
+        'title',
         'twigTemplate',
         'savedCount','message','menu','navigator']
     // ...
@@ -21,6 +23,13 @@ export default class extends Controller {
         ons.ready( (x) => {
             console.warn("ons is ready, " + this.identifier)
         })
+    }
+
+    setTitle(title)
+    {
+        if (this.hasTitleTarget) {
+            this.titleTarget.innerHTML = title;
+        }
     }
 
     openMenu()
@@ -41,7 +50,7 @@ export default class extends Controller {
                 console.assert(data, "Missing data for " + id);
                 this.navigatorTarget.pushPage('p_detail', {data: data}).then(
                     (p) => {
-                        this.titleTarget.innerHTML = "@Todo: twig for " + id;
+                        // p.data is the same as data
                         if (this.hasTwigTemplateTarget) {
                             let template = Twig.twig({
                                 data: this.twigTemplateTarget.innerHTML
@@ -71,8 +80,11 @@ export default class extends Controller {
                     db.savedTable.put(row).then( () => this.updateSavedCount());
                 })
             .catch( e=> console.error(e) );
+    }
 
-
+    log(x)
+    {
+        console.error('this a log in app_controller', x);
     }
 
 

@@ -1,25 +1,21 @@
+{% set pageController = 'render' %}
 {% extends 'onsPage.html.twig' %}
 
 {% block pageId 'detail' %}
-{% block toolbar %}
-    {{ parent() }}
-    <div class="center" {{ stimulus_target('app','title') }}>Detail NN</div>
-{% endblock %}
-{% block body %}
-    <script type="module">
-        console.log("Need the data, maybe do this in app?");
-    </script>
 
-    {#    {% set payload = {name: 'Tac', zip: 22740} %} #}
-    {#    <twig:DetailRender #}
-    {#            :caller="_self" #}
-    {#            :payload="payload" #}
-    {#            id="detail"> #}
-    {#        <twig:block name="template"> #}
-    {#            <b>{{ name }}</b> #}
-    {#            <br />ZIP: {{ zip }} #}
-    {#        </twig:block> #}
-    {#    </twig:DetailRender> #}
+{% block body %}
+        <twig:DetailRender
+                :caller="_self"
+                id="detail">
+            <twig:block name="content">
+                content block
+                <b>{{ name }}</b>
+                <img src="/img/{{ id }}.png"/>
+            </twig:block>
+            <twig:block name="title">
+                Title block!  {{ name }}
+            </twig:block>
+        </twig:DetailRender>
 
     <template id="twigTemplate" {{ stimulus_target('app', 'twigTemplate') }}>
         {% verbatim %}

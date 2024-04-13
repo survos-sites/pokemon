@@ -3,7 +3,7 @@ import Dexie from 'dexie';
 var db = new Dexie('pokemon');
 
 export function clearLocalStorage()  {
-  // db.delete().then (()=>db.open());
+  db.delete().then (()=>db.open());
 }
 // db.delete().then (()=>db.open());
 

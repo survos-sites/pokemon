@@ -12,7 +12,11 @@
         {% endblock %}
         {{ pwa() }}
     </head>
-    <body {{ stimulus_controller('app') }} >
+
+    {% set _sc = 'reaction' %}
+    <body
+            class="app"
+            {{ stimulus_controller('app') }} >
         {% block body %}{% endblock %}
     </body>
 </html>

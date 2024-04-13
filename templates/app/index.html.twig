@@ -9,24 +9,26 @@
 {#    <script src="lib/onsenui/js/onsenui.min.js"></script>#}
 
     <script type="module">
-      // import {clearLocalStorage} from './../../assets/db.js';
+      import {clearLocalStorage} from './../../assets/db.js';
       // window.clearLocalStorage = clearLocalStorage(); // hack!
-      import db from './../../assets/db.js';
+      // import db from './../../assets/db.js';
 
-      export function clearLocalStorage(x) {
-        db.delete().then (()=>db.open());
+      {#export function clearLocalStorage(x) {#}
+      {#  db.delete().then (()=>db.open());#}
 
-        {#let navigator = document.getElementById('navigator');#}
-        {#navigator.resetToPage('about', {x: {{ random(9999) }} });#}
-        {#console.warn('resetting to page ', x);#}
-      }
+      {#  #}{#let navigator = document.getElementById('navigator');#}
+      {#  #}{#navigator.resetToPage('about', {x: {{ random(9999) }} });#}
+      {#  #}{#console.warn('resetting to page ', x);#}
+      {#}#}
       window.clearLocalStorage = clearLocalStorage;
     </script>
 
     <script>
     const loadPage = (page) => {
+        // I hope this has moved...
+        console.error('load Page??');
       document.querySelector('#menu').close();
-      console.log('loading page ' + page);
+      console.error('loading page ' + page);
       document.querySelector('#navigator').bringPageTop(page, { animation: 'fade' });
     };
 
@@ -84,8 +86,9 @@
 
   <!-- Everything not in the side menu -->
   <ons-splitter-content>
+      <!-- https://onsen.io/v2/api/js/ons-navigator.html -->
+      <!-- navigates pages, not tabs -->
     <ons-navigator
-
             id="navigator"
             {{ stimulus_target('app', 'navigator') }}
             page="home"

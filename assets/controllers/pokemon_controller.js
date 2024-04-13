@@ -8,7 +8,8 @@ import db from '../db.js';
 */
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-    static targets = ['list']
+    static targets = ['list'];
+    static outlets = ['app'];
     static values = {
         max: Number,
     }
@@ -43,6 +44,10 @@ export default class extends Controller {
 
     connect() {
         console.warn("hi from " + this.identifier);
+
+        console.log(this.hasAppOutlet, this.appOutlets.length);
+        this.appOutlets.forEach(appOutlet => appOutlet.log('hola!'));
+        this.appOutlet.setTitle('abc');
 
 
     }

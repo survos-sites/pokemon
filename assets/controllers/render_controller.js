@@ -7,10 +7,11 @@ import Twig from 'twig';
 */
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-    static targets = ['content']
+    static targets = ['content','title'];
+    static outlets = ['app']; // access app_controller
     static values = {
         payload: {type: Object, default: {'x': 'y'}},
-        twigTemplate: {type: String, default: 'twig template here!'},
+        twigTemplates: {type: String, default: '[]'},
         interval: {type: Number, default: 5},
         clicked: Boolean
     }
@@ -19,19 +20,38 @@ export default class extends Controller {
 
     connect() {
         super.connect();
+
+        this.appOutlets.forEach(alertOutlet => alertOutlet.log('hola!'));
+
+        let blocks = JSON.parse(this.twigTemplatesValue);
         // cache?
-        this.template = Twig.twig({
-            data: this.twigTemplateValue
-        });
-        this.render(); // render the data.
+        this.contentTemplate = Twig.twig({data: blocks.content});
+        this.titleTemplate = Twig.twig({data: blocks.title});
+        let navigator = document.getElementById('navigator');
+        // get the data passed to the page during pushPage
+        let data = navigator.topPage.data;
+        this.clicked();
+        // @todo: outlet to app
+
+        // if (this.hasContentTemplate) {
+        //     this.contentTarget.innerHTML = this.contentTemplate.render(data);
+        // }
+        // if (this.hasTitleTemplate) {
+        //     this.titleTarget.innerHTML =this.titleTemplate.render(data);
+        // }
 
     }
 
+    clicked() {
+        console.log(this.hasAppOutlet, this.appOutlets.length);
+        if (this.hasAppOutlet) {
+            this.appOutlet.log("something clicked")
+            // this.alertOutlets.forEach( alert => alert.alert("something") )
+        }
+    }
+
     render() {
-        let rendered = this.template.render(this.payloadValue);
-        console.error(rendered);
-        this.contentTarget.innerHTML =
-            rendered;
+        // we need to get the data associated with the current page
     }
 
 }
