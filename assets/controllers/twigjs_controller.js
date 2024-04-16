@@ -13,18 +13,21 @@ export default class extends Controller {
     static values = {
         twigTemplate: String,
         store: String,
-        filter: Array, // array of objects, e.g. [ {status: 'queued'} ]
-        order: Object // e.g. {dateAdded: 'DESC'}
+        filter: {
+            type: String,
+            default: '{}'
+        }, // {status: 'queued'}
+        // order: Object // e.g. {dateAdded: 'DESC'} (could be array?)
     }
 
     connect() {
         console.warn("hi from " + this.identifier);
-        console.error(this.twigTemplateValue);
+        // console.error(this.filterValue);
         // compile the template
         this.template = Twig.twig({
             data: this.twigTemplateValue
         });
-
+        this.filter = this.filterValue ? JSON.parse(this.filterValue): false;
         this.contentConnected();
 
     }
@@ -33,12 +36,28 @@ export default class extends Controller {
     contentConnected()
     {
 
-        let storeName = 'savedTable';
-        let filter = {'owned':true}
+        // let storeName = 'savedTable';
+        // let filter = {'owned':true}
         // like api platform, get the data based on the parameters
 
-        let table = db.table(storeName);
-        table = table.filter(row => row['owned'] === true);
+        let table = db.table(this.storeValue);
+        // console.error(this.filterValue);
+        // table = table.where(this.filterValue);
+
+        if (this.filter)
+            console.error(this.filter);
+        table = table.filter(row => {
+
+            // there's probably a way to use reduce() or something
+            let okay = true;
+            for (const [key, value] of Object.entries(this.filter)) {
+                // @todo: check for array and use 'in array'
+                okay = okay && (row[key] === value);
+                // console.log(`${key}: ${value}`, row[key] === value, okay);
+            }
+            return okay;
+        });
+
         table.toArray().then( (data) => {
             data.forEach( (row) => {
                 console.log(row);
@@ -46,7 +65,7 @@ export default class extends Controller {
             })
         })
 
-        db.savedTable.toArray()
+        table.toArray()
             .then( rows => this.template.render({rows: rows}))
             .then( html => this.element.innerHTML = html);
 

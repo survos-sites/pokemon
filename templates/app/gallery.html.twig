@@ -9,9 +9,7 @@
 
 
 
-    {% set filter = [
-        {owned: true}
-    ] %}
+    {% set filter = {} %}
     <twig:dexie
             store="savedTable"
             :filter="filter"
@@ -23,7 +21,16 @@
                 {% for row in rows %}
                     <ons-carousel-item>
                         <ons-card>
+                            <h2>{{ row.name }}</h2>
                             <img class="gallery-image" src="img/{{ row.id }}.png"/>
+                            {{ row.owned ? 'OWNED' }}
+
+                            <p>
+                                We could fetch more data (cached!) at
+                                <a href="{{ row.url }}" target="_blank">
+                                    {{ row.url }}
+                                </a>
+                            </p>
                         </ons-card>
                     </ons-carousel-item>
                 {% endfor %}

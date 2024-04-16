@@ -20,8 +20,8 @@ class AppController extends AbstractController
     {
         // render the "pages"
         $templates = [];
-        foreach (['about','gallery','home'] as $route) {
-            $templates[$route] = $this->renderView("app/$route.html.twig");
+        foreach (['about','gallery','home','pokemon','saved','login','share'] as $route) {
+//            $templates[$route] = $this->renderView("app/$route.html.twig");
         }
         return $this->render('app/index.html.twig', [
             'templates' => $templates,

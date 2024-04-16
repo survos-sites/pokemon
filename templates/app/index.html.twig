@@ -9,7 +9,7 @@
 {#    <script src="lib/onsenui/js/onsenui.min.js"></script>#}
 
     <script type="module">
-      import {clearLocalStorage} from './../../assets/db.js';
+      import {clearLocalStorage} from '../../assets/db';
       // window.clearLocalStorage = clearLocalStorage(); // hack!
       // import db from './../../assets/db.js';
 
@@ -23,34 +23,17 @@
       window.clearLocalStorage = clearLocalStorage;
     </script>
 
-    <script>
-    const loadPage = (page) => {
-        // I hope this has moved...
-        console.error('load Page??');
-      document.querySelector('#menu').close();
-      console.error('loading page ' + page);
-      document.querySelector('#navigator').bringPageTop(page, { animation: 'fade' });
-    };
-
-    // const clearLocalStorage =  () => {
-    //   localStorage.clear();
-    //   db.delete().then (()=>db.open());
-    //   ons.notification.alert('Cleared local storage');
-    // };
-
-
-
-  </script>
   {% endblock %}
 
 {% block templates %}
     {% for code, template in templates %}
         <template id="{{ code }}">
-            {{ template }}
+            {{ template|raw }}
         </template>
     {% endfor %}
 {% endblock %}
   {% block body %}
+      {{ block('templates') }}
 <ons-splitter>
   <!-- The side menu -->
   <ons-splitter-side

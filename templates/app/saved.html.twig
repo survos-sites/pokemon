@@ -26,9 +26,7 @@
         {{ 'now'|date }}
         Random (from twig): {{ random(9999) }}
 
-        {% set filter = [
-            {owned: true}
-        ] %}
+        {% set filter = {owned: true} %}
             <twig:dexie
                     store="savedTable"
                     :filter="filter"

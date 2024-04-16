@@ -12,7 +12,10 @@
     </span>
 
     <h3>Pokemon-list</h3>
-    <twig:dexie :caller="_self">
+
+    <twig:dexie store="savedTable"
+                :filter="{}"
+                :caller="_self">
 
         <twig:block name="twig_template">
 

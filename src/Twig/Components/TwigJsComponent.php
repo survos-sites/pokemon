@@ -11,7 +11,8 @@ use Twig\Environment;
 final class TwigJsComponent
 {
     use TwigBlocksTrait;
-    public array $filter = [];
+    public string $store; // required
+    public $filter = null;
     public array $order = [];
 
     public function __construct(

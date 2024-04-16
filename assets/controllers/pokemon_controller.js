@@ -52,12 +52,17 @@ export default class extends Controller {
         this.appOutlets.forEach(appOutlet => appOutlet.log('hola!'));
         this.appOutlet.setTitle('abc');
 
+        document.addEventListener(this.identifier + '.prechange', ( e => {
+            console.log(e);
+            console.log('i heard an event! ' + e.type);
+        }));
 
 
         console.error(this.twigTemplateValue);
         this.template = Twig.twig({
             data: this.twigTemplateValue
         });
+        this.listTargetConnected();
         // .then( template => console.log(template))
         //     .catch(e => console.error(e));
 

@@ -77,10 +77,10 @@ export default class extends Controller {
             let target = e.target;
             let tabItem = e.detail.tabItem;
             // { target, tabItem }
-            console.log('target', target);
-            console.log('tabItem', tabItem);
+            // console.log('target', target);
+            // console.log('tabItem', tabItem);
             let pageName = tabItem.getAttribute('page');
-            console.log('prechange', target, tabItem, pageName);
+            // console.log('prechange', target, tabItem, pageName);
 
             // this is the tabItem component, not an HTML element
             let tabPageName = tabItem.getAttribute('page');
