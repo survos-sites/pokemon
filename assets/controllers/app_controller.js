@@ -77,38 +77,34 @@ export default class extends Controller {
             let target = e.target;
             let tabItem = e.detail.tabItem;
             // { target, tabItem }
-            // console.log('target', target);
-            // console.log('tabItem', tabItem);
-            let pageName = tabItem.getAttribute('page');
-            // console.log('prechange', target, tabItem, pageName);
+            console.log('target', target, target.dataset);
+            console.log('tabItem', tabItem);
 
-            // this is the tabItem component, not an HTML element
-            let tabPageName = tabItem.getAttribute('page');
-            let eventType = tabPageName + '.' + e.type;
-            console.log('dispatching ' + eventType);
-            document.dispatchEvent(new Event(eventType));
+            // this should be in the gallery controller, which can then dispatch it to app
 
-
-            if (pageName == 'xxsaved') {
-                console.log('prechange called for saved, disabled');
-                const grid = document.querySelector('#grid');
-                grid.innerHTML = '';
+            // document.querySelector('ons-carousel').addEventListener('postchange',
+            //     (e) => {
+            //     let activeIndex = e.carousel.activeIndex;
+            //     let item = e.carousel.querySelectorAll('ons-carousel-item')[activeIndex];
+            //     console.log(item);
+            //     this.titleTarget.innerHTML = item.dataset['title'];
+            // })
 
 
-                db.savedTable.filter(n => n.owned).each( row => {
-                    addPokemonToGrid(row, grid);
-                    // this.savedCountTarget.innerHTML = count;
-                });
+            if (tabItem) {
+                let pageName = tabItem.getAttribute('page');
+                // console.log('prechange', target, tabItem, pageName);
 
-                // db.savedTable.count().then ( c => this)
-                // getAll().toArray().then ( x => {
-                //     console.log(x);
-                // });
-                console.log('populate the grid.');
+                // this is the tabItem component, not an HTML element
+                let tabPageName = tabItem.getAttribute('page');
+                let eventType = tabPageName + '.' + e.type;
+                console.log('dispatching ' + eventType);
+                document.dispatchEvent(new Event(eventType));
             }
-            if (target.matches('#tabbar')) {
-                document.querySelector('#home-toolbar .center').innerHTML = tabItem.getAttribute('label');
-            }
+
+            // update the tabbar title?
+            // document.querySelector('#home-toolbar .center').innerHTML = tabItem.getAttribute('label');
+
         });
 
 

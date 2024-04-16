@@ -7,19 +7,19 @@
 {% endblock %}
 {% block body %}
 
-
-
-    {% set filter = {} %}
+    <div {{ stimulus_controller('gallery', {activeIndex: 2},
+        controllerOutlets = { 'app': '.app' }) }}
+    >
     <twig:dexie
             store="savedTable"
-            :filter="filter"
             :caller="_self"
     >
         <!-- this is the twig template.  It will be rendered here and replace this block -->
         <twig:block name="twig_template">
             <ons-carousel id="carousel" fullscreen swipeable auto-scroll auto-scroll-ratio="0.1">
                 {% for row in rows %}
-                    <ons-carousel-item>
+                    {# we could also pass the id and then look it up again, but not necessary. Or pass the whole object #}
+                    <ons-carousel-item data-title="{{ row.name  }}">
                         <ons-card>
                             <h2>{{ row.name }}</h2>
                             <img class="gallery-image" src="img/{{ row.id }}.png"/>
@@ -38,6 +38,8 @@
 
         </twig:block>
     </twig:dexie>
+
+    </div>
 
 
 {% endblock %}

@@ -33,8 +33,7 @@ export default class extends Controller {
 
         if (this.refreshEventValue) {
             document.addEventListener(this.refreshEventValue, ( e => {
-                console.log(e);
-                console.log('i heard an event! ' + e.type);
+                // console.log('i heard an event! ' + e.type);
                 this.contentConnected();
             }));
         }
@@ -43,30 +42,29 @@ export default class extends Controller {
     }
 
     // because this can be loaded by Turbo or Onsen
-    contentConnected()
+    async contentConnected()
     {
-
-        // let storeName = 'savedTable';
-        // let filter = {'owned':true}
-        // like api platform, get the data based on the parameters
-
         let table = db.table(this.storeValue);
-        // console.error(this.filterValue);
-        // table = table.where(this.filterValue);
+        // if (this.filter) {
+        //     this.filter = {'owned': true};
+        //     table = table.where({owned: true}).toArray().then(rows => console.log(rows)).catch(e => console.error(e));
+        // }
+        // // console.log(table);
+        // return;
 
-        if (this.filter)
-            console.error(this.filter);
-        table = table.filter(row => {
+        if (this.filter) {
+            table = table.filter(row => {
 
-            // there's probably a way to use reduce() or something
-            let okay = true;
-            for (const [key, value] of Object.entries(this.filter)) {
-                // @todo: check for array and use 'in array'
-                okay = okay && (row[key] === value);
-                // console.log(`${key}: ${value}`, row[key] === value, okay);
-            }
-            return okay;
-        });
+                // there's probably a way to use reduce() or something
+                let okay = true;
+                for (const [key, value] of Object.entries(this.filter)) {
+                    // @todo: check for array and use 'in array'
+                    okay = okay && (row[key] === value);
+                    // console.log(`${key}: ${value}`, row[key] === value, okay);
+                }
+                return okay;
+            });
+        }
 
         // table.toArray().then( (data) => {
         //     data.forEach( (row) => {
