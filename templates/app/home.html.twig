@@ -1,23 +1,20 @@
+{#  this is really the shell, not sure why it can't be combined with index #}
+
 {% extends 'onsPage.html.twig' %}
 {% block pageId 'home' %}
 {% block toolbar '' %} {# otherwise, a blank space at the top... #}
-{#{% block toolbar %}#}
-{#    {{ parent() }}#}
-{#    <div class="center">home?</div>#}
-{#{% endblock %}#}
 
 {% block body %}
     <ons-toolbar id="home-toolbar">
         <div {{ stimulus_target('app','title') }} class="center">Pokémon app.title in {{ _self }}</div>
 
+        {# this dropdown menu icon, click to open #}
         <div class="left">
             <ons-toolbar-button {{ stimulus_action('app','openMenu', 'click') }}>
                 <ons-icon icon="md-menu"></ons-icon>
             </ons-toolbar-button>
         </div>
     </ons-toolbar>
-
-    Where is this content??
 
     <ons-tabbar id="tabbar" {{ stimulus_target('app','tabbar') }}>
         {# render this from a menu event or include it #}

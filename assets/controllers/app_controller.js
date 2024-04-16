@@ -24,7 +24,7 @@ export default class extends Controller {
         let navigator = e.navigator;
         console.warn(e.type, e.currentPage.getAttribute('id'), e.detail, e.currentPage, e);
     }
-    eventPostDebug(e)
+    eventPostDispatch(e)
     {
         // idea: dispatch a "{page}:{eventName}" and let the stimulus controller listen for it.
         let navigator = e.navigator;
@@ -67,8 +67,8 @@ export default class extends Controller {
         })
         this.navigatorTarget.addEventListener('prepush', this.eventPreDebug);
         this.navigatorTarget.addEventListener('prepop', this.eventPreDebug);
-        this.navigatorTarget.addEventListener('postpush', this.eventPostDebug);
-        this.navigatorTarget.addEventListener('postpop', this.eventPostDebug);
+        this.navigatorTarget.addEventListener('postpush', this.eventPostDispatch);
+        this.navigatorTarget.addEventListener('postpop', this.eventPostDispatch);
         // https://thoughtbot.com/blog/taking-the-most-out-of-stimulus
 
         // prechange happens on tabs only
@@ -93,10 +93,11 @@ export default class extends Controller {
 
 
             if (tabItem) {
-                let pageName = tabItem.getAttribute('page');
                 // console.log('prechange', target, tabItem, pageName);
 
                 // this is the tabItem component, not an HTML element
+                let title = tabItem.getAttribute('label');
+                console.warn(title);
                 this.titleTarget.innerHTML = tabItem.getAttribute('label');
                 let tabPageName = tabItem.getAttribute('page');
                 let eventType = tabPageName + '.' + e.type;

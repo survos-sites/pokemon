@@ -1,10 +1,10 @@
 {% extends 'onsPage.html.twig' %}
 
 {% block pageId 'gallery' %}
-{% block toolbar %}
-    {{ parent() }}
-    <div class="center">Gallery</div>
-{% endblock %}
+{#{% block toolbar %}#}
+{#    {{ parent() }}#}
+{#    <div class="center">Gallery</div>#}
+{#{% endblock %}#}
 {% block body %}
 
     <div {{ stimulus_controller('gallery', {activeIndex: 2},
