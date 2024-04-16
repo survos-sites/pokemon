@@ -13,6 +13,7 @@ export default class extends Controller {
         'menu',
         'detail',
         'title',
+        'pageTitle',
         'tabbar',
         'twigTemplate',
         'savedCount','message','menu','navigator']

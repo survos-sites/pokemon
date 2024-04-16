@@ -1,4 +1,11 @@
-<ons-page id="home">
+{% extends 'onsPage.html.twig' %}
+{% block pageId 'home' %}
+{% block toolbar %}
+    {{ parent() }}
+    <div class="center">About</div>
+{% endblock %}
+
+{% block body %}
     <script type="module">
         import db from './../../assets/db.js';
 
@@ -26,7 +33,7 @@
 
 
     <ons-toolbar id="home-toolbar">
-        <div class="center">Pokémon</div>
+        <div {{ stimulus_target('app','title') }} class="center">Pokémon</div>
 
         <div class="left">
             <ons-toolbar-button {{ stimulus_action('app','openMenu', 'click') }}>
@@ -48,3 +55,5 @@
         <ons-tab page="share" label="Share" icon="fa-qrcode"></ons-tab>
     </ons-tabbar>
 </ons-page>
+
+{% endblock %}
