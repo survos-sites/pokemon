@@ -7,6 +7,8 @@ use Symfony\Component\DomCrawler\Crawler;
 trait TwigBlocksTrait
 {
 
+    public string $caller;
+
     public function getTwigBlocks(?string $id=null): array
     {
         $customColumnTemplates = [];
@@ -71,6 +73,7 @@ trait TwigBlocksTrait
             $crawler = new Crawler();
             $crawler->addHtmlContent($componentHtml);
             $allTwigBlocks = [];
+            // use an ID to select a specific template, regardless of where it is in the page.
             if ($this->getId()) {
                 $selector = '#' . $this->getId();
                 $text = $crawler->filter($selector)->html();
@@ -79,25 +82,7 @@ trait TwigBlocksTrait
                 return $customColumnTemplates;
             }
 
-            if ($crawler->filterXPath('//api_grid')->count() > 0) {
-                $twigBlocks = $crawler->filterXPath('//api_grid')->each(function (Crawler $node, $i) {
-                    return urldecode($node->html());
-                });
-                if (is_array($twigBlocks)) {
-                    $twigBlocks = $twigBlocks[0];
-                }
-            } elseif ($crawler->filterXPath('//js_twig')->count() > 0) {
-                dd($crawler);
-                    $twigBlocks = $crawler->filterXPath('//js_twig')->each(function (Crawler $node, $i) {
-                        dd($node);
-                        return urldecode($node->html());
-                    });
-                    if (is_array($twigBlocks)) {
-                        $twigBlocks = $twigBlocks[0];
-                    }
-            } else {
-                $twigBlocks = $source;
-            }
+            // <twig:block only, not component
             if ($crawler->filterXPath('//block')->count() > 0) {
 
                 $allTwigBlocks = $crawler->filterXPath('//block')->each(function (Crawler $node, $i) {
@@ -106,6 +91,7 @@ trait TwigBlocksTrait
                     $html = rawurldecode($node->html());
                     // hack for twig > and <
                     $html = str_replace(['&lt;', '&gt;'], ['<', '>'], $html);
+//                    dd($blockName, $html);
                     return [$blockName => $html];
                 });
             }
@@ -123,7 +109,6 @@ trait TwigBlocksTrait
                 $customColumnTemplates[$key] = $value;
             }
         }
-//        dd(array_keys($customColumnTemplates), $customColumnTemplates);
 
         return $customColumnTemplates;
     }

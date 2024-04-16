@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -17,7 +18,13 @@ class AppController extends AbstractController
     #[Route('/', name: 'app_index')]
     public function index(): Response
     {
+        // render the "pages"
+        $templates = [];
+        foreach (['about','gallery','home'] as $route) {
+            $templates[$route] = $this->renderView("app/$route.html.twig");
+        }
         return $this->render('app/index.html.twig', [
+            'templates' => $templates,
         ]);
     }
 
@@ -66,6 +73,12 @@ class AppController extends AbstractController
     public function about(): array
     {
         return [];
+    }
+
+    #[Route('/{pageCode}', name: 'app_page')]
+    public function page(Request $request, string $pageCode): Response
+    {
+        return $this->render("app/{$pageCode}.html.twig", $request->query->all());
     }
 
     #[Route('/p_detail', name: 'app_poke_detail')]

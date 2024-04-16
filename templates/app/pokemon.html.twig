@@ -1,16 +1,46 @@
-{% set _sc = 'pokemon' %}
-<ons-page id="pokemon" {{ stimulus_controller(_sc, {max: 3},
-    controllerOutlets = { 'app': '.app' }) }}>
-) }}>
+{#{% set _sc = 'pokemon' %}#}
+
+{#        {{ stimulus_controller(_sc,#}
+{#            {max: 3},#}
+{#            controllerOutlets = { 'app': '.app' })#}
+{#        }}>#}
+
+<ons-page id="pokemon">
 
     <span {{ stimulus_target('app', 'message') }}>
 
     </span>
 
     <h3>Pokemon-list</h3>
-    <ons-list {{ stimulus_target(_sc, 'list') }}>
-        <ons-list-item>TEST</ons-list-item>
-    </ons-list>
+    <twig:dexie :caller="_self">
+
+        <twig:block name="twig_template">
+
+            {% for row in rows %}
+{#                {{ row|json_encode }}#}
+{#                <!--{% set checked = row.owned ? 'checked' : '' %}-->#}
+                <ons-list-item>
+                    <a data-action="click->app#test"
+                       data-app-id-param="{{ row.id }}" >
+                        {{ row.name }} / {{ row.id }}
+                        {{ checkedValue }}
+                    </a>
+                    <ons-switch
+                            data-controller="ownswitch"
+                            class="right"
+                                data-ownswitch-owned-value="{{ row.owned }}"
+                                data-action="click->app#add"
+                                data-app-id-param="{{ row.id }}" >
+                    </ons-switch>
+                </ons-list-item>
+            {% endfor %}
+        </twig:block>
+    </twig:dexie>
+
+
+{#    <ons-list {{ stimulus_target(_sc, 'list') }}>#}
+{#        <ons-list-item>TEST</ons-list-item>#}
+{#    </ons-list>#}
 
     <div {{ stimulus_target('app','spinner') }}
             id="after-list" style="display:none; margin: 20px; text-align: center;">
@@ -19,15 +49,15 @@
 
 </ons-page>
 
-{#{% block test_render %}#}
-{#    {% set payload = {name: 'Tac', zip: 22740} %}#}
-{#<twig:DetailRender#}
-{#        :caller="_self"#}
-{#        :payload="payload" id="detail">#}
-{#    payload?#}
-{#    <twig:block name="template">#}
-{#        <b>{{ name }}</b>#}
-{#        <br />ZIP: {{ zip }}#}
-{#    </twig:block>#}
-{#</twig:DetailRender>#}
-{#{% endblock %}#}
+{# {% block test_render %} #}
+{#    {% set payload = {name: 'Tac', zip: 22740} %} #}
+{# <twig:DetailRender #}
+{#        :caller="_self" #}
+{#        :payload="payload" id="detail"> #}
+{#    payload? #}
+{#    <twig:block name="template"> #}
+{#        <b>{{ name }}</b> #}
+{#        <br />ZIP: {{ zip }} #}
+{#    </twig:block> #}
+{# </twig:DetailRender> #}
+{# {% endblock %} #}

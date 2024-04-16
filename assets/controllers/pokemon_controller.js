@@ -1,7 +1,9 @@
 import { Controller } from '@hotwired/stimulus';
 
-import db from '../db.js';
+// now called from the TwigJsComponent Component, so it can pass in a Twig Template
 
+import db from '../db.js';
+import Twig from 'twig';
 /*
 * The following line makes this controller "lazy": it won't be downloaded until needed
 * See https://github.com/symfony/stimulus-bridge#lazy-controllers
@@ -12,6 +14,7 @@ export default class extends Controller {
     static outlets = ['app'];
     static values = {
         max: Number,
+        twigTemplate: String
     }
 
     savePokemon (pokenumber, button) {
@@ -50,17 +53,44 @@ export default class extends Controller {
         this.appOutlet.setTitle('abc');
 
 
+
+        console.error(this.twigTemplateValue);
+        this.template = Twig.twig({
+            data: this.twigTemplateValue
+        });
+        // .then( template => console.log(template))
+        //     .catch(e => console.error(e));
+
+
     }
 
     listTargetConnected()
     {
+
+        let storeName = 'savedTable';
+        let filter = {'owned':true}
+        // like api platform, get the data based on the parameters
+
+        let table = db.table(storeName);
+        table = table.filter(row => row['owned'] === true);
+        table.toArray().then( (data) => {
+            data.forEach( (row) => {
+                console.log(row);
+                // nextPokenumber++;
+            })
+        })
+
+        db.savedTable.toArray()
+            .then( rows => this.template.render({rows: rows}))
+            .then( html => this.listTarget.innerHTML = html);
+        return;
+
         const URL = 'pokemon__url';
         const PREFIX = 'pokemon__';
 
         let nextPokenumber = 1;
         let storedPokemon;
 
-        // first, get ours
         db.savedTable.toArray().then( (data) => {
             data.forEach( (row) => {
                 this.appendPokemon(row.id, row  );

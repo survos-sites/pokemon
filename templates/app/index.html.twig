@@ -43,6 +43,13 @@
   </script>
   {% endblock %}
 
+{% block templates %}
+    {% for code, template in templates %}
+        <template id="{{ code }}">
+            {{ template }}
+        </template>
+    {% endfor %}
+{% endblock %}
   {% block body %}
 <ons-splitter>
   <!-- The side menu -->
@@ -53,7 +60,18 @@
           id="menu" collapse {{ stimulus_target('app','menu') }}>
     <ons-page>
       <ons-list>
-        {% for route in ['about','login'] %}
+          {# careful!  The "route" is really the page id #}
+          {% for route in ['about','gallery'] %}
+              <ons-list-item
+                      {{ stimulus_action('app', 'loadPage', 'click', {
+                          route: route
+                      }) }}
+              >
+                  {{ route|title }}
+              </ons-list-item>
+          {% endfor %}
+
+        {% for route in ['login'] %}
           <ons-list-item
             {{ stimulus_action('app', 'loadPage', 'click', {
               route: route

@@ -13,16 +13,106 @@ export default class extends Controller {
         'menu',
         'detail',
         'title',
+        'tabbar',
         'twigTemplate',
         'savedCount','message','menu','navigator']
     // ...
 
+    eventPreDebug(e)
+    {
+        let navigator = e.navigator;
+        console.warn(e.type, e.currentPage.getAttribute('id'), e.detail, e.currentPage, e);
+    }
+    eventPostDebug(e)
+    {
+        // idea: dispatch a "{page}:{eventName}" and let the stimulus controller listen for it.
+        let navigator = e.navigator;
+        let enterPageName = e.enterPage.getAttribute('id');
+        let leavePageName = '~';
+        if (e.leavePage) {
+            leavePageName = e.leavePage.getAttribute('id');
+            let eventType = leavePageName + '.' + e.type;
+            console.log('dispatching ' + eventType);
+            document.dispatchEvent(new Event(eventType));
+        }
+
+        // this.dispatch("saved", { detail: { content:
+        //         'saved content' } })
+
+        console.error(e.type, 'left '+ leavePageName,
+            'entering '+ enterPageName);
+        let eventType = enterPageName + '.' + e.type;
+        console.log('dispatching ' + eventType);
+        document.dispatchEvent(new Event(eventType));
+
+        if (enterPageName == 'saved') {
+            // this.tabbarTarget.loadPage('saved');
+
+        }
+    }
+
     connect() {
         super.connect();
+        console.log('hello from ' + this.identifier);
+        db.open().then(db =>
+            db.savedTable.count().then( c => console.log(c)));
+
+        console.error(db.tables.forEach(t =>console.log(t.name)));
+        db.savedTable.count().then( c => console.log(c));
         // db.tables.map(t => console.log(t));
         ons.ready( (x) => {
             console.warn("ons is ready, " + this.identifier)
+            db.open();
         })
+        this.navigatorTarget.addEventListener('prepush', this.eventPreDebug);
+        this.navigatorTarget.addEventListener('prepop', this.eventPreDebug);
+        this.navigatorTarget.addEventListener('postpush', this.eventPostDebug);
+        this.navigatorTarget.addEventListener('postpop', this.eventPostDebug);
+        // https://thoughtbot.com/blog/taking-the-most-out-of-stimulus
+
+        // prechange happens on tabs only
+        document.addEventListener('prechange', (e) => {
+            console.warn(e);
+
+            let target = e.target;
+            let tabItem = e.detail.tabItem;
+            // { target, tabItem }
+            console.log('target', target);
+            console.log('tabItem', tabItem);
+            let pageName = tabItem.getAttribute('page');
+            console.log('prechange', target, tabItem, pageName);
+
+            // this is the tabItem component, not an HTML element
+            let tabPageName = tabItem.getAttribute('page');
+            let eventType = tabPageName + '.' + e.type;
+            console.log('dispatching ' + eventType);
+            document.dispatchEvent(new Event(eventType));
+
+
+            if (pageName == 'xxsaved') {
+                console.log('prechange called for saved, disabled');
+                const grid = document.querySelector('#grid');
+                grid.innerHTML = '';
+
+
+                db.savedTable.filter(n => n.owned).each( row => {
+                    addPokemonToGrid(row, grid);
+                    // this.savedCountTarget.innerHTML = count;
+                });
+
+                // db.savedTable.count().then ( c => this)
+                // getAll().toArray().then ( x => {
+                //     console.log(x);
+                // });
+                console.log('populate the grid.');
+            }
+            if (target.matches('#tabbar')) {
+                document.querySelector('#home-toolbar .center').innerHTML = tabItem.getAttribute('label');
+            }
+        });
+
+
+
     }
 
     setTitle(title)
@@ -84,7 +174,7 @@ export default class extends Controller {
 
     log(x)
     {
-        console.error('this a log in app_controller', x);
+        console.log(x);
     }
 
 

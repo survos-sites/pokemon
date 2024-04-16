@@ -1,0 +1,36 @@
+{% extends 'onsPage.html.twig' %}
+
+{% block pageId 'gallery' %}
+{% block toolbar %}
+    {{ parent() }}
+    <div class="center">Gallery</div>
+{% endblock %}
+{% block body %}
+
+
+
+    {% set filter = [
+        {owned: true}
+    ] %}
+    <twig:dexie
+            store="savedTable"
+            :filter="filter"
+            :caller="_self"
+    >
+        <!-- this is the twig template.  It will be rendered here and replace this block -->
+        <twig:block name="twig_template">
+            <ons-carousel id="carousel" fullscreen swipeable auto-scroll auto-scroll-ratio="0.1">
+                {% for row in rows %}
+                    <ons-carousel-item>
+                        <ons-card>
+                            <img class="gallery-image" src="img/{{ row.id }}.png"/>
+                        </ons-card>
+                    </ons-carousel-item>
+                {% endfor %}
+            </ons-carousel>
+
+        </twig:block>
+    </twig:dexie>
+
+
+{% endblock %}

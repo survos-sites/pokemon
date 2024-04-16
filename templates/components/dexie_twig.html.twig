@@ -1,0 +1,16 @@
+{% set _sc = 'twigjs' %}
+
+<div{{ attributes }} {{ stimulus_controller(_sc, {
+    twigTemplate: this.twigTemplate
+},
+    controllerOutlets = { 'app': '.app' }
+) }}>
+
+    <div {{ stimulus_target(_sc, 'content') }}>
+        The listing will be here, rendered from the TwigJsComponent <i>Component</i>
+    </div>
+
+
+    <!-- component html -->
+
+</div>

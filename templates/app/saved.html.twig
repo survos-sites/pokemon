@@ -19,11 +19,37 @@
             height: 100%;
         }
     </style>
+    <div>
 
-    <div id="content"  {{ stimulus_controller('saved') }}>
-        <div id="grid">
-            grid values.
-            Random: {{ random(9999) }}
-        </div>
+        Random: {{ random(9999) }}
+
+        {{ 'now'|date }}
+        Random (from twig): {{ random(9999) }}
+
+        {% set filter = [
+            {owned: true}
+        ] %}
+            <twig:dexie
+                    store="savedTable"
+                    :filter="filter"
+                    :caller="_self"
+            >
+                <!-- this is the twig template.  It will be rendered here and replace this block -->
+                <twig:block name="twig_template">
+                    <div id="grid">
+                    {% for row in rows %}
+                        <div>
+                            <img src="/img/{{ row.id }}.png" />
+{#                            <b>{{ row.name }}</b>#}
+{#                            More at <a href="{{ row.url }}" target="_blank">{{ row.url }}</a>#}
+{#                            {{ row.owned ? "OWNED!" }}#}
+                        </div>
+                    {% endfor %}
+                    </div>
+
+                </twig:block>
+            </twig:dexie>
+
+
     </div>
 {% endblock body %}
