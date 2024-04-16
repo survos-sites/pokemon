@@ -11,17 +11,20 @@
             <ons-back-button></ons-back-button>
         </div>
 
-        <div class="center" {{ stimulus_target('app','page_title') }}>
-            {{ block('pageId') }} (page_title)
-        </div>
+{#        <div class="center" {{ stimulus_target('app','page_title') }}>#}
+{#            {{ block('pageId') }} (page_title in {{ _self }}#}
+{#        </div>#}
 
         {% endblock %}
     </ons-toolbar>
     {% endif %}
 
+    <p>
+        This is the {{ _self }} page, served from twig.  {{ 'now'|date }}
+    </p>
     <div {{ stimulus_target('app', 'content') }}>
         {% block body %}
-        This is the  page, served from twig.  {{ 'now'|date }}
         {% endblock %}
     </div>
+
 </ons-page>

@@ -1,24 +1,12 @@
 {% extends 'onsPage.html.twig' %}
 
 {% block pageId 'saved' %}
-{% block toolbar %}
+{#{% block toolbar  %}#}
 {#    {{ parent() }}#}
 {#    <div class="center">{{ 'my-collection'|trans }}</div>#}
-{% endblock %}
+{#{% endblock %}#}
 
 {% block body %}
-    <style>
-        #grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-auto-rows: 33vw;
-        }
-
-        #grid img {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
     <div>
 
         Random: {{ random(9999) }}
@@ -38,6 +26,9 @@
                     <div id="grid">
                     {% for row in rows %}
                         <div>
+                            {#  maybe a gallery controller click handler?  That then calls app_controller to open gallery at the right index? #}
+{#                            .bringPageTop('gallery.html', { data: { pokenumber, savedPokemon } });#}
+
                             <img src="/img/{{ row.id }}.png" />
 {#                            <b>{{ row.name }}</b>#}
 {#                            More at <a href="{{ row.url }}" target="_blank">{{ row.url }}</a>#}

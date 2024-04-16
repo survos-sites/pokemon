@@ -20,6 +20,7 @@ export default class extends Controller {
 
     connect() {
         super.connect();
+        return;
 
         this.appOutlets.forEach(alertOutlet => alertOutlet.log('hola!'));
 

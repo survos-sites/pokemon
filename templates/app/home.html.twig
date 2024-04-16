@@ -1,39 +1,14 @@
 {% extends 'onsPage.html.twig' %}
 {% block pageId 'home' %}
-{% block toolbar %}
-    {{ parent() }}
-    <div class="center">About</div>
-{% endblock %}
+{% block toolbar '' %} {# otherwise, a blank space at the top... #}
+{#{% block toolbar %}#}
+{#    {{ parent() }}#}
+{#    <div class="center">home?</div>#}
+{#{% endblock %}#}
 
 {% block body %}
-    <script type="module">
-        import db from './../../assets/db.js';
-
-        const openMenu = () => {
-            document.querySelector('#menu').open();
-        };
-
-        const addPokemonToGrid = (row, grid) => {
-            console.log('adding ', row);
-            const pokenumber = row.id;
-            // now add the new pokemon to the grid
-            const cell = document.createElement('div');
-            cell.onclick = () => document.querySelector('#navigator')
-                .bringPageTop('gallery.html', { data: { pokenumber, savedPokemon } });
-
-            const image = document.createElement('img');
-            image.setAttribute('src', `img/${pokenumber}.png`);
-            cell.appendChild(image);
-            grid.appendChild(cell);
-        };
-
-    </script>
-
-    home stuff here.
-
-
     <ons-toolbar id="home-toolbar">
-        <div {{ stimulus_target('app','title') }} class="center">Pokémon</div>
+        <div {{ stimulus_target('app','title') }} class="center">Pokémon app.title in {{ _self }}</div>
 
         <div class="left">
             <ons-toolbar-button {{ stimulus_action('app','openMenu', 'click') }}>
@@ -45,15 +20,12 @@
     Where is this content??
 
     <ons-tabbar id="tabbar" {{ stimulus_target('app','tabbar') }}>
-
-        <ons-tab page="pokemon" label="Home" icon="fa-home"></ons-tab>
-        <ons-tab page="gallery" label="Gallery" icon="fa-images"></ons-tab>
-        <ons-tab page="saved" label="Saved">
-            <span class="notification" {{ stimulus_target('app', 'savedCount') }}>
-            </span>
-        </ons-tab>
-        <ons-tab page="share" label="Share" icon="fa-qrcode"></ons-tab>
+        {# render this from a menu event or include it #}
+        {{ include('app/_tabs.html.twig') }}
     </ons-tabbar>
-</ons-page>
+
+
+
+    </ons-page>
 
 {% endblock %}

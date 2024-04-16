@@ -1,6 +1,6 @@
 // import Dexie from 'https://cdn.jsdelivr.net/npm/dexie@4.0.1/+esm';
 import Dexie from 'dexie';
-var db = new Dexie('pokemonx');
+var db = new Dexie('pokemon1');
 
 export function clearLocalStorage()  {
   db.delete().then (()=>db.open());

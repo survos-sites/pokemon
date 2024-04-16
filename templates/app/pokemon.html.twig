@@ -1,16 +1,12 @@
-{#{% set _sc = 'pokemon' %}#}
+{% block pageCongroller 'pokemon' %}
+{% extends 'onsPage.html.twig' %}
+{% block pageId 'pokemon' %}
+{% block toolbar %}
+    {{ parent() }}
+    <div class="center">home?</div>
+{% endblock %}
 
-{#        {{ stimulus_controller(_sc,#}
-{#            {max: 3},#}
-{#            controllerOutlets = { 'app': '.app' })#}
-{#        }}>#}
-
-<ons-page id="pokemon">
-
-    <span {{ stimulus_target('app', 'message') }}>
-
-    </span>
-
+{% block body %}
     <h3>Pokemon-list</h3>
 
     <twig:dexie store="savedTable"
@@ -50,17 +46,4 @@
         <ons-icon icon="fa-spinner" size="26px" spin></ons-icon>
     </div>
 
-</ons-page>
-
-{# {% block test_render %} #}
-{#    {% set payload = {name: 'Tac', zip: 22740} %} #}
-{# <twig:DetailRender #}
-{#        :caller="_self" #}
-{#        :payload="payload" id="detail"> #}
-{#    payload? #}
-{#    <twig:block name="template"> #}
-{#        <b>{{ name }}</b> #}
-{#        <br />ZIP: {{ zip }} #}
-{#    </twig:block> #}
-{# </twig:DetailRender> #}
-{# {% endblock %} #}
+{% endblock %}

@@ -73,7 +73,7 @@ export default class extends Controller {
 
         // prechange happens on tabs only
         document.addEventListener('prechange', (e) => {
-            console.warn(e);
+            console.warn(e.type);
 
             let target = e.target;
             let tabItem = e.detail.tabItem;
@@ -97,6 +97,7 @@ export default class extends Controller {
                 // console.log('prechange', target, tabItem, pageName);
 
                 // this is the tabItem component, not an HTML element
+                this.titleTarget.innerHTML = tabItem.getAttribute('label');
                 let tabPageName = tabItem.getAttribute('page');
                 let eventType = tabPageName + '.' + e.type;
                 console.log('dispatching ' + eventType);

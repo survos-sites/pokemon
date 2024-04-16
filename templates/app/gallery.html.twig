@@ -16,7 +16,7 @@
     >
         <!-- this is the twig template.  It will be rendered here and replace this block -->
         <twig:block name="twig_template">
-            <ons-carousel id="carousel" fullscreen swipeable auto-scroll auto-scroll-ratio="0.1">
+            <ons-carousel id="carousel" {{ stimulus_target('gallery', 'carousel') }} fullscreen swipeable auto-scroll auto-scroll-ratio="0.1">
                 {% for row in rows %}
                     {# we could also pass the id and then look it up again, but not necessary. Or pass the whole object #}
                     <ons-carousel-item data-title="{{ row.name  }}">

@@ -9,6 +9,7 @@ export default class extends Controller {
     static values = {
         activeIndex: Number,
     }
+    static targets = ['carousel'];
     static outlets = ['app'];
 
 
@@ -16,14 +17,19 @@ export default class extends Controller {
         super.connect();
         // listen for changes to update the title.
         console.log('hi from ' + this.identifier);
-        document.querySelector('ons-carousel').addEventListener('postchange', (e) => {
+    }
+
+    carouselConnected(e)
+    {
+        // this is the item within the gallery, not the gallery page itself.
+        e.element.addEventListener('postchange', (e) => {
             console.log(e);
             console.log('i heard an event! ' + e.type);
-                let activeIndex = e.carousel.activeIndex;
-                let item = e.carousel.querySelectorAll('ons-carousel-item')[activeIndex];
-                console.log(item);
-                this.appOutlets.forEach(appOutlet => appOutlet.log('hola!'));
-                this.appOutlet.setTitle(item.dataset['title']);
+            let activeIndex = e.carousel.activeIndex;
+            let item = e.carousel.querySelectorAll('ons-carousel-item')[activeIndex];
+            console.log(item);
+            this.appOutlets.forEach(appOutlet => appOutlet.log('hola!'));
+            this.appOutlet.setTitle(item.dataset['title']);
 
         })
 

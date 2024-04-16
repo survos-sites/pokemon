@@ -9,7 +9,7 @@
 {#    <script src="lib/onsenui/js/onsenui.min.js"></script>#}
 
     <script type="module">
-      import {clearLocalStorage} from '../../assets/db';
+      // import {clearLocalStorage} from '../../assets/db';
       // window.clearLocalStorage = clearLocalStorage(); // hack!
       // import db from './../../assets/db.js';
 
@@ -20,7 +20,7 @@
       {#  #}{#navigator.resetToPage('about', {x: {{ random(9999) }} });#}
       {#  #}{#console.warn('resetting to page ', x);#}
       {#}#}
-      window.clearLocalStorage = clearLocalStorage;
+      // window.clearLocalStorage = clearLocalStorage;
     </script>
 
   {% endblock %}
@@ -39,6 +39,7 @@
   <ons-splitter-side
           label="menu"
           icon="users"
+
           id="menu" collapse {{ stimulus_target('app','menu') }}>
     <ons-page>
       <ons-list>
