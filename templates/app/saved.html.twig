@@ -28,6 +28,7 @@
 
         {% set filter = {owned: true} %}
             <twig:dexie
+                    refreshEvent="saved.prechange"
                     store="savedTable"
                     :filter="filter"
                     :caller="_self"

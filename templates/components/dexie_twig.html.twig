@@ -2,6 +2,7 @@
 
 <div{{ attributes }}
         {{ stimulus_controller(_sc, {
+            refreshEvent: this.refreshEvent,
             twigTemplate: this.twigTemplate,
             filter: this.filter|json_encode,
             store: this.store

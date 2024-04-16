@@ -12,6 +12,7 @@ export default class extends Controller {
     static targets = ['content'];
     static values = {
         twigTemplate: String,
+        refreshEvent: String,
         store: String,
         filter: {
             type: String,
@@ -29,6 +30,15 @@ export default class extends Controller {
         });
         this.filter = this.filterValue ? JSON.parse(this.filterValue): false;
         this.contentConnected();
+
+        if (this.refreshEventValue) {
+            document.addEventListener(this.refreshEventValue, ( e => {
+                console.log(e);
+                console.log('i heard an event! ' + e.type);
+                this.contentConnected();
+            }));
+        }
+
 
     }
 
@@ -58,12 +68,12 @@ export default class extends Controller {
             return okay;
         });
 
-        table.toArray().then( (data) => {
-            data.forEach( (row) => {
-                console.log(row);
-                // nextPokenumber++;
-            })
-        })
+        // table.toArray().then( (data) => {
+        //     data.forEach( (row) => {
+        //         console.log(row);
+        //         // nextPokenumber++;
+        //     })
+        // })
 
         table.toArray()
             .then( rows => this.template.render({rows: rows}))

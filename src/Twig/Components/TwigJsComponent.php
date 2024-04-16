@@ -12,6 +12,22 @@ final class TwigJsComponent
 {
     use TwigBlocksTrait;
     public string $store; // required
+    public ?string $refreshEvent=null;
+
+    public function getRefreshEvent(): string
+    {
+        return $this->refreshEvent;
+    }
+
+    public function getFilter(): null
+    {
+        return $this->filter;
+    }
+
+    public function getStore(): string
+    {
+        return $this->store;
+    }
     public $filter = null;
     public array $order = [];
 
