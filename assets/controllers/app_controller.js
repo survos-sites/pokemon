@@ -137,7 +137,7 @@ export default class extends Controller {
         const data = db.savedTable.get(id).then(
             (data) => {
                 console.assert(data, "Missing data for " + id);
-                this.navigatorTarget.pushPage('p_detail', {data: data}).then(
+                this.navigatorTarget.pushPage('detail', {data: data}).then(
                     (p) => {
                         // p.data is the same as data
                         if (this.hasTwigTemplateTarget) {

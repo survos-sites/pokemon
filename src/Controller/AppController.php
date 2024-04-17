@@ -20,7 +20,7 @@ class AppController extends AbstractController
     {
         // render the "pages"
         $templates = [];
-        foreach (['about','gallery','home','pokemon','saved','login','share'] as $route) {
+        foreach (['about','gallery','home','pokemon','saved','login','share','detail'] as $route) {
 //            $templates[$route] = $this->renderView("app/$route.html.twig");
         }
         return $this->render('app/index.html.twig', [
@@ -81,10 +81,4 @@ class AppController extends AbstractController
         return $this->render("app/{$pageCode}.html.twig", $request->query->all());
     }
 
-    #[Route('/p_detail', name: 'app_poke_detail')]
-    #[Template('app/detail.html.twig')]
-    public function poke_details(): array
-    {
-        return [];
-    }
 }

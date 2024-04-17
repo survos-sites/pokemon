@@ -1,6 +1,13 @@
 {% extends 'onsPage.html.twig' %}
 
 {% block pageId 'about' %}
+{#{% block pageTitle 'About' %}#}
+{% block toolbar %}
+    {{ parent() }}
+    {#  need a better way for the title #}
+    <div class="center">About</div>
+{% endblock %}
+
 {% block body %}
     <p>
         This is a Symfony version of the
