@@ -1,8 +1,8 @@
 twig:
     file_name_pattern: '*.twig'
     globals:
-#        _app_sc: '@@survos/mobile-bundle/mobile'
-        _app_sc: 'app'
+        _app_sc: '@@survos/mobile-bundle/mobile'
+#        _app_sc: 'app'
 
 when@test:
     twig:
