@@ -9,63 +9,71 @@
 {% block body %}
     <h3>Pokemon-list</h3>
 
-    {% set stimulusSettings = stimulus_action(_app_sc, 'test', 'click', {id: 7}).toArray %}
+    {% set stimulusSettings = stimulus_action(_app_sc, 'test', 'click',
+        {
+            page: 'detail',
+            store: 'saved',
+            id: '{{ row.id }}'}).toArray %}
 
-    stimulusParams: stimulus_action(_app_sc, 'navigate', 'click').attributes.keys.first
     {% set globals = {
         stimulusAction: stimulusSettings['data-action'],
-        stimulusParamsVar: stimulusSettings|keys|last
+        stimulusParamsVars: stimulusSettings
     } %}
+
     <twig:dexie
             dbName="pokemon1"
             store="savedTable"
-                :globals="globals"
-                :filter="{}"
-                :caller="_self">
+            :globals="globals"
+            :filter="{}"
+            :caller="_self">
 
-        <twig:block name="twig_template" id="hack_to_get_raw_data">
+        <twig:block name="twig_template">
+            there are {{ rows|length }} rows
+        </twig:block>
+        <twig:block name="twig_template2" id="hack_to_get_raw_data">
             there are {{ rows|length }} rows
 
-            {{ globals.stimulusAction }}
+{#            {{ globals.stimulusAction }}#}
 
-            {% for row in rows %}
-{#                {{ row|json_encode }}#}
-{#                <!--{% set checked = row.owned ? 'checked' : '' %}-->#}
+{#            {% for row in rows %}#}
+{#                #}{#                {{ row|json_encode }} #}
+{#                #}{#                <!--{% set checked = row.owned ? 'checked' : '' %}--> #}
+{#                <ons-list-item>#}
 
-                outside of component
-                <a href="#" {{ globals.stimulusParamsVar }}="{{ row.id }}" >XX</a>
-                <ons-list-item>
-                    {# was this #}
-                    <a data-action="{{ globals.stimulusAction }}"
-{#                    <a data-action="click->app#test" #}
-{#                       data-app-id-param="{{ row.id }}" >#}
-{#                    <a data-action="click->survos--mobile-bundle--mobile#test"#}
-{#                       data-survos--mobile-bundle--mobile-id-param="{{ row.id }}" >#}
-{#                        {{ globals.stimulusParamsVar }}#}
-{#                        ={{ row.id }}#}
-{#                        <br />#}
-                       {{ globals.stimulusParamsVar }}="{{ row.id }}" >
-                        {{ row.name }} / {{ row.id }}
-{#                        {{ checkedValue }}#}
-                    </a>
-                    <ons-switch
-                            data-controller="ownswitch"
-                            class="right"
-                                data-ownswitch-owned-value="{{ row.owned }}"
-                                data-action="click->app#add"
-                                data-app-id-param="{{ row.id }}" >
-                    </ons-switch>
-                </ons-list-item>
-            {% endfor %}
-            {# this html tag is used for a regex grab if node->html() doesn't work #}
+{#                    <a#}
+{#                    {% for var, val in globals.stimulusParamsVars %}#}
+{#                        #}{# use the dexie val.  regex row.(.*?) #}
+{#                        {% if val == '{{ row.id }}' %}#}
+{#                            {% set val = row['id'] %}#}
+{#                        {% endif %}#}
+{#                        {{ var }}="{{ val }}"#}
+{#                    {% endfor %}#}
+{#                    >#}
+{#                    {{ row.name }} {{ row.id }}#}
+{#                    </a>#}
+
+{#                    #}{#                    <a data-action="{{ globals.stimulusAction }}" #}
+{#                    #}{#                       {{ globals.stimulusParamsVar }}="{{ row.id }}" > #}
+{#                    #}{#                        {{ row.name }} / {{ row.id }} #}
+{#                    #}{#                    </a> #}
+{#                    <ons-switch#}
+{#                            data-controller="ownswitch"#}
+{#                            class="right"#}
+{#                            data-ownswitch-owned-value="{{ row.owned }}"#}
+{#                            data-action="click->app#add"#}
+{#                            data-app-id-param="{{ row.id }}">#}
+{#                    </ons-switch>#}
+{#                </ons-list-item>#}
+{#            {% endfor %}#}
+{#            #}{# this html tag is used for a regex grab if node->html() doesn't work #}
             <!-- hack_to_get_raw_data -->
         </twig:block>
     </twig:dexie>
 
 
-{#    <ons-list {{ stimulus_target(_sc, 'list') }}>#}
-{#        <ons-list-item>TEST</ons-list-item>#}
-{#    </ons-list>#}
+    {#    <ons-list {{ stimulus_target(_sc, 'list') }}> #}
+    {#        <ons-list-item>TEST</ons-list-item> #}
+    {#    </ons-list> #}
 
     <div {{ stimulus_target('app','spinner') }}
             id="after-list" style="display:none; margin: 20px; text-align: center;">

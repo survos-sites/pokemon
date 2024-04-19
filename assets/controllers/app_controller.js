@@ -1,14 +1,17 @@
-import { Controller } from '@hotwired/stimulus';
+// import { Controller } from '@hotwired/stimulus';
+import MobileController from '@survos-mobile/mobile';
 // import { ParentController } from '../vendor/survos/mobile-bundle/assets/src/controllers/mobile_controller.js';
 import db from '../db.js';
 import Twig from 'twig';
+
+// app_controller must extend from MobileController, and be called app, otherwise outlets won't work.
 
 /*
 * The following line makes this controller "lazy": it won't be downloaded until needed
 * See https://github.com/symfony/stimulus-bridge#lazy-controllers
 */
 /* stimulusFetch: 'lazy' */
-export default class extends Controller {
+export default class extends MobileController {
     static targets = [
         'menu',
         'detail',
@@ -19,111 +22,13 @@ export default class extends Controller {
         'savedCount','message','menu','navigator']
     // ...
 
-    eventPreDebug(e)
-    {
-        let navigator = e.navigator;
-        console.warn(e.type, e.currentPage.getAttribute('id'), e.detail, e.currentPage, e);
-    }
-    eventPostDispatch(e)
-    {
-        // idea: dispatch a "{page}:{eventName}" and let the stimulus controller listen for it.
-        let navigator = e.navigator;
-        let enterPageName = e.enterPage.getAttribute('id');
-        let leavePageName = '~';
-        if (e.leavePage) {
-            leavePageName = e.leavePage.getAttribute('id');
-            let eventType = leavePageName + '.' + e.type;
-            console.log('dispatching ' + eventType);
-            document.dispatchEvent(new Event(eventType));
-        }
-
-        // this.dispatch("saved", { detail: { content:
-        //         'saved content' } })
-
-        console.error(e.type, 'left '+ leavePageName,
-            'entering '+ enterPageName);
-        let eventType = enterPageName + '.' + e.type;
-        console.log('dispatching ' + eventType);
-        document.dispatchEvent(new Event(eventType));
-
-        if (enterPageName == 'saved') {
-            // this.tabbarTarget.loadPage('saved');
-
-        }
-    }
-
     connect() {
         super.connect();
         console.log('hello from ' + this.identifier);
+        // we can do this in app, mobilecontroller has no need for dexie
         db.open().then(db =>
             db.savedTable.count().then( c => console.log(c)));
 
-        console.error(db.tables.forEach(t =>console.log(t.name)));
-        db.savedTable.count().then( c => console.log(c));
-        // db.tables.map(t => console.log(t));
-        ons.ready( (x) => {
-            console.warn("ons is ready, " + this.identifier)
-            db.open();
-        })
-        this.navigatorTarget.addEventListener('prepush', this.eventPreDebug);
-        this.navigatorTarget.addEventListener('prepop', this.eventPreDebug);
-        this.navigatorTarget.addEventListener('postpush', this.eventPostDispatch);
-        this.navigatorTarget.addEventListener('postpop', this.eventPostDispatch);
-        // https://thoughtbot.com/blog/taking-the-most-out-of-stimulus
-
-        // prechange happens on tabs only
-        document.addEventListener('prechange', (e) => {
-            console.warn(e.type);
-
-            let target = e.target;
-            let tabItem = e.detail.tabItem;
-            // { target, tabItem }
-            console.log('target', target, target.dataset);
-            console.log('tabItem', tabItem);
-
-            // this should be in the gallery controller, which can then dispatch it to app
-
-            // document.querySelector('ons-carousel').addEventListener('postchange',
-            //     (e) => {
-            //     let activeIndex = e.carousel.activeIndex;
-            //     let item = e.carousel.querySelectorAll('ons-carousel-item')[activeIndex];
-            //     console.log(item);
-            //     this.titleTarget.innerHTML = item.dataset['title'];
-            // })
-
-
-            if (tabItem) {
-                // console.log('prechange', target, tabItem, pageName);
-
-                // this is the tabItem component, not an HTML element
-                let title = tabItem.getAttribute('label');
-                console.warn(title);
-                this.titleTarget.innerHTML = tabItem.getAttribute('label');
-                let tabPageName = tabItem.getAttribute('page');
-                let eventType = tabPageName + '.' + e.type;
-                console.log('dispatching ' + eventType);
-                document.dispatchEvent(new Event(eventType));
-            }
-
-            // update the tabbar title?
-            // document.querySelector('#home-toolbar .center').innerHTML = tabItem.getAttribute('label');
-
-        });
-
-
-
-    }
-
-    setTitle(title)
-    {
-        if (this.hasTitleTarget) {
-            this.titleTarget.innerHTML = title;
-        }
-    }
-
-    openMenu()
-    {
-        this.menuTarget.open();
     }
 
     clear()

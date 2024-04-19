@@ -4,7 +4,24 @@
 {% block pageId 'detail' %}
 
 {% block body %}
-{#        <twig:DetailRender#}
+
+    This is {{ _self }}!
+
+    <twig:dexie
+            dbName="pokemon1"
+            store="savedTable"
+            :filter="{}"
+            :caller="_self">
+
+        <twig:block name="twig_template">
+
+
+
+        </twig:block>
+    </twig:dexie>
+
+
+    {#        <twig:DetailRender#}
 {#                :caller="_self"#}
 {#                id="detail">#}
 {#            <twig:block name="content">#}
@@ -16,6 +33,7 @@
 {#                Title block!  {{ name }}#}
 {#            </twig:block>#}
 {#        </twig:DetailRender>#}
+
 
     <template id="twigTemplate" {{ stimulus_target('app', 'twigTemplate') }}>
         {% verbatim %}

@@ -19,7 +19,7 @@
 
 {#    {% set _appController = 'app' %}#}
     {# app_controller handles navigation #}
-    <body class="app" {{ stimulus_controller(_app_sc) }} >
+    <body id="app_body" class="app" {{ stimulus_controller(_app_sc) }} >
         {% block body %}{% endblock %}
     </body>
 </html>

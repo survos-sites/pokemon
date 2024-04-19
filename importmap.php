@@ -16,6 +16,9 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    '@survos-mobile/mobile' => [
+        'path' => './vendor/survos/mobile-bundle/assets/src/controllers/mobile_controller.js',
+    ],
     '@symfony/stimulus-bundle' => [
         'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
     ],
