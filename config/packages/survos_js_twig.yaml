@@ -1,0 +1,10 @@
+# Default configuration for extension with alias: "survos_js_twig"
+survos_js_twig:
+  debug: false
+  db: pokemon1
+  version: 3
+  stores:
+    -
+      name: savedTable
+      schema: "++id,name,owned"
+      url: '/x'

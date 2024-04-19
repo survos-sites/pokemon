@@ -1,29 +1,4 @@
 {% extends "base.html.twig" %}
-  {% block stylesheets %}
-  {{ parent() }}
-  {% endblock %}
-
-  {% block javascripts %}
-  {{ parent() }}
-{#    <script src="components/loader.js"></script>#}
-{#    <script src="lib/onsenui/js/onsenui.min.js"></script>#}
-
-    <script type="module">
-      // import {clearLocalStorage} from '../../assets/db';
-      // window.clearLocalStorage = clearLocalStorage(); // hack!
-      // import db from './../../assets/db.js';
-
-      {#export function clearLocalStorage(x) {#}
-      {#  db.delete().then (()=>db.open());#}
-
-      {#  #}{#let navigator = document.getElementById('navigator');#}
-      {#  #}{#navigator.resetToPage('about', {x: {{ random(9999) }} });#}
-      {#  #}{#console.warn('resetting to page ', x);#}
-      {#}#}
-      // window.clearLocalStorage = clearLocalStorage;
-    </script>
-
-  {% endblock %}
 
 {% block templates %}
     {% for code, template in templates %}
@@ -32,72 +7,73 @@
         </template>
     {% endfor %}
 {% endblock %}
+
   {% block body %}
       {{ block('templates') }}
-<ons-splitter>
-  <!-- The side menu -->
-  <ons-splitter-side
-          label="menu"
-          icon="users"
+      <ons-splitter>
+          <!-- The side menu -->
+          <ons-splitter-side
+                  label="menu"
+                  icon="users"
 
-          id="menu" collapse {{ stimulus_target('app','menu') }}>
-    <ons-page>
-      <ons-list>
-          {# careful!  The "route" is really the page id #}
-          {% for route in ['about','gallery'] %}
-              <ons-list-item
-                      {{ stimulus_action('app', 'loadPage', 'click', {
-                          route: route
-                      }) }}
-              >
-                  {{ route|title }}
-              </ons-list-item>
-          {% endfor %}
+                  id="menu" collapse {{ stimulus_target(_app_sc,'menu') }}>
+              <ons-page>
+                  <ons-list>
+                      {# careful!  The "route" is really the page id #}
+                      {% for route in ['about','gallery'] %}
+                          <ons-list-item
+                                  {{ stimulus_action(_app_sc, 'loadPage', 'click', {
+                                      route: route
+                                  }) }}
+                          >
+                              {{ route|title }}
+                          </ons-list-item>
+                      {% endfor %}
 
-        {% for route in ['login'] %}
-          <ons-list-item
-            {{ stimulus_action('app', 'loadPage', 'click', {
-              route: route
-            }) }}
-            >
-            {{ route|title }}
-          </ons-list-item>
-        {% endfor %}
-          <ons-list-item>
-              <div class="left">
-                  <ons-icon icon="md-github" class="list-item__icon"></ons-icon>
-              </div>
-              <div class="center">
-                  Github Repo
-                  <!-- onclick?
-                  https://github.com/survos-sites/pokemon
-                  -->
-              </div>
-          </ons-list-item>
+                      {% for route in ['login'] %}
+                          <ons-list-item
+                                  {{ stimulus_action(_app_sc, 'loadPage', 'click', {
+                                      route: route
+                                  }) }}
+                          >
+                              {{ route|title }}
+                          </ons-list-item>
+                      {% endfor %}
+                      <ons-list-item>
+                          <div class="left">
+                              <ons-icon icon="md-github" class="list-item__icon"></ons-icon>
+                          </div>
+                          <div class="center">
+                              Github Repo
+                              <!-- onclick?
+                              https://github.com/survos-sites/pokemon
+                              -->
+                          </div>
+                      </ons-list-item>
 
-        {#                  onclick="loadPage('{{ route }}')"#}
-{#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item>#}
-{#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item>#}
-        <ons-list-item xxonclick="clearLocalStorage()" {{ stimulus_action('app', 'clear', 'click') }}>
-          Clear local storage
-        </ons-list-item>
-      </ons-list>
-    </ons-page>
-  </ons-splitter-side>
+                      {#                  onclick="loadPage('{{ route }}')" #}
+                      {#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item> #}
+                      {#        <ons-list-item onclick="loadPage('login')">Login</ons-list-item> #}
+                      <ons-list-item xxonclick="clearLocalStorage()" {{ stimulus_action('app', 'clear', 'click') }}>
+                          Clear local storage
+                      </ons-list-item>
+                  </ons-list>
+              </ons-page>
+          </ons-splitter-side>
 
-  <!-- Everything not in the side menu -->
-  <ons-splitter-content>
-      <!-- https://onsen.io/v2/api/js/ons-navigator.html -->
-      <!-- navigates pages, not tabs -->
-    <ons-navigator
-            id="navigator"
-            {{ stimulus_target('app', 'navigator') }}
-            page="home"
-    > <!-- the starting page -->
+          <!-- Everything not in the side menu -->
+          <ons-splitter-content>
+              <!-- https://onsen.io/v2/api/js/ons-navigator.html -->
+              <!-- navigates pages, not tabs.  -->
+              <ons-navigator
+                      id="navigator"
+                      {{ stimulus_target(_app_sc, 'navigator') }}
+                      page="home"
+              > <!-- the starting page -->
 
-    </ons-navigator>
-  </ons-splitter-content>
-</ons-splitter>
+              </ons-navigator>
+          </ons-splitter-content>
+      </ons-splitter>
 
 
   {% endblock %}

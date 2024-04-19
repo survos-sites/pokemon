@@ -6,17 +6,17 @@
 
 {% block body %}
     <ons-toolbar id="home-toolbar">
-        <div {{ stimulus_target('app','title') }} class="center">Pokémon app.title in {{ _self }}</div>
+        <div {{ stimulus_target(_app_sc,'title') }} class="center">Pokémon app.title in {{ _self }}</div>
 
         {# this dropdown menu icon, click to open #}
         <div class="left">
-            <ons-toolbar-button {{ stimulus_action('app','openMenu', 'click') }}>
+            <ons-toolbar-button {{ stimulus_action(_app_sc,'openMenu', 'click') }}>
                 <ons-icon icon="md-menu"></ons-icon>
             </ons-toolbar-button>
         </div>
     </ons-toolbar>
 
-    <ons-tabbar id="tabbar" {{ stimulus_target('app','tabbar') }}>
+    <ons-tabbar id="tabbar" {{ stimulus_target(_app_sc,'tabbar') }}>
         {# render this from a menu event or include it #}
         {{ include('app/_tabs.html.twig') }}
     </ons-tabbar>

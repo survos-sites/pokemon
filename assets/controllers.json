@@ -18,6 +18,25 @@
                 "fetch": "eager"
             }
         },
+        "@survos/js-twig-bundle": {
+            "dexie": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": []
+            },
+            "jstwig": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": []
+            }
+        },
+        "@survos/mobile-bundle": {
+            "mobile": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": []
+            }
+        },
         "@symfony/ux-turbo": {
             "turbo-core": {
                 "enabled": true,

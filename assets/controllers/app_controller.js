@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-
+// import { ParentController } from '../vendor/survos/mobile-bundle/assets/src/controllers/mobile_controller.js';
 import db from '../db.js';
 import Twig from 'twig';
 

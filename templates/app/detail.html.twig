@@ -4,21 +4,22 @@
 {% block pageId 'detail' %}
 
 {% block body %}
-        <twig:DetailRender
-                :caller="_self"
-                id="detail">
-            <twig:block name="content">
-                content block
-                <b>{{ name }}</b>
-                <img src="/img/{{ id }}.png"/>
-            </twig:block>
-            <twig:block name="title">
-                Title block!  {{ name }}
-            </twig:block>
-        </twig:DetailRender>
+{#        <twig:DetailRender#}
+{#                :caller="_self"#}
+{#                id="detail">#}
+{#            <twig:block name="content">#}
+{#                content block#}
+{#                <b>{{ name }}</b>#}
+{#                <img src="/img/{{ id }}.png"/>#}
+{#            </twig:block>#}
+{#            <twig:block name="title">#}
+{#                Title block!  {{ name }}#}
+{#            </twig:block>#}
+{#        </twig:DetailRender>#}
 
     <template id="twigTemplate" {{ stimulus_target('app', 'twigTemplate') }}>
         {% verbatim %}
+This uses the twigTemplate target in app_controller, via an HTML template.
 <h1>Pokemon ID: {{ id }}</h1>
 <img src="/img/{{ id }}.png" />
         <b>{{ name }}</b>
