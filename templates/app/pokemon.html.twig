@@ -13,11 +13,10 @@
         {
             page: 'detail',
             store: 'saved',
-            id: '{{ row.id }}'}).toArray %}
+            id: '@id'}).toArray %}
 
     {% set globals = {
-        stimulusAction: stimulusSettings['data-action'],
-        stimulusParamsVars: stimulusSettings
+        stimulusSettings: stimulusSettings
     } %}
 
     <twig:dexie
@@ -27,45 +26,37 @@
             :filter="{}"
             :caller="_self">
 
-        <twig:block name="twig_template">
+        <twig:block name="twig_template2">
             there are {{ rows|length }} rows
         </twig:block>
-        <twig:block name="twig_template2" id="hack_to_get_raw_data">
+
+        <twig:block name="twig_template" id="hack_to_get_raw_data">
             there are {{ rows|length }} rows
+            {% for row in rows %}
+                {% set checked = row.owned ? 'checked' : '' %}
+                <ons-list-item>
+                    <a
+                    {% for var, val in globals.stimulusSettings %}
+                        {% if val starts with '@' %}
+                            {% set val = row[val|replace({'@':''})] %}
+                        {% endif %}
+                        {{ var }}="{{ val }}"
+                    {% endfor %}
+                    >
+                    {{ row.name }} {{ row.id }}
+                    {{ checked }}
+                    </a>
 
-{#            {{ globals.stimulusAction }}#}
-
-{#            {% for row in rows %}#}
-{#                #}{#                {{ row|json_encode }} #}
-{#                #}{#                <!--{% set checked = row.owned ? 'checked' : '' %}--> #}
-{#                <ons-list-item>#}
-
-{#                    <a#}
-{#                    {% for var, val in globals.stimulusParamsVars %}#}
-{#                        #}{# use the dexie val.  regex row.(.*?) #}
-{#                        {% if val == '{{ row.id }}' %}#}
-{#                            {% set val = row['id'] %}#}
-{#                        {% endif %}#}
-{#                        {{ var }}="{{ val }}"#}
-{#                    {% endfor %}#}
-{#                    >#}
-{#                    {{ row.name }} {{ row.id }}#}
-{#                    </a>#}
-
-{#                    #}{#                    <a data-action="{{ globals.stimulusAction }}" #}
-{#                    #}{#                       {{ globals.stimulusParamsVar }}="{{ row.id }}" > #}
-{#                    #}{#                        {{ row.name }} / {{ row.id }} #}
-{#                    #}{#                    </a> #}
-{#                    <ons-switch#}
-{#                            data-controller="ownswitch"#}
-{#                            class="right"#}
-{#                            data-ownswitch-owned-value="{{ row.owned }}"#}
-{#                            data-action="click->app#add"#}
-{#                            data-app-id-param="{{ row.id }}">#}
-{#                    </ons-switch>#}
-{#                </ons-list-item>#}
-{#            {% endfor %}#}
-{#            #}{# this html tag is used for a regex grab if node->html() doesn't work #}
+                    <ons-switch
+                            data-controller="ownswitch"
+                            class="right"
+                            data-ownswitch-owned-value="{{ row.owned }}"
+                            data-action="click->app#add"
+                            data-app-id-param="{{ row.id }}">
+                    </ons-switch>
+                </ons-list-item>
+            {% endfor %}
+             this html tag is used for a regex grab if node->html() doesn't work
             <!-- hack_to_get_raw_data -->
         </twig:block>
     </twig:dexie>
