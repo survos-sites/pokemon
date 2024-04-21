@@ -1,18 +1,24 @@
-{% extends "layout.html.twig" %}
-        {% block stylesheets %}
-            {{ parent() }}
-{#            <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">#}
-{#            <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">#}
+<!DOCTYPE html>
+<html lang="{{ lang|default('en') }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsenui.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsen-css-components.min.css">
+    {% endblock %}
 
-            <!-- unpkg down on Sunday,Apr 12, 2024.  Using this loads fonts. -->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsenui.min.css">
-{#            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsenui-core.min.css">#}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsen-css-components.min.css">
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+    {{ pwa|default(false) ? pwa() }}
 
-{#            https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsen-css-components.min.css#}
-{#            https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsenui.min.css#}
-{#            https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsenui-core.min.css#}
-{#            https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/onsenui-fonts.min.css#}
+    <title>{% block title _self %}</title>
+</head>
 
-        {% endblock %}
-
+{#    {% set _appController = 'app' %}#}
+{# app_controller handles navigation #}
+<body id="app_body" class="app" {{ stimulus_controller(_app_sc) }} >
+{% block body %}{% endblock %}
+</body>
+</html>

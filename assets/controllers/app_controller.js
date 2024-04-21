@@ -18,6 +18,7 @@ export default class extends MobileController {
         'title',
         'pageTitle',
         'tabbar',
+        'tab',
         'twigTemplate',
         'savedCount','message','menu','navigator']
     // ...
@@ -30,6 +31,8 @@ export default class extends MobileController {
             db.savedTable.count().then( c => console.log(c)));
 
     }
+
+
 
     clear()
     {
@@ -64,17 +67,16 @@ export default class extends MobileController {
 
     }
 
-    add(e)
-    {
+    add(e) {
         // get the row and toggle the 'owned' property
         db.savedTable.get(e.params.id)
-            .then( (row) =>
-                {
-                    row.owned = e.target.closest("ons-switch").checked;
-                    db.savedTable.put(row).then( () => this.updateSavedCount());
-                })
-            .catch( e=> console.error(e) );
+            .then((row) => {
+                row.owned = e.target.closest("ons-switch").checked;
+                db.savedTable.put(row).then(() => this.updateSavedCount());
+            })
+            .catch(e => console.error(e));
     }
+
 
     log(x)
     {
@@ -82,11 +84,13 @@ export default class extends MobileController {
     }
 
 
-    messageTargetConnected(element) {
+    messageTargetConnected(element)
+    {
         // this.messageTarget.innerHTML = ''
     }
 
-    savedCountTargetConnected(element) {
+    tabbarTargetConnected(element)
+    {
         this.updateSavedCount();
     }
 
@@ -113,7 +117,17 @@ export default class extends MobileController {
     updateSavedCount()
     {
         db.savedTable.filter(n => n.owned).count().then ( count => {
-            this.savedCountTarget.innerHTML = count;
+            // this.savedCountTarget.innerHTML = count;
+            // console.error(count);
+            // this.tabTargets.forEach(x => console.log(x.getAttribute('page')));
+            let savedTab = this.tabTargets.find(x => x.getAttribute('page') === 'saved');
+            console.error(savedTab);
+            // search children!  closest() returns ancestors.
+            let badge = savedTab.querySelector('.tabbar__badge');
+            console.error(badge);
+            badge.innerText=count;
+            // db.savedTable.put(row).then(() => this.updateSavedCount());
+
         });
 
     }

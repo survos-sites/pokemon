@@ -76,4 +76,7 @@ return [
     'locutus/php/var/boolval' => [
         'version' => '2.0.32',
     ],
+    'stimulus-typescript' => [
+        'version' => '0.1.3',
+    ],
 ];
