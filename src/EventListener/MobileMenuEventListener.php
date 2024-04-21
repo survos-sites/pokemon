@@ -12,9 +12,9 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-#[AsEventListener(event: KnpMenuEvent::TAB_MENU, method: 'navbarMenu')]
+#[AsEventListener(event: KnpMenuEvent::MOBILE_TAB_MENU, method: 'navbarMenu')]
 // #[AsEventListener(event: KnpMenuEvent::NAVBAR_MENU2, method: 'navbarMenu')]
-#[AsEventListener(event: KnpMenuEvent::PAGE_MENU, method: 'pageMenu')]
+#[AsEventListener(event: KnpMenuEvent::MOBILE_PAGE_MENU, method: 'pageMenu')]
 final class MobileMenuEventListener implements KnpMenuHelperInterface
 {
     use KnpMenuHelperTrait;

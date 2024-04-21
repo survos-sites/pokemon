@@ -4,49 +4,60 @@
 {% block pageId 'detail' %}
 
 {% block body %}
+    {% set store = 'savedTable' %}
 
-    This is {{ _self }}!
-
-    <twig:dexie
-            dbName="pokemon1"
-            store="savedTable"
-            :filter="{}"
+    {% set id = 1 %}
+<twig:dexie
+            :store="store"
+            :key="id"
             :caller="_self">
 
-        <twig:block name="twig_template">
+        <twig:block name="title">
+            title for {{ data.id }}
+        </twig:block>
+        <twig:block name="twig_template" id="xx">
+            <h1>{{ data.name }}</h1>
+            <img src="{{ 'img/%d.png'|format(data.id) }}"/>
+            <!-- xx --><!-- do not remove! -->
+        </twig:block>
 
+        <twig:block name="twig_template2">
+            there are {{ rows|length }} rows
+        </twig:block>
 
+        <twig:block name="twig_template3" id="hack_to_get_raw_data">
+            there are {{ rows|length }} rows
+            {% for row in rows %}
+                {% set checked = row.owned ? 'checked' : '' %}
+                <ons-list-item>
+                    <a
+                    {% for var, val in globals.stimulusSettings %}
+                        {% if val starts with '@' %}
+                            {% set val = row[val|replace({'@':''})] %}
+                        {% endif %}
+                        {{ var }}="{{ val }}"
+                    {% endfor %}
+                    >
+                    {{ row.name }} {{ row.id }}
+                    </a>
 
+                    <ons-switch
+                            data-controller="ownswitch"
+                            class="right"
+                            data-ownswitch-owned-value="{{ row.owned }}"
+                            data-action="click->app#add"
+                            data-app-id-param="{{ row.id }}">
+                    </ons-switch>
+                </ons-list-item>
+            {% endfor %}
+            this html tag is used for a regex grab if node->html() doesn't work
+            <!-- hack_to_get_raw_data -->
         </twig:block>
     </twig:dexie>
 
-
-    {#        <twig:DetailRender#}
-{#                :caller="_self"#}
-{#                id="detail">#}
-{#            <twig:block name="content">#}
-{#                content block#}
-{#                <b>{{ name }}</b>#}
-{#                <img src="/img/{{ id }}.png"/>#}
-{#            </twig:block>#}
-{#            <twig:block name="title">#}
-{#                Title block!  {{ name }}#}
-{#            </twig:block>#}
-{#        </twig:DetailRender>#}
-
-
-    <template id="twigTemplate" {{ stimulus_target('app', 'twigTemplate') }}>
-        {% verbatim %}
-This uses the twigTemplate target in app_controller, via an HTML template.
-<h1>Pokemon ID: {{ id }}</h1>
-<img src="/img/{{ id }}.png" />
-        <b>{{ name }}</b>
-More at <a href="{{ url }}" target="_blank">{{ url }}</a>
-{{ owned ? "OWNED!" }}
-        {% endverbatim %}
-    </template>
-
-    <p id="detailPage" {{ stimulus_target('app', 'detail') }}>
-        render the twigjs template?
-    </p>
+{#        <twig:block name="twig_template" id="xx">#}
+{#            {{ rows|json_encode }}#}
+{#            <!-- xx -->#}
+{#        </twig:block>#}
+{#    </twig:dexie>#}
 {% endblock %}

@@ -1,7 +1,7 @@
 // import { Controller } from '@hotwired/stimulus';
 import MobileController from '@survos-mobile/mobile';
 // import { ParentController } from '../vendor/survos/mobile-bundle/assets/src/controllers/mobile_controller.js';
-import db from '../db.js';
+// import db from '../db.js';
 import Twig from 'twig';
 
 // app_controller must extend from MobileController, and be called app, otherwise outlets won't work.
@@ -27,9 +27,13 @@ export default class extends MobileController {
         super.connect();
         console.log('hello from ' + this.identifier);
         // we can do this in app, mobilecontroller has no need for dexie
-        db.open().then(db =>
-            db.savedTable.count().then( c => console.log(c)));
+        // db.open().then(db =>
+        //     db.savedTable.count().then( c => console.log(c)));
+    }
 
+    setDb(db) {
+        super.setDb(db);
+        this.updateSavedCount();
     }
 
 
@@ -37,16 +41,20 @@ export default class extends MobileController {
     clear()
     {
         this.menuTarget.close();
-        db.delete().then (()=>db.open());
+        this.db.delete().then (()=>this.db.open());
     }
 
     async test(e) {
         const id = e.params.id;
-        const data = db.savedTable.get(id).then(
+        const data =this.db.table(e.params.store).get(id).then(
             (data) => {
+                console.log(data, e.params);
                 console.assert(data, "Missing data for " + id);
-                this.navigatorTarget.pushPage('detail', {data: data}).then(
+                this.navigatorTarget.pushPage('detail', {data: {id: id}}).then(
                     (p) => {
+                        console.error(p);
+                        // events?
+                        return;
                         // p.data is the same as data
                         if (this.hasTwigTemplateTarget) {
                             let template = Twig.twig({
@@ -69,10 +77,10 @@ export default class extends MobileController {
 
     add(e) {
         // get the row and toggle the 'owned' property
-        db.savedTable.get(e.params.id)
+        this.db.savedTable.get(e.params.id)
             .then((row) => {
                 row.owned = e.target.closest("ons-switch").checked;
-                db.savedTable.put(row).then(() => this.updateSavedCount());
+                this.db.savedTable.put(row).then(() => this.updateSavedCount());
             })
             .catch(e => console.error(e));
     }
@@ -116,15 +124,16 @@ export default class extends MobileController {
 
     updateSavedCount()
     {
-        db.savedTable.filter(n => n.owned).count().then ( count => {
+        if (!this.db) {
+            return;
+        }
+        this.db.savedTable.filter(n => n.owned).count().then ( count => {
             // this.savedCountTarget.innerHTML = count;
             // console.error(count);
             // this.tabTargets.forEach(x => console.log(x.getAttribute('page')));
             let savedTab = this.tabTargets.find(x => x.getAttribute('page') === 'saved');
-            console.error(savedTab);
             // search children!  closest() returns ancestors.
             let badge = savedTab.querySelector('.tabbar__badge');
-            console.error(badge);
             badge.innerText=count;
             // db.savedTable.put(row).then(() => this.updateSavedCount());
 

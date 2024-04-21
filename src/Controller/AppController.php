@@ -75,6 +75,13 @@ class AppController extends AbstractController
         return [];
     }
 
+    #[Route('/layout', name: 'app_layout')]
+    #[Template('@SurvosMobile/initial-layout.html.twig')]
+    public function layout(): array
+    {
+        return [];
+    }
+
     #[Route('/{pageCode}', name: 'app_page')]
     public function page(Request $request, string $pageCode): Response
     {

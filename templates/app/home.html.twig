@@ -6,7 +6,7 @@
 
 {% block body %}
     <ons-toolbar id="home-toolbar">
-        <div {{ stimulus_target(_app_sc,'title') }} class="center">Pokémon app.title in {{ _self }}</div>
+        <div {{ stimulus_target(_app_sc,'title') }} class="center">title {{ _self }}</div>
 
         {# this dropdown menu icon, click to open #}
         <div class="left">
@@ -18,11 +18,8 @@
 
     <ons-tabbar id="tabbar" {{ stimulus_target(_app_sc,'tabbar') }}>
         {# render this from a menu event or include it #}
-        {{ include('app/_tabs.html.twig') }}
+        {{ component('mobile_menu', {type: MOBILE_TAB_MENU, caller: _self}) }}
     </ons-tabbar>
-
-
-
     </ons-page>
 
 {% endblock %}

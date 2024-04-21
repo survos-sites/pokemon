@@ -1,18 +1,19 @@
 {% block pageCongroller 'pokemon' %}
 {% extends 'onsPage.html.twig' %}
 {% block pageId 'pokemon' %}
-{% block toolbar %}
-    {{ parent() }}
-    <div class="center">home?</div>
-{% endblock %}
+{#{% block toolbar %}#}
+{#    {{ parent() }}#}
+{#    <div class="center">home?</div>#}
+{#{% endblock %}#}
 
 {% block body %}
     <h3>Pokemon-list</h3>
 
+    {% set store = 'savedTable' %}
     {% set stimulusSettings = stimulus_action(_app_sc, 'test', 'click',
         {
             page: 'detail',
-            store: 'saved',
+            store: store,
             id: '@id'}).toArray %}
 
     {% set globals = {
@@ -20,13 +21,12 @@
     } %}
 
     <twig:dexie
-            dbName="pokemon1"
-            store="savedTable"
+            :store="store"
             :globals="globals"
             :filter="{}"
             :caller="_self">
 
-        <twig:block name="twig_template2">
+        <twig:block name="title">
             there are {{ rows|length }} rows
         </twig:block>
 
