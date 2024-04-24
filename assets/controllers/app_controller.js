@@ -12,15 +12,15 @@ import Twig from 'twig';
 */
 /* stimulusFetch: 'lazy' */
 export default class extends MobileController {
-    static targets = [
-        'menu',
-        'detail',
-        'title',
-        'pageTitle',
-        'tabbar',
-        'tab',
-        'twigTemplate',
-        'savedCount','message','menu','navigator']
+    // static targets = [
+    //     'menu',
+    //     'detail',
+    //     'title',
+    //     'pageTitle',
+    //     'tabbar',
+    //     'tab',
+    //     'twigTemplate',
+    //     'savedCount','message','menu','navigator']
     // ...
 
     connect() {
@@ -31,9 +31,14 @@ export default class extends MobileController {
         //     db.savedTable.count().then( c => console.log(c)));
     }
 
-    setDb(db) {
-        super.setDb(db);
-        this.updateSavedCount();
+    async setDb(db) {
+        if (!db) {
+            return; // don't set to null
+        }
+        await super.setDb(db);
+        console.assert(db, "db not set in setDb!");
+        this.db = db; // redudant!
+        // db && this.updateSavedCount();
     }
 
 
@@ -77,8 +82,10 @@ export default class extends MobileController {
 
     add(e) {
         // get the row and toggle the 'owned' property
-        this.db.savedTable.get(e.params.id)
+        console.assert(this.db, "missing db in app_controller");
+        this.db && this.db.savedTable.get(e.params.id)
             .then((row) => {
+                // closest is ancestor
                 row.owned = e.target.closest("ons-switch").checked;
                 this.db.savedTable.put(row).then(() => this.updateSavedCount());
             })
@@ -99,7 +106,8 @@ export default class extends MobileController {
 
     tabbarTargetConnected(element)
     {
-        this.updateSavedCount();
+        // wait until the db is connected.
+        // this.updateSavedCount();
     }
 
     clearLocalStorage() {
@@ -122,12 +130,11 @@ export default class extends MobileController {
     }
 
 
+
     updateSavedCount()
     {
-        if (!this.db) {
-            return;
-        }
-        this.db.savedTable.filter(n => n.owned).count().then ( count => {
+        let db = this.getDb();
+        db && db.savedTable.filter(n => n.owned).count().then ( count => {
             // this.savedCountTarget.innerHTML = count;
             // console.error(count);
             // this.tabTargets.forEach(x => console.log(x.getAttribute('page')));
@@ -140,6 +147,15 @@ export default class extends MobileController {
         });
 
     }
+
+    getFilter(refreshEvent) {
+        let filter = { };
+        if (refreshEvent === 'saved.prechange') {
+            filter = { 'owned': true }
+        }
+        return filter;
+    }
+
 
 
 }

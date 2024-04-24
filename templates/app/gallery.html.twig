@@ -1,6 +1,6 @@
 {% extends 'onsPage.html.twig' %}
 
-{% block pageId 'gallery' %}
+{% block tabId 'gallery' %}
 {#{% block toolbar %}#}
 {#    {{ parent() }}#}
 {#    <div class="center">Gallery</div>#}
@@ -13,6 +13,7 @@
     <twig:dexie
             store="savedTable"
             :caller="_self"
+            :filter="{}"
     >
         <!-- this is the twig template.  It will be rendered here and replace this block -->
         <twig:block name="twig_template">
