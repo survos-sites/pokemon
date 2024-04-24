@@ -1,8 +1,9 @@
 {
     "name": "pokemon",
-    "description": "A repo, maybe get this from github",
+    "description": "A mobile pokemon-collection app, based on https://onsen.io/v2/guide/tutorial.html",
     "keywords": [
         "php",
+        "onsenui",
         "symfony"
     ],
     "repository": "https:\/\/github.com\/survos-sites\/pokemon",
