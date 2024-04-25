@@ -23,6 +23,7 @@
                     <ons-carousel-item data-title="{{ row.name  }}">
                         <ons-card>
                             <h2>{{ row.name }}</h2>
+                            {{ row.details|json_encode }}
                             <img class="gallery-image" src="img/{{ row.id }}.png"/>
                             {{ row.owned ? 'OWNED' }}
 

@@ -18,6 +18,39 @@
         <twig:block name="twig_template" id="xx">
             <h1>{{ data.name }}</h1>
             <img src="{{ 'img/%d.png'|format(data.id) }}"/>
+
+            {% set detail = data.details %}
+
+            Height: {{ detail.height }}
+            <h3>Abilties</h3>
+            <ol>
+                {% for ability in detail.abilities %}
+                    <li>{{ ability.ability.name }}
+                        {{ ability.is_hidden ? 'hidden' }}
+                        slot: {{ ability.slot }}
+                    </li>
+                {% endfor %}
+
+            </ol>
+            <h3>Moves</h3>
+            <ol>
+                {% for move in detail.moves %}
+                    <li>{{ move.move.name }}
+                        <ul>
+                            {% for vgd in move.version_group_details  %}
+                                <li>
+                                    {{ vgd.level_learned_at }}
+                                    {{ vgd.move_learn_method.name }}
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+
+            </ol>
+
+            {{ data.details|json_encode }}
             <!-- xx --><!-- do not remove! -->
         </twig:block>
 
@@ -26,7 +59,7 @@
         </twig:block>
 
         <twig:block name="twig_template3" id="hack_to_get_raw_data">
-            there are {{ rows|length }} rows
+            there are {{ rows|length }} rows in the dexie database
             {% for row in rows %}
                 {% set checked = row.owned ? 'checked' : '' %}
                 <ons-list-item>
@@ -50,7 +83,6 @@
                     </ons-switch>
                 </ons-list-item>
             {% endfor %}
-            this html tag is used for a regex grab if node->html() doesn't work
             <!-- hack_to_get_raw_data -->
         </twig:block>
     </twig:dexie>
