@@ -79,4 +79,10 @@ return [
     'stimulus-typescript' => [
         'version' => '0.1.3',
     ],
+    'escape-html' => [
+        'version' => '1.0.3',
+    ],
+    'stimulus-attributes' => [
+        'version' => '1.0.0',
+    ],
 ];
