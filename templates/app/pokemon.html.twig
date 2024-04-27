@@ -10,15 +10,7 @@
     <h3>Pokemon-list</h3>
 
     {% set store = 'savedTable' %}
-    {% set stimulusSettings = stimulus_action(_app_sc, 'test', 'click',
-        {
-            page: 'detail',
-            store: store,
-            id: '@id'}).toArray %}
-
-    {% set globals = {
-        stimulusSettings: stimulusSettings
-    } %}
+    {% set globals = {store: store} %}
 
     <twig:dexie
             :store="store"
@@ -33,26 +25,29 @@
         <twig:block name="twig_template" id="hack_to_get_raw_data">
             there are {{ rows|length }} rows
             {% for row in rows %}
-                {% set checked = row.owned ? 'checked' : '' %}
                 <ons-list-item>
-                    <a
-                    {% for var, val in globals.stimulusSettings %}
-                        {% if val starts with '@' %}
-                            {% set val = row[val|replace({'@':''})] %}
-                        {% endif %}
-                        {{ var }}="{{ val }}"
-                    {% endfor %}
-                    >
+                {% set checked = row.owned ? 'checked' : '' %}
+            <a {{ stimulus_action('app','test','click', {
+                page: 'detail',
+                store:globals.store,
+                id:row.id
+            }) }}>
+{#                    <a#}
+{#                    {% for var, val in globals.stimulusSettings %}#}
+{#                        {% if val starts with '@' %}#}
+{#                            {% set val = row[val|replace({'@':''})] %}#}
+{#                        {% endif %}#}
+{#                        {{ var }}="{{ val }}"#}
+{#                    {% endfor %}#}
+{#                    >#}
                     {{ row.name }} {{ row.id }}
                     </a>
-
-                    <ons-switch
-                            data-controller="ownswitch"
-                            class="right"
-                            data-ownswitch-owned-value="{{ row.owned }}"
-                            data-action="click->app#add"
-                            data-app-id-param="{{ row.id }}">
+                    {% set _sc = 'ownswitch' %}
+                    <ons-switch class="right"
+                        {{ stimulus_controller(_sc, {owned: row.owned}) }}
+                        {{ stimulus_action('app',  'add', 'click', {id: row.id}) }}>
                     </ons-switch>
+
                 </ons-list-item>
             {% endfor %}
              this html tag is used for a regex grab if node->html() doesn't work
