@@ -11,6 +11,7 @@
         controllerOutlets = { 'app': '.app' }) }}
     >
     <twig:dexie
+            refreshEvent="gallery.prechange"
             store="savedTable"
             :caller="_self"
             :filter="{}"

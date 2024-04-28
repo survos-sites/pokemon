@@ -37,7 +37,7 @@ export default class extends MobileController {
         }
         await super.setDb(db);
         console.assert(db, "db not set in setDb!");
-        this.db = db; // redudant!
+        // this.db = db; // redudant!
         // db && this.updateSavedCount();
     }
 
@@ -46,32 +46,33 @@ export default class extends MobileController {
     clear()
     {
         this.menuTarget.close();
-        this.db.delete().then (()=>this.db.open());
+        // this.db.delete().then (()=>this.db.open());
+        window.db.delete().then (()=>window.db.open());
     }
 
     async test(e) {
         const id = e.params.id;
-        const data =this.db.table(e.params.store).get(id).then(
+        const data =window.db.table(e.params.store).get(id).then(
             (data) => {
                 console.log(data, e.params);
                 console.assert(data, "Missing data for " + id);
                 this.navigatorTarget.pushPage('detail', {data: {id: id}}).then(
                     (p) => {
-                        console.error(p);
-                        // events?
-                        return;
-                        // p.data is the same as data
-                        if (this.hasTwigTemplateTarget) {
-                            let template = Twig.twig({
-                                data: this.twigTemplateTarget.innerHTML
-                            });
-                        let html = template.render(data);
-                            if (this.hasDetailTarget) {
-                                this.detailTarget.innerHTML = html;
-                            } else {
-                                console.error('no detail target');
-                            }
-                        }
+                        // console.error(p);
+                        // // events?
+                        // return;
+                        // // p.data is the same as data
+                        // if (this.hasTwigTemplateTarget) {
+                        //     let template = Twig.twig({
+                        //         data: this.twigTemplateTarget.innerHTML
+                        //     });
+                        // let html = template.render(data);
+                        //     if (this.hasDetailTarget) {
+                        //         this.detailTarget.innerHTML = html;
+                        //     } else {
+                        //         console.error('no detail target');
+                        //     }
+                        // }
                     }
                 );
 
@@ -82,12 +83,20 @@ export default class extends MobileController {
 
     add(e) {
         // get the row and toggle the 'owned' property
-        console.assert(this.db, "missing db in app_controller");
-        this.db && this.db.savedTable.get(e.params.id)
+        // console.assert(this.db, "missing db in app_controller");
+        // this.db && this.db.savedTable.get(e.params.id)
+        //     .then((row) => {
+        //         // closest is ancestor
+        //         row.owned = e.target.closest("ons-switch").checked;
+        //         this.db.savedTable.put(row).then(() => this.updateSavedCount());
+        //     })
+        //     .catch(e => console.error(e));
+        console.assert(window.db, "missing db in app_controller");
+        window.db && window.db.savedTable.get(e.params.id)
             .then((row) => {
                 // closest is ancestor
                 row.owned = e.target.closest("ons-switch").checked;
-                this.db.savedTable.put(row).then(() => this.updateSavedCount());
+                window.db.savedTable.put(row).then(() => this.updateSavedCount());
             })
             .catch(e => console.error(e));
     }
