@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 
 // now called from the TwigJsComponent Component, so it can pass in a Twig Template
 
-import db from '../db.js';
+// import db from '../db.js';
 import Twig from 'twig';
 /*
 * The following line makes this controller "lazy": it won't be downloaded until needed

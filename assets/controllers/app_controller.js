@@ -47,6 +47,7 @@ export default class extends MobileController {
     {
         this.menuTarget.close();
         // this.db.delete().then (()=>this.db.open());
+        console.log('resetting database');
         window.db.delete().then (()=>window.db.open());
     }
 
@@ -121,7 +122,8 @@ export default class extends MobileController {
 
     clearLocalStorage() {
         localStorage.clear();
-        db.delete().then (()=>db.open());
+        console.log('clearning local storage via db.delete()');
+        window.db.delete().then (()=>window.db.open());
         ons.notification.alert('Cleared local storage');
     };
 
