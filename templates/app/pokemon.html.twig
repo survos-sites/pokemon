@@ -13,6 +13,7 @@
     {% set globals = {store: store} %}
 
     <twig:dexie
+            refreshEvent="pokemon.prechange"
             :store="store"
             :globals="globals"
             :filter="{}"
