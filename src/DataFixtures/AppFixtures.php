@@ -26,8 +26,8 @@ class AppFixtures extends Fixture
                 ->setName($data->name);
             $poke->setOwned(in_array($idx, [2,3,5]));
             $manager->persist($poke);
+            $manager->flush();
         }
 
-        $manager->flush();
     }
 }
