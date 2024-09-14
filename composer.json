@@ -17,6 +17,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.2",
         "endroid/qr-code-bundle": "^5.0",
+        "friendsofsymfony/jsrouting-bundle": "^3.5",
         "knplabs/knp-menu-bundle": "^3.4",
         "nelmio/cors-bundle": "^2.4",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -98,8 +99,9 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "importmap:install": "symfony-cmd"
+            "assets:install %PUBLIC_DIR% --symlink": "symfony-cmd",
+            "importmap:install": "symfony-cmd",
+            "fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js --callback=\"export default \"": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

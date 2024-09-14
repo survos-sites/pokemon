@@ -85,4 +85,7 @@ return [
     'stimulus-attributes' => [
         'version' => '1.0.0',
     ],
+    'fos-routing' => [
+        'version' => '0.0.6',
+    ],
 ];
