@@ -26,10 +26,10 @@ return [
         'version' => '3.2.2',
     ],
     '@hotwired/turbo' => [
-        'version' => '8.0.4',
+        'version' => '8.0.12',
     ],
     'dexie' => [
-        'version' => '4.0.4',
+        'version' => '4.0.10',
     ],
     'onsenui' => [
         'version' => '2.12.8',
@@ -83,7 +83,7 @@ return [
         'version' => '1.0.3',
     ],
     'stimulus-attributes' => [
-        'version' => '1.0.0',
+        'version' => '1.0.1',
     ],
     'fos-routing' => [
         'version' => '0.0.6',
