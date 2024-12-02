@@ -7,4 +7,4 @@ survos_js_twig:
     -
       name: savedTable
       schema: "++id,name,owned"
-      url: /api/pokema
+      url: /api/pokemon

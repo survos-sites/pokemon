@@ -5,12 +5,11 @@ namespace App\DataFixtures;
 use App\Entity\Pokemon;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Survos\CrawlerBundle\Services\CrawlerClient;
 use Survos\Scraper\Service\ScraperService;
 
 class AppFixtures extends Fixture
 {
-    public function __construct(private ScraperService $scraper)
+    public function __construct(private readonly ScraperService $scraper)
     {
 
     }
@@ -18,16 +17,17 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        $response = $this->scraper->fetchData('https://pokeapi.co/api/v2/pokemon', ['limit' => 25], asData: 'object');
+        $response = $this->scraper->fetchData('https://pokeapi.co/api/v2/pokemon',
+            ['limit' => 200], asData: 'object');
         foreach ($response->results as $idx => $data) {
             $details = $this->scraper->fetchData($data->url);
-            $poke = (new Pokemon())
-                ->setDetails($details)
+            $poke = (new Pokemon($details['id']))
+//                ->setDetails($details)
                 ->setName($data->name);
-            $poke->setOwned(in_array($idx, [2,3,5]));
+            $poke->setOwned(in_array($idx, [2,3,5,8,13,21]));
             $manager->persist($poke);
-            $manager->flush();
         }
+        $manager->flush();
 
     }
 }

@@ -9,17 +9,13 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
 #[ApiResource(
-    paginationItemsPerPage: 5,
+    shortName: 'pokemon',
+    paginationItemsPerPage: 10,
     normalizationContext: ['groups' => ['pokemon.read']],
 )]
 #[Groups(['pokemon.read'])]
 class Pokemon
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -29,7 +25,18 @@ class Pokemon
     #[ORM\Column(nullable: true)]
     private ?bool $owned = null;
 
-    public function getId(): ?int
+    /**
+     * @param int|null $id
+     */
+    public function __construct(
+        #[ORM\Id]
+        #[ORM\Column]
+        private int $id
+    )
+    {
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }

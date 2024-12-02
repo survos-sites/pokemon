@@ -18,12 +18,18 @@
         </twig:block>
         <twig:block name="twig_template" id="xx">
             <h1>{{ data.name }}</h1>
-            <img src="{{ 'img/%d.png'|format(data.id) }}"/>
-
             {% set detail = data.details %}
+            <img src="{{ detail.sprites.front_default }}"/>
+            <img src="{{ detail.sprites.back_default }}"/>
+{#            <img src="{{ 'img/%d.png'|format(data.id) }}"/>#}
 
-            Height: {{ detail.height }}
-            <h3>Abilties</h3>
+            @todo: audio {{ detail.cries.latest }}
+            <audio src="{{ detail.cries.latest }}">
+
+            </audio>
+
+            Height: {{ detail.height }}, Weight: {{ detail.weight }}
+            <h3>Abilities</h3>
             <ol>
                 {% for ability in detail.abilities %}
                     <li>{{ ability.ability.name }}
@@ -37,21 +43,24 @@
             <ol>
                 {% for move in detail.moves %}
                     <li>{{ move.move.name }}
+                        {% if false %}
                         <ul>
                             {% for vgd in move.version_group_details  %}
                                 <li>
-                                    {{ vgd.level_learned_at }}
+                                    @level: {{ vgd.level_learned_at }}
                                     {{ vgd.move_learn_method.name }}
+                                    {{ vgd.version_group.name }}
+{#                                    {{ vgd|json_encode }}#}
                                 </li>
-
                             {% endfor %}
                         </ul>
+                        {% endif %}
                     </li>
                 {% endfor %}
 
             </ol>
 
-            {{ data.details|json_encode }}
+{#            {{ data.details|json_encode }}#}
             <!-- xx --><!-- do not remove! -->
         </twig:block>
 

@@ -159,6 +159,11 @@ export default class extends MobileController {
 
     }
 
+    async isPopulated(table) {
+        const count = await table.count();
+        // console.log(count, table);
+        return count > 0;
+    }
     getFilter(refreshEvent) {
         let filter = { };
         if (refreshEvent === 'saved.prechange') {
