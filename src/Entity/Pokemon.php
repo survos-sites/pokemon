@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
 #[ApiResource(
     shortName: 'pokemon',
-    paginationItemsPerPage: 10,
+    paginationItemsPerPage: 25,
     normalizationContext: ['groups' => ['pokemon.read']],
 )]
 #[Groups(['pokemon.read'])]

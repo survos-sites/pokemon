@@ -28,7 +28,7 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/offlinex', name: 'app_offline', priority: 1)]
+    #[Route('/offline', name: 'app_offline', priority: 1)]
     public function offline(): Response {
         return $this->render('app/offline.html.twig');
     }
