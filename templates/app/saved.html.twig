@@ -1,12 +1,21 @@
 {% extends 'onsPage.html.twig' %}
 
-{% block pageId 'saved' %}
+{% block title 'My Collection' %}
+{% block page_icon 'fa-upload' %}
+
+{# this is NOT a page!  Giving it a pageId will add the back button #}
+{#{% block pageId 'saved' %}#}
 {#{% block toolbar  %}#}
 {#    {{ parent() }}#}
 {#    <div class="center">{{ 'my-collection'|trans }}</div>#}
 {#{% endblock %}#}
 
 {% block body %}
+    @todo: click here to get to a page, which should navigate back
+
+    {% set store = 'savedTable' %}
+    {% set globals = {store: store} %}
+
     <div>
         {% set filter = {owned: true} %}
             <twig:dexie
@@ -21,7 +30,16 @@
                     {% for row in rows %}
                         <div>
                             {% set detail = row.details %}
-                            <img class="pokemon_thumbnail" src="{{ detail.sprites.front_default }}" alt=""/>
+                            <a {{ stimulus_action('app','test','click', {
+                                page: 'detail',
+                                store:globals.store,
+                                id:row.id
+                            }) }}>
+{#                                Click??#}
+                            </a>
+
+                                <img class="pokemon_thumbnail" src="{{ detail.sprites.front_default }}" alt=""/>
+
                             {#  maybe a gallery controller click handler?  That then calls app_controller to open gallery at the right index? #}
 {#                            .bringPageTop('gallery.html', { data: { pokenumber, savedPokemon } });#}
 

@@ -3228,7 +3228,7 @@
         },
         {
             "name": "survos/crawler-bundle",
-            "version": "1.5.415",
+            "version": "1.5.416",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosCrawlerBundle.git",
@@ -3301,7 +3301,7 @@
             "description": "Provides a way to create tests that crawl a site",
             "support": {
                 "issues": "https://github.com/survos/SurvosCrawlerBundle/issues",
-                "source": "https://github.com/survos/SurvosCrawlerBundle/tree/1.5.415"
+                "source": "https://github.com/survos/SurvosCrawlerBundle/tree/1.5.416"
             },
             "funding": [
                 {
@@ -3313,7 +3313,7 @@
         },
         {
             "name": "survos/deployment-bundle",
-            "version": "1.5.415",
+            "version": "1.5.416",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosDeploymentBundle.git",
@@ -3359,7 +3359,7 @@
             ],
             "support": {
                 "issues": "https://github.com/survos/SurvosDeploymentBundle/issues",
-                "source": "https://github.com/survos/SurvosDeploymentBundle/tree/1.5.415"
+                "source": "https://github.com/survos/SurvosDeploymentBundle/tree/1.5.416"
             },
             "funding": [
                 {
@@ -3371,7 +3371,7 @@
         },
         {
             "name": "survos/js-twig-bundle",
-            "version": "1.5.415",
+            "version": "1.5.416",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/JsTwigBundle.git",
@@ -3417,7 +3417,7 @@
             ],
             "support": {
                 "issues": "https://github.com/survos/JsTwigBundle/issues",
-                "source": "https://github.com/survos/JsTwigBundle/tree/1.5.415"
+                "source": "https://github.com/survos/JsTwigBundle/tree/1.5.416"
             },
             "funding": [
                 {
@@ -3429,16 +3429,16 @@
         },
         {
             "name": "survos/mobile-bundle",
-            "version": "1.5.415",
+            "version": "1.5.416",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosMobileBundle.git",
-                "reference": "fa7dfd974cc4b3a993187a666b39ef5bf407f930"
+                "reference": "41809552e22fc1cfc019d9d1ae8ca6833736935f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/survos/SurvosMobileBundle/zipball/fa7dfd974cc4b3a993187a666b39ef5bf407f930",
-                "reference": "fa7dfd974cc4b3a993187a666b39ef5bf407f930",
+                "url": "https://api.github.com/repos/survos/SurvosMobileBundle/zipball/41809552e22fc1cfc019d9d1ae8ca6833736935f",
+                "reference": "41809552e22fc1cfc019d9d1ae8ca6833736935f",
                 "shasum": ""
             },
             "require": {
@@ -3449,8 +3449,6 @@
                 "symfony/dependency-injection": "^6.4 || ^7.1",
                 "symfony/event-dispatcher": "^6.4 || ^7.1",
                 "symfony/http-kernel": "^6.4 || ^7.1",
-                "symfony/options-resolver": "^7.2",
-                "symfony/ux-twig-component": "^2.22",
                 "twig/twig": "^3.4"
             },
             "require-dev": {
@@ -3458,7 +3456,7 @@
                 "symfony/browser-kit": "^6.4 || ^7.1",
                 "symfony/framework-bundle": "^6.4 || ^7.1",
                 "symfony/phpunit-bridge": "^6.4 || ^7.1",
-                "symfony/security-bundle": "^6.4 || ^7.1",
+                "symfony/security-bundle": "^7.2",
                 "symfony/twig-bundle": "^6.4 || ^7.1",
                 "symfony/var-dumper": "^6.4 || ^7.1"
             },
@@ -3478,7 +3476,7 @@
             ],
             "support": {
                 "issues": "https://github.com/survos/SurvosMobileBundle/issues",
-                "source": "https://github.com/survos/SurvosMobileBundle/tree/1.5.415"
+                "source": "https://github.com/survos/SurvosMobileBundle/tree/1.5.416"
             },
             "funding": [
                 {
@@ -3486,11 +3484,11 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-02T15:06:24+00:00"
+            "time": "2024-12-03T16:39:04+00:00"
         },
         {
             "name": "survos/scraper-bundle",
-            "version": "1.5.415",
+            "version": "1.5.416",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosScraperBundle.git",
@@ -3543,7 +3541,7 @@
             ],
             "support": {
                 "issues": "https://github.com/survos/SurvosScraperBundle/issues",
-                "source": "https://github.com/survos/SurvosScraperBundle/tree/1.5.415"
+                "source": "https://github.com/survos/SurvosScraperBundle/tree/1.5.416"
             },
             "funding": [
                 {
@@ -11979,7 +11977,7 @@
         },
         {
             "name": "survos/maker-bundle",
-            "version": "1.5.415",
+            "version": "1.5.416",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosMakerBundle.git",
@@ -12082,7 +12080,7 @@
             ],
             "support": {
                 "issues": "https://github.com/survos/SurvosMakerBundle/issues",
-                "source": "https://github.com/survos/SurvosMakerBundle/tree/1.5.415"
+                "source": "https://github.com/survos/SurvosMakerBundle/tree/1.5.416"
             },
             "funding": [
                 {

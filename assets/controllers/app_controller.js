@@ -53,6 +53,7 @@ export default class extends MobileController {
 
     async test(e) {
         const id = e.params.id;
+        console.log(e.params);
         const data =window.db.table(e.params.store).get(id).then(
             (data) => {
                 console.log(data, e.params);
