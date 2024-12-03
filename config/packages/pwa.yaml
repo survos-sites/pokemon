@@ -55,5 +55,5 @@ pwa:
 #                      - 'https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/material-design-iconic-font/fonts/Material-Design-Iconic-Font.woff2?v=2.2.0'
 #                      - 'https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/material-design-iconic-font/css/material-design-iconic-font.min.css'
 #                      - 'https://cdn.jsdelivr.net/npm/onsenui@2.12.8/css/font_awesome/webfonts/fa-brands-400.woff2'
-#            offline_fallback:
-#                page: 'app_offline'
+            offline_fallback:
+                page: 'app_offline'
