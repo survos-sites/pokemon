@@ -1,10 +1,10 @@
 {% block pageCongroller 'pokemon' %}
 {% extends 'onsPage.html.twig' %}
 {% block pageId 'pokemon' %}
-{#{% block toolbar %}#}
-{#    {{ parent() }}#}
-{#    <div class="center">home?</div>#}
-{#{% endblock %}#}
+{# {% block toolbar %} #}
+{#    {{ parent() }} #}
+{#    <div class="center">home?</div> #}
+{# {% endblock %} #}
 
 {% block body %}
     <h3>Pokemon-list</h3>
@@ -26,29 +26,38 @@
         <twig:block name="twig_template" id="hack_to_get_raw_data">
             there are {{ rows|length }} rows
             {% for row in rows %}
-                <ons-list-item>
-                {% set checked = row.owned ? 'checked' : '' %}
-            <a {{ stimulus_action('app','test','click', {
-                page: 'detail',
-                store:globals.store,
-                id:row.id
-            }) }}>
-{#                    <a#}
-{#                    {% for var, val in globals.stimulusSettings %}#}
-{#                        {% if val starts with '@' %}#}
-{#                            {% set val = row[val|replace({'@':''})] %}#}
-{#                        {% endif %}#}
-{#                        {{ var }}="{{ val }}"#}
-{#                    {% endfor %}#}
-{#                    >#}
-                    {{ row.name }} {{ row.id }}
-                    </a>
-                    {% set _sc = 'ownswitch' %}
-                    <ons-switch class="right"
-                        {{ stimulus_controller(_sc, {owned: row.owned}) }}
-                        {{ stimulus_action('app',  'add', 'click', {id: row.id}) }}>
-                    </ons-switch>
+                {% set detail = row.details %}
 
+                <ons-list-item class="list-item">
+                    <div class="top list-item__top">
+                        <div class="left list-item__left">
+                            <img class="pokemon_thumbnail" src="{{ detail.sprites.front_default }}"
+                                 alt="{{ row.name }} image"/>
+
+                        </div>
+                        <div class="center list-item__center">
+                            {% set checked = row.owned ? 'checked' : '' %}
+                            <a {{ stimulus_action('app','test','click', {
+                                page: 'detail',
+                                store:globals.store,
+                                id:row.id
+                            }) }}>
+
+                                {{ row.name }}
+                            </a>
+
+                        </div>
+                        <div class="right list-item__right">
+                            {% set _sc = 'ownswitch' %}
+                            {% set checked = row.owned ? 'checked' : '' %}
+                            <ons-switch class="right"
+                                    {{ stimulus_controller(_sc, {owned: row.owned}) }}
+                                    {{ stimulus_action('app',  'add', 'click', {id: row.id}) }}>
+                            </ons-switch>
+
+                        </div>
+                    </div>
+                    <div class="expandable-content list-item__expandable-content">Expandable content</div>
                 </ons-list-item>
             {% endfor %}
             <!-- hack_to_get_raw_data -->

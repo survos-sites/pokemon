@@ -7,8 +7,24 @@
 {% endblock %}
 {% block body %}
 
+    <button hidden class="btn btn-lg btn-success " {{ stimulus_controller('@pwa/install') }} {{ stimulus_action('@pwa/install', 'install', 'click') }} {{ stimulus_target('@pwa/install', 'install') }}>
+        Install
+    </button>
+    <button class="btn btn-lg btn-info" {{ stimulus_controller('@pwa/share') }} {{ stimulus_action('@pwa/share', 'share', 'click', {data: {
+        title: 'Pokemon PWA',
+        text: 'Pokemon is a Progressive Web App',
+        url: path('app_home')
+    }}) }}>
+        Share
+    </button>
+    <div class="alert alert-info" role="alert" {{ stimulus_controller('@pwa/connection-status') }}>
+                    <span {{ stimulus_target('@pwa/connection-status', 'message') }}>
+                        We are trying to guess what is the current status of your Internet connection
+                    </span>
+    </div>
+
     {% set url = absolute_url(path('app_index')) %}
-    <img src="{{ qr_code_url(url) }}" />
+    <img src="{{ qr_code_url(url) }}"  alt=QR Code for {{ url }}"/>
     <br />{{ url }}
 
 {% endblock %}

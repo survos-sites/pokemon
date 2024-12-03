@@ -7,6 +7,7 @@
 {#{% endblock %}#}
 {% block body %}
 
+
     <div {{ stimulus_controller('gallery', {activeIndex: 2},
         controllerOutlets = { 'app': '.app' }) }}
     >
@@ -24,10 +25,8 @@
                     <ons-carousel-item data-title="{{ row.name  }}">
                         <ons-card>
                             <h2>{{ row.name }}</h2>
-                            {{ row.details|json_encode }}
                             <img class="gallery-image" src="img/{{ row.id }}.png"/>
                             {{ row.owned ? 'OWNED' }}
-
                             <p>
                                 We could fetch more data (cached!) at
                                 <a href="{{ row.url }}" target="_blank">

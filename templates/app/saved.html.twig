@@ -8,12 +8,6 @@
 
 {% block body %}
     <div>
-
-        Random: {{ random(9999) }}
-
-        {{ 'now'|date }}
-        Random (from twig): {{ random(9999) }}
-
         {% set filter = {owned: true} %}
             <twig:dexie
                     refreshEvent="saved.prechange"
@@ -26,10 +20,12 @@
                     <div id="grid">
                     {% for row in rows %}
                         <div>
+                            {% set detail = row.details %}
+                            <img class="pokemon_thumbnail" src="{{ detail.sprites.front_default }}" alt=""/>
                             {#  maybe a gallery controller click handler?  That then calls app_controller to open gallery at the right index? #}
 {#                            .bringPageTop('gallery.html', { data: { pokenumber, savedPokemon } });#}
 
-                            <img src="/img/{{ row.id }}.png" title="/image/{{ row.id }}.png"/>
+{#                            <img src="/img/{{ row.id }}.png" title="/image/{{ row.id }}.png"/>#}
 {#                            <b>{{ row.name }}</b>#}
 {#                            More at <a href="{{ row.url }}" target="_blank">{{ row.url }}</a>#}
 {#                            {{ row.owned ? "OWNED!" }}#}
