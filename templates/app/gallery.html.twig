@@ -25,14 +25,21 @@
                     <ons-carousel-item data-title="{{ row.name  }}">
                         <ons-card>
                             <h2>{{ row.name }}</h2>
-                            <img class="gallery-image" src="img/{{ row.id }}.png"/>
+                            <img class="gallery-image" src="{{ row.details.sprites.front_default }}" alt=""/>
                             {{ row.owned ? 'OWNED' }}
-                            <p>
-                                We could fetch more data (cached!) at
-                                <a href="{{ row.url }}" target="_blank">
-                                    {{ row.url }}
-                                </a>
-                            </p>
+                            {# since this is javascript, we can't simply do an include, but maybe we can re-use a template #}
+                            {% set detail = row.details %}
+                            Height: {{ detail.height }}, Weight: {{ detail.weight }}
+                            <h3>Abilities</h3>
+                            <ol>
+                                {% for ability in detail.abilities %}
+                                    <li>{{ ability.ability.name }}
+                                        {{ ability.is_hidden ? 'hidden' }}
+                                        slot: {{ ability.slot }}
+                                    </li>
+                                {% endfor %}
+
+                            </ol>
                         </ons-card>
                     </ons-carousel-item>
                 {% endfor %}

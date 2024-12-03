@@ -29,4 +29,5 @@ return [
     Survos\CrawlerBundle\SurvosCrawlerBundle::class => ['all' => true],
     Survos\Scraper\SurvosScraperBundle::class => ['all' => true],
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
+    Symfony\UX\Icons\UXIconsBundle::class => ['all' => true],
 ];

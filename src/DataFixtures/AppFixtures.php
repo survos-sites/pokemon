@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
         $response = $this->scraper->fetchData('https://pokeapi.co/api/v2/pokemon',
-            ['limit' => 200], asData: 'object');
+            ['limit' => 40], asData: 'object');
         foreach ($response->results as $idx => $data) {
             $details = $this->scraper->fetchData($data->url);
             $poke = (new Pokemon($details['id']))

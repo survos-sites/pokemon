@@ -35,6 +35,7 @@ final class MobileMenuEventListener implements KnpMenuHelperInterface
 
     public function navbarMenu(KnpMenuEvent $event): void
     {
+        // items in the navbar should not be in the menu
         $menu = $event->getMenu();
         $options = $event->getOptions();
         $this->add($menu, id: 'pokemon', label: 'POKE', icon: 'fa-home');
@@ -66,7 +67,6 @@ final class MobileMenuEventListener implements KnpMenuHelperInterface
         $menu = $event->getMenu();
         $options = $event->getOptions();
         $this->add($menu, id: 'about', icon: 'fa-info');
-        $this->add($menu, id: 'gallery', icon: 'fa-list');
-        $this->add($menu, id: 'login', icon: 'fa-login');
+        $this->add($menu, id: 'login', icon: 'fa-sign-in');
     }
 }

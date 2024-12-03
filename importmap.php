@@ -88,4 +88,11 @@ return [
     'fos-routing' => [
         'version' => '0.0.6',
     ],
+    'onsenui/css/onsenui-core.min.css' => [
+        'version' => '2.12.8',
+        'type' => 'css',
+    ],
+    'onsenui/js/onsenui.min.js' => [
+        'version' => '2.12.8',
+    ],
 ];
