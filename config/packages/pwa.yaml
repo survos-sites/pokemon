@@ -38,6 +38,12 @@ pwa:
         src: "sw.js"
         skip_waiting: true
         workbox:
+            resource_caches:
+                - match_callback: 'navigate'
+                  max_age: 365 days
+                  max_entries: 200
+                  preload_urls:
+                      - 'app_index'
 #            resource_caches:
 #                - match_callback: 'origin: https://cdn.jsdelivr.net'
 #                  strategy: 'CacheOnly'
