@@ -49,13 +49,13 @@ db.on('ready', async vipDB => {
 db.open();
 // db.productTable.count().then( (c) => {console.log(c); document.getElementById('count').innerText = c});
 async function loadData() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=6';
-    console.log('fetching ' + url);
-    const response = await fetch(url);
-    // @todo: fetch all pages
-    // add the id!
-
-    return await response.json().then(data => data.results)
+    // let url = 'https://pokeapi.co/api/v2/pokemon?limit=6';
+    // console.log('fetching ' + url);
+    // const response = await fetch(url);
+    // // @todo: fetch all pages
+    // // add the id!
+    //
+    // return await response.json().then(data => data.results)
 }
 
 export default db;
