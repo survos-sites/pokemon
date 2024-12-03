@@ -95,4 +95,10 @@ return [
     'onsenui/js/onsenui.min.js' => [
         'version' => '2.12.8',
     ],
+    '@stimulus-components/timeago' => [
+        'version' => '5.0.2',
+    ],
+    'date-fns' => [
+        'version' => '4.1.0',
+    ],
 ];
