@@ -3429,16 +3429,16 @@
         },
         {
             "name": "survos/mobile-bundle",
-            "version": "1.5.416",
+            "version": "1.5.417",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosMobileBundle.git",
-                "reference": "41809552e22fc1cfc019d9d1ae8ca6833736935f"
+                "reference": "028367dc64b0605a8f0ce43b2363d8cff69cc837"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/survos/SurvosMobileBundle/zipball/41809552e22fc1cfc019d9d1ae8ca6833736935f",
-                "reference": "41809552e22fc1cfc019d9d1ae8ca6833736935f",
+                "url": "https://api.github.com/repos/survos/SurvosMobileBundle/zipball/028367dc64b0605a8f0ce43b2363d8cff69cc837",
+                "reference": "028367dc64b0605a8f0ce43b2363d8cff69cc837",
                 "shasum": ""
             },
             "require": {
@@ -3476,7 +3476,7 @@
             ],
             "support": {
                 "issues": "https://github.com/survos/SurvosMobileBundle/issues",
-                "source": "https://github.com/survos/SurvosMobileBundle/tree/1.5.416"
+                "source": "https://github.com/survos/SurvosMobileBundle/tree/1.5.417"
             },
             "funding": [
                 {
@@ -3484,7 +3484,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-03T16:39:04+00:00"
+            "time": "2024-12-03T18:19:36+00:00"
         },
         {
             "name": "survos/scraper-bundle",
