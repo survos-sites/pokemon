@@ -163,6 +163,7 @@ export default class extends MobileController {
     async isPopulated(table) {
         const count = await table.count();
         // console.log(count, table);
+        this.updateSavedCount();
         return count > 0;
     }
     getFilter(refreshEvent) {
