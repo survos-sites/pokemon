@@ -8,3 +8,4 @@ survos_js_twig:
       name: savedTable
       schema: "++id,name,owned"
       url: /api/pokemon
+#      batch: 3
