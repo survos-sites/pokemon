@@ -9,7 +9,8 @@ It has been converted to Symfony.
 ```bash
 git clone git@github.com:survos-sites/pokemon.git && cd pokemon
 composer install
-bin/console doctrine:fixtures:load -n
+bin/console doctrine:schema:update --force
+bin/console app:load --limit 50
 symfony server:start -d
 symfony open:local
 ```
