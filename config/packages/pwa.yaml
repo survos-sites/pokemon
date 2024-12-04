@@ -45,6 +45,7 @@ pwa:
                   strategy: 'NetworkFirst'
                   network_timeout: 4
                   preload_urls:
+                      - '/js/fos_js_routes.js'
                       - 'app_index'
                       - 'app_offline'
             offline_fallback:
