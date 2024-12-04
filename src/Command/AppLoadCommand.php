@@ -27,8 +27,7 @@ final class AppLoadCommand extends InvokableServiceCommand
         PokemonRepository $pokemonRepository,
         ScraperService $scraper,
 
-        #[Option(description: 'limit the number of items loaded')]
-        int $limit,
+        #[Option(description: 'limit the number of items loaded')] int $limit=0,
         #[Option(description: 'drop all items before loading')]
         bool $reset = true,
     ): int {
