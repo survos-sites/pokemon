@@ -8,7 +8,8 @@
 {% block title 'pokemon' %}
 {% block page_icon 'fa-download' %}
 {% block body %}
-    <h3>Pokemon-list</h3>
+<div class="pokemon-box">
+    <h3 class="page-title">Pokemon-list</h3>
 
     {% set store = 'savedTable' %}
     {% set globals = {store: store} %}
@@ -25,7 +26,7 @@
         </twig:block>
 
         <twig:block name="twig_template" id="hack_to_get_raw_data">
-            there are {{ rows|length }} rows
+            <span class="pokemon-count">there are {{ rows|length }} rows </span>
             {% for row in rows %}
                 {% set detail = row.details %}
 
@@ -74,5 +75,5 @@
             id="after-list" style="display:none; margin: 20px; text-align: center;">
         <ons-icon icon="fa-spinner" size="26px" spin></ons-icon>
     </div>
-
+</div>
 {% endblock %}

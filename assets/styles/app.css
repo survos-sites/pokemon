@@ -17,3 +17,90 @@
 .content {
     border-color: #44db5e;
 }
+
+.pokemon-box {
+    padding: 0 16px;
+}
+
+.pokemon-box .page-title {
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.pokemon-box .pokemon-count {
+    margin-bottom: 20px;
+    display: block;
+}
+
+body .list-item--material {
+    gap: 8px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.list-item--material .list-item--material__left{
+    padding: 10px 0;
+}
+
+.list-item--material .list-item__left img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f1f1f1;
+}
+
+body .page--material__content .detail-page-title {
+    font-weight: 700;
+}
+
+.detail-image {
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    border-radius: 6px;
+}
+
+body .page--material__content .sub-title {
+    font-weight: 600;
+}
+
+ol {
+    padding-left: 26px;
+}
+
+ol li{
+    background-color: #fff;
+    padding: 8px 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+ol li::marker{
+    font-size: 14px;
+    font-weight: 500;
+}
+.size-group {
+    margin: 16px 0;
+}
+.size-group p {
+    margin: 8px 0;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.size-group p span {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.audio-text{
+    word-wrap: break-word;
+    line-height: 18px;
+    font-size: 14px;
+}
