@@ -1,17 +1,12 @@
 import './styles/app.css';
+// is this really needed? Or is it leftover from Monaca/Cordova
 import './components/loader.js';
 import './bootstrap.js'; // stimulus
-
-// import 'onsenui'
-// import 'onsenui';
 
 // without icons
 // import 'onsenui/css/onsenui-core.min.css'
 
 import 'onsenui/js/onsenui.min.js'
-// window.ons = ons; // make global
-
-
 import 'onsenui/css/onsenui-core.min.css'
 import 'onsenui/css/onsen-css-components.min.css'
 // import 'https://cdn.jsdelivr.net/npm/onsenui@2.12.8/js/onsenui.min.js';

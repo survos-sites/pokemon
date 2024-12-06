@@ -1,0 +1,24 @@
+{% extends 'onsPage.html.twig' %}
+
+{% block title 'App Refresh/load' %}
+{% block pageId 'loading' %}
+{% block page_icon 'fa-refresh' %}
+{% block body %}
+    <h3>Load Application and Data</h3>
+
+
+    <ons-button modifier="large" {{ stimulus_action('app', 'clear', 'click') }}>
+        Reload
+    </ons-button>
+
+
+    <div class="center">
+        <ons-progress-circular value="20" secondary-value="50"></ons-progress-circular>
+    </div>
+
+    <div {{ stimulus_target('app','spinner') }}
+            id="after-list" style="display:none; margin: 20px; text-align: center;">
+        <ons-icon icon="fa-spinner" size="26px" spin></ons-icon>
+    </div>
+
+{% endblock %}

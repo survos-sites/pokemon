@@ -48,7 +48,14 @@ export default class extends MobileController {
         this.menuTarget.close();
         // this.db.delete().then (()=>this.db.open());
         console.log('resetting database');
-        window.db.delete().then(()=>window.db.open().then(()=> window.location.reload()));
+
+        window.db.delete()
+            .then(()=>window.db.open()
+                .then(()=> {
+            //
+                    console.error('database has been emptied, now what? ');
+            // window.location.reload();
+        }));
     }
 
     async test(e) {
