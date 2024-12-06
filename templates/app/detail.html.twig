@@ -17,19 +17,23 @@
             title for {{ data.id }}
         </twig:block>
         <twig:block name="twig_template" id="xx">
-            <h1>{{ data.name }}</h1>
+            <div class="pokemon-box">
+            <h1 class="detail-page-title">{{ data.name }}</h1>
             {% set detail = data.details %}
-            <img src="{{ detail.sprites.front_default }}"/>
-            <img src="{{ detail.sprites.back_default }}"/>
+            <img class="detail-image" src="{{ detail.sprites.front_default }}"/>
+            <img class="detail-image" src="{{ detail.sprites.back_default }}"/>
 {#            <img src="{{ 'img/%d.png'|format(data.id) }}"/>#}
 
-            @todo: audio {{ detail.cries.latest }}
+            <p class="audio-text">@todo: audio {{ detail.cries.latest }}</p>
             <audio src="{{ detail.cries.latest }}">
 
             </audio>
 
-            Height: {{ detail.height }}, Weight: {{ detail.weight }}
-            <h3>Abilities</h3>
+            <div class="size-group">
+                <p>Height: <span>{{ detail.height }},</span></p>
+                <p>Weight: <span>{{ detail.weight }}</span></p>
+            </div>
+            <h3 class="sub-title">Abilities</h3>
             <ol>
                 {% for ability in detail.abilities %}
                     <li>{{ ability.ability.name }}
@@ -39,7 +43,7 @@
                 {% endfor %}
 
             </ol>
-            <h3>Moves</h3>
+            <h3 class="sub-title">Moves</h3>
             <ol>
                 {% for move in detail.moves %}
                     <li>{{ move.move.name }}
@@ -59,6 +63,7 @@
                 {% endfor %}
 
             </ol>
+            <div>
 
 {#            {{ data.details|json_encode }}#}
             <!-- xx --><!-- do not remove! -->
