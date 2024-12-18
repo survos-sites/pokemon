@@ -1,5 +1,7 @@
 {#{% block pageCongroller 'pokemon' %}#}
 {% extends 'onsPage.html.twig' %}
+{% set onsMeta = ons_metadata(_self, type) %}
+
 {# {% block toolbar %} #}
 {#    {{ parent() }} #}
 {#    <div class="center">home?</div> #}

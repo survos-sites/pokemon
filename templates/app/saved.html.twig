@@ -1,4 +1,5 @@
 {% extends 'onsPage.html.twig' %}
+{% set onsMeta = ons_metadata(_self, type) %}
 
 {% block title 'My Collection' %}
 {% block page_icon 'fa-upload' %}

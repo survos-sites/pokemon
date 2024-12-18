@@ -1,0 +1,12 @@
+{% extends "@SurvosMobile/start.html.twig" %}
+
+{% block title 'Omar Exhitition' %}
+{% block javascripts %}
+    {# only the mobile app assets #}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+{% endblock %}
+
+{% block pwa %}
+    <!-- adding pwa() -->
+    {{ pwa(locale=app.request.locale) }}
+{% endblock %}
