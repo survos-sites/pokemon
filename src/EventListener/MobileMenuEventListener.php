@@ -14,7 +14,6 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 #[AsEventListener(event: KnpMenuEvent::MOBILE_TAB_MENU, method: 'navbarMenu')]
 // #[AsEventListener(event: KnpMenuEvent::NAVBAR_MENU2, method: 'navbarMenu')]
-#[AsEventListener(event: KnpMenuEvent::MOBILE_PAGE_MENU, method: 'pageMenu')]
 final class MobileMenuEventListener implements KnpMenuHelperInterface
 {
     use KnpMenuHelperTrait;
@@ -33,13 +32,22 @@ final class MobileMenuEventListener implements KnpMenuHelperInterface
 //        $this->menuService->addAuthMenu($menu);
     }
 
+    #[AsEventListener(event: KnpMenuEvent::MOBILE_UNLINKED_MENU)]
+    public function unlinkedMenu(KnpMenuEvent $event): void
+    {
+        // items in the navbar should not be in the menu
+        $menu = $event->getMenu();
+        $this->add($menu, id: 'detail');
+    }
+
+    #[AsEventListener(event: KnpMenuEvent::MOBILE_TAB_MENU)]
     public function navbarMenu(KnpMenuEvent $event): void
     {
         // items in the navbar should not be in the menu
         $menu = $event->getMenu();
         $options = $event->getOptions();
-        $this->add($menu, id: 'loading', label: 'load', icon: 'fa-refresh');
         $this->add($menu, id: 'pokemon', label: 'POKE', icon: 'fa-home');
+        $this->add($menu, id: 'loading', label: 'load', icon: 'fa-refresh');
         $this->add($menu, id: 'saved', label: 'Saved', icon: 'fa-database',
             badge: '?'
         );
@@ -63,6 +71,7 @@ final class MobileMenuEventListener implements KnpMenuHelperInterface
     }
 
     // this could also be called the content menu, as it's below the navbar, e.g. a menu for an entity, like show, edit
+    #[AsEventListener(event: KnpMenuEvent::MOBILE_PAGE_MENU)]
     public function pageMenu(KnpMenuEvent $event): void
     {
         $menu = $event->getMenu();

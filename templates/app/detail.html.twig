@@ -1,5 +1,7 @@
 {% set pageController = 'render' %}
+
 {% extends 'onsPage.html.twig' %}
+{% set onsMeta = ons_metadata(_self, type) %}
 
 {% block pageId 'detail' %}
 

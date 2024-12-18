@@ -38,6 +38,8 @@ In your IDE, don't link all of survos, just *attach* the packages you are workin
 
     ../survos/packages/js-twig-bundle
 
+## @todo
 
+Update the load to use https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
 
 
