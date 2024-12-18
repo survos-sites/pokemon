@@ -32,23 +32,25 @@
             {% for row in rows %}
                 {% set detail = row.details %}
 
-                <ons-list-item class="list-item">
+                <ons-list-item class="list-item custom-list-layout">
                     <div class="top list-item__top">
                         <div class="left list-item__left">
-                            <img class="pokemon_thumbnail" src="{{ detail.sprites.front_default }}"
-                                 alt="{{ row.name }} image"/>
+                            <img class="custom_thumbnail" src="{{ detail.sprites.front_default }}"
+                                alt="{{ row.name }} image"/>
 
                         </div>
                         <div class="center list-item__center">
                             {% set checked = row.owned ? 'checked' : '' %}
-                            <a {{ stimulus_action('app','test','click', {
-                                page: 'detail',
-                                store:globals.store,
-                                id:row.id
-                            }) }}>
+                            <h6 class="custom-list-item-title">
+                                <a {{ stimulus_action('app','test','click', {
+                                    page: 'detail',
+                                    store:globals.store,
+                                    id:row.id
+                                }) }}>
 
-                                {{ row.name }}
-                            </a>
+                                    {{ row.name }}
+                                </a>
+                            </h6>
 
                         </div>
                         <div class="right list-item__right">
