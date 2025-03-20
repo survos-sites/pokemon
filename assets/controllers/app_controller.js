@@ -49,7 +49,7 @@ export default class extends MobileController {
         // this.db.delete().then (()=>this.db.open());
         console.log('resetting database');
 
-        window.db.delete()
+        window.db && window.db.delete()
             .then(()=>window.db.open()
                 .then(()=> {
             //

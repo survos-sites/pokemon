@@ -3,7 +3,7 @@
 pwa:
     image_processor: 'pwa.image_processor.gd'
     manifest:
-        enabled: true
+        enabled: false
         background_color: "#c026d3"
         theme_color: "#c026d3"
         name: 'Pokemon Collector'
@@ -34,7 +34,7 @@ pwa:
             - platform: "webapp"
               url: "https://localhost:8000/site.webmanifest"
     serviceworker:
-        enabled: true
+        enabled: false
         src: "sw.js"
         skip_waiting: true
         workbox:

@@ -8,5 +8,7 @@
 
 {% block pwa %}
     <!-- adding pwa() -->
+{#    https://github.com/Spomky-Labs/pwa-bundle/issues/240#}
+{#    , swAttributes={defer:'defer'}#}
     {{ pwa(locale=app.request.locale) }}
 {% endblock %}
