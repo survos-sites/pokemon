@@ -22,7 +22,6 @@
         "knplabs/knp-menu-bundle": "^3.4",
         "nelmio/cors-bundle": "^2.4",
         "phpdocumentor/reflection-docblock": "^5.3",
-        "spomky-labs/pwa-bundle": "1.3.x",
         "survos/core-bundle": "^1.5",
         "survos/crawler-bundle": "^1.5",
         "survos/deployment-bundle": "^1.5",

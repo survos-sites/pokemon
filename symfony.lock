@@ -120,9 +120,6 @@
     "pierstoval/smoke-testing": {
         "version": "v1.0.1"
     },
-    "spomky-labs/pwa-bundle": {
-        "version": "1.2.x-dev"
-    },
     "survos/core-bundle": {
         "version": "1.5.203"
     },
