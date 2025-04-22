@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PokemonRepository;
+use App\Workflow\IPokemonWorkflow;
 use Doctrine\ORM\Mapping as ORM;
+use Survos\WorkflowBundle\Traits\MarkingInterface;
+use Survos\WorkflowBundle\Traits\MarkingTrait;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
@@ -14,8 +17,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
     normalizationContext: ['groups' => ['pokemon.read']],
 )]
 #[Groups(['pokemon.read'])]
-class Pokemon
+class Pokemon implements MarkingInterface
 {
+    use MarkingTrait;
+
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -34,6 +39,7 @@ class Pokemon
         private int $id
     )
     {
+        $this->marking = IPokemonWorkflow::PLACE_NEW;
     }
 
     public function getId(): int

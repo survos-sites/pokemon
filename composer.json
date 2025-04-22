@@ -28,6 +28,7 @@
         "survos/js-twig-bundle": "^1.6.0",
         "survos/mobile-bundle": "^1.5",
         "survos/scraper-bundle": "^1.5",
+        "survos/workflow-helper-bundle": "^1.5",
         "symfony/asset": "^7.1",
         "symfony/asset-mapper": "^7.1",
         "symfony/console": "^7.1",

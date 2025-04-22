@@ -30,4 +30,5 @@ return [
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
     Symfony\UX\Icons\UXIconsBundle::class => ['all' => true],
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
+    Survos\WorkflowBundle\SurvosWorkflowBundle::class => ['all' => true],
 ];
