@@ -43,3 +43,6 @@ In your IDE, don't link all of survos, just *attach* the packages you are workin
 Update the load to use https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
 
 
+## Tutorial
+
+bin/console survos:workflow:generate App\\Entity\\Pokemon new,fetched,downloaded,finished,fetch_error,download_error fetch,download,fail_fetch,fail_download

@@ -2,17 +2,9 @@
 {% block title %}Offline???{% endblock %}
 
 {% block body %}
-    <div class="card mb-2">
-        <div class="card-body">
-            Sorry, you are offline. Please check your internet connection and try again.
-            You may be interested in the following links:
-            <ul>
-                <li><a href="{{ path('app_index') }}">index</a></li>
-                <li><a href="{{ path('app_home') }}">home</a></li>
-            </ul>
-        </div>
-    </div>
+    Landing page.
 
+    with menu?
     {{ _self }} Published
     <time {{ stimulus_controller('timeago', {datetime: 'now'|date('c')}) }}>
         {{ 'now'|date('c') }}

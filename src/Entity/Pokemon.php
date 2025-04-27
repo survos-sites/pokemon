@@ -14,12 +14,14 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ApiResource(
     shortName: 'pokemon',
     paginationItemsPerPage: 25,
-    normalizationContext: ['groups' => ['pokemon.read']],
+    normalizationContext: ['groups' => ['pokemon.read', 'marking']],
 )]
 #[Groups(['pokemon.read'])]
 class Pokemon implements MarkingInterface
 {
     use MarkingTrait;
+
+    const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -29,6 +31,12 @@ class Pokemon implements MarkingInterface
 
     #[ORM\Column(nullable: true)]
     private ?bool $owned = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $fetchStatusCode = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $downloadStatusCode = null;
 
     /**
      * @param int|null $id
@@ -66,6 +74,12 @@ class Pokemon implements MarkingInterface
         return sprintf('img/%d.png', $this->getId());
     }
 
+    public function getDetailUrl(): ?string
+    {
+        // we may refactor this someday
+        return self::BASE_URL . $this->getId();
+    }
+
     public function getDetails(): array
     {
         return $this->details;
@@ -86,6 +100,30 @@ class Pokemon implements MarkingInterface
     public function setOwned(?bool $owned): static
     {
         $this->owned = $owned;
+
+        return $this;
+    }
+
+    public function getFetchStatusCode(): ?int
+    {
+        return $this->fetchStatusCode;
+    }
+
+    public function setFetchStatusCode(?int $fetchStatusCode): static
+    {
+        $this->fetchStatusCode = $fetchStatusCode;
+
+        return $this;
+    }
+
+    public function getDownloadStatusCode(): ?int
+    {
+        return $this->downloadStatusCode;
+    }
+
+    public function setDownloadStatusCode(?int $downloadStatusCode): static
+    {
+        $this->downloadStatusCode = $downloadStatusCode;
 
         return $this;
     }

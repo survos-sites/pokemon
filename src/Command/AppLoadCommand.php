@@ -45,7 +45,7 @@ final class AppLoadCommand extends InvokableServiceCommand
             }
 
         // get the count
-        $response = $scraper->fetchData('https://pokeapi.co/api/v2/pokemon',
+        $response = $scraper->fetchData(Pokemon::BASE_URL,
             ['limit' => 2000], asData: 'object');
             $total = $response->count;
         $progressBar = new ProgressBar($io->output(), $total);
@@ -63,10 +63,10 @@ final class AppLoadCommand extends InvokableServiceCommand
                 $poke->setOwned(in_array($idx, [2,3,5,8,13,21]));
                 $entityManager->persist($poke);
             }
-            $details = $scraper->fetchData($data->url);
-            $poke
-                ->setDetails($details)
-                ->setName($data->name);
+            $poke->setName($data->name);
+//            $details = $scraper->fetchData($data->url);
+//            $poke
+//                ->setDetails($details);
             if ($limit && ($idx >= $limit)) {
                 break;
             }

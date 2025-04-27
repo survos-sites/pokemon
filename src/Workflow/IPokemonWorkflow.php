@@ -13,14 +13,40 @@ interface IPokemonWorkflow
 	public const PLACE_NEW = 'new';
 
 	#[Place]
-	public const PLACE_SCRAPED = 'scraped';
+	public const PLACE_FETCHED = 'fetched';
 
 	#[Place]
-	public const PLACE_RESIZED = 'resized';
+	public const PLACE_DOWNLOADED = 'downloaded';
 
-	#[Transition(from: [self::PLACE_NEW], to: self::PLACE_SCRAPED)]
-	public const TRANSITION_SCRAPE = 'scrape';
+	#[Place]
+	public const PLACE_FINISHED = 'finished';
 
-	#[Transition(from: [self::PLACE_SCRAPED], to: self::PLACE_RESIZED)]
-	public const TRANSITION_RESIZE = 'resize';
+	#[Place]
+	public const PLACE_FETCH_ERROR = 'fetch_error';
+
+	#[Place]
+	public const PLACE_DOWNLOAD_ERROR = 'download_error';
+
+	#[Transition(from: [self::PLACE_NEW], to: self::PLACE_FETCHED,
+        metadata: [
+            'completed' => "fail if statusCode <> 200"
+        ]
+    )]
+	public const TRANSITION_FETCH = 'fetch';
+
+	#[Transition(from: [self::PLACE_FETCHED], to: self::PLACE_DOWNLOADED,
+        guard: "subject.statusCode <> 200",
+        metadata: [
+            'completed' => "fail_download if statusCode <> 200"
+        ]
+    )]
+	public const TRANSITION_DOWNLOAD = 'download';
+
+	#[Transition(from: [self::PLACE_FETCHED], to: self::PLACE_FETCH_ERROR,
+        guard: "subject.statusCode <> 200",
+    )]
+	public const TRANSITION_FAIL_FETCH = 'fail_fetch';
+
+	#[Transition(from: [self::PLACE_FINISHED], to: self::PLACE_FETCH_ERROR)]
+	public const TRANSITION_FAIL_DOWNLOAD = 'fail_download';
 }

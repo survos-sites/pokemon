@@ -40,7 +40,15 @@ class AppController extends AbstractController
 //        ]);
 //    }
 
-    #[Route('/', name: 'app_index', options: ['expose' => true], methods: ['GET'])]
+    #[Route('/', name: 'app_homepage', options: ['expose' => true], methods: ['GET'])]
+    #[Template('app/landing.html.twig')]
+    public function homepage(Request $request): Response|array
+    {
+        return [];
+
+    }
+
+    #[Route('/mobile', name: 'app_mobile', options: ['expose' => true], methods: ['GET'])]
     public function mobile(Request $request): Response
     {
 
