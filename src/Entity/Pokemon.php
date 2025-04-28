@@ -39,7 +39,7 @@ class Pokemon implements MarkingInterface
     private ?bool $owned = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $fetchStatusCode = null;
+    public ?int $fetchStatusCode = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $downloadStatusCode = null;
@@ -77,7 +77,7 @@ class Pokemon implements MarkingInterface
     public function getImageUrl(): ?string
     {
         // we may refactor this someday
-        return sprintf('img/%d.png', $this->getId());
+        return self::BASE_URL . sprintf('/img/%d.png', $this->getId());
     }
 
     public function getDetailUrl(): ?string

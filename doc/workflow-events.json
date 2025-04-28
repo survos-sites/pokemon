@@ -31,22 +31,6 @@
             "priority": 0
         }
     ],
-    "workflow.PokemonWorkflow.transition.fail_download": [
-        {
-            "type": "function",
-            "name": "onFailDownload",
-            "class": "App\\Workflow\\PokemonWorkflow",
-            "priority": 0
-        }
-    ],
-    "workflow.PokemonWorkflow.transition.fail_fetch": [
-        {
-            "type": "function",
-            "name": "onFailFetch",
-            "class": "App\\Workflow\\PokemonWorkflow",
-            "priority": 0
-        }
-    ],
     "workflow.PokemonWorkflow.transition.fetch": [
         {
             "type": "function",
