@@ -120,6 +120,9 @@
     "pierstoval/smoke-testing": {
         "version": "v1.0.1"
     },
+    "survos/bootstrap-bundle": {
+        "version": "1.5.529"
+    },
     "survos/core-bundle": {
         "version": "1.5.203"
     },
@@ -147,6 +150,9 @@
     },
     "survos/mobile-bundle": {
         "version": "1.5.202"
+    },
+    "survos/sais-bundle": {
+        "version": "1.5.529"
     },
     "survos/scraper-bundle": {
         "version": "1.5.207"

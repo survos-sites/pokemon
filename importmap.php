@@ -16,6 +16,10 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'desktop' => [
+        'path' => './assets/desktop.js',
+        'entrypoint' => true,
+    ],
     '@survos-mobile/mobile' => [
         'path' => './vendor/survos/mobile-bundle/assets/src/controllers/mobile_controller.js',
     ],
@@ -103,5 +107,16 @@ return [
     ],
     '@symfony/ux-live-component' => [
         'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
+    ],
+    'tabler/dist/css/tabler.min.css' => [
+        'version' => '1.0.0-alpha.8',
+        'type' => 'css',
+    ],
+    '@tabler/core' => [
+        'version' => '1.2.0',
+    ],
+    '@tabler/core/dist/css/tabler.min.css' => [
+        'version' => '1.2.0',
+        'type' => 'css',
     ],
 ];

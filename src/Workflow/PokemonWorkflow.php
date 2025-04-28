@@ -3,6 +3,7 @@
 namespace App\Workflow;
 
 use App\Entity\Pokemon;
+use Survos\SaisBundle\Service\SaisClientService;
 use Survos\WorkflowBundle\Attribute\Workflow;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpClient\HttpClient;
@@ -22,6 +23,7 @@ class PokemonWorkflow implements IPokemonWorkflow
 
 	public function __construct(
         private HttpClientInterface $httpClient,
+        private SaisClientService $saisClientService,
         #[Target(self::WORKFLOW_NAME)] private WorkflowInterface $workflow,
     )
 	{
@@ -33,38 +35,12 @@ class PokemonWorkflow implements IPokemonWorkflow
 		/** @var Pokemon */ return $event->getSubject();
 	}
 
-
-	#[AsGuardListener(self::WORKFLOW_NAME)]
-	public function onGuard(GuardEvent $event): void
-	{
-		$pokemon = $this->getPokemon($event);
-
-		switch ($event->getTransition()->getName()) {
-		/*
-		e.g.
-		if ($event->getSubject()->cannotTransition()) {
-		  $event->setBlocked(true, "reason");
-		}
-		App\Entity\Pokemon
-		*/
-		    case self::TRANSITION_FETCH:
-		        break;
-		    case self::TRANSITION_DOWNLOAD:
-		        break;
-		    case self::TRANSITION_FAIL_FETCH:
-		        break;
-		    case self::TRANSITION_FAIL_DOWNLOAD:
-		        break;
-		}
-	}
-
-
 	#[AsTransitionListener(self::WORKFLOW_NAME, self::TRANSITION_FETCH)]
 	public function onFetch(TransitionEvent $event): void
 	{
 		$pokemon = $this->getPokemon($event);
         $url = $pokemon->getDetailUrl();
-        // hack to force fail
+        // hack to force fail during testing
 //        if ($pokemon->isOwned())
 //            $url .= 'xxx';
         $request = $this->httpClient->request('GET', $url);
@@ -94,6 +70,7 @@ class PokemonWorkflow implements IPokemonWorkflow
 	public function onDownload(TransitionEvent $event): void
 	{
 		$pokemon = $this->getPokemon($event);
+        $image = $pokemon->getImageUrl();
 	}
 
 

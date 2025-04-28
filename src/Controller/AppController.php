@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PokemonRepository;
 use Knp\Menu\FactoryInterface;
 use Survos\MobileBundle\Event\KnpMenuEvent;
 use Symfony\Bridge\Twig\Attribute\Template;
@@ -9,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -42,9 +44,13 @@ class AppController extends AbstractController
 
     #[Route('/', name: 'app_homepage', options: ['expose' => true], methods: ['GET'])]
     #[Template('app/landing.html.twig')]
-    public function homepage(Request $request): Response|array
+    public function homepage(Request $request, PokemonRepository $pokemonRepository,
+    #[MapQueryParameter()] int $limit = 5
+    ): Response|array
     {
-        return [];
+        return [
+            'pokemon' => $pokemonRepository->findBy([], ['name' => 'ASC'], $limit),
+        ];
 
     }
 

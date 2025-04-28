@@ -4,6 +4,26 @@
 {% block body %}
     Landing page.
 
+    {% for p in pokemon %}
+        <h3>{{ p.name }}
+            <code>{{ p.id }}</code>
+        </h3>
+        <p>
+            {% for idx, a in p.details.abilities|default([]) %}
+                <li>
+                    {{ idx }}
+                    {{ a|json_encode }}
+                </li>
+            {% endfor %}
+        </p>
+
+        {% set detail = p.details %}
+        {% if detail %}
+        <img class="detail-image" src="{{ detail.sprites.front_default }}"/>
+        <img class="detail-image" src="{{ detail.sprites.back_default }}"/>
+        {% endif %}
+
+    {% endfor %}
     with menu?
     {{ _self }} Published
     <time {{ stimulus_controller('timeago', {datetime: 'now'|date('c')}) }}>

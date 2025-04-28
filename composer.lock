@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec8f6cacfa58cc74dafdd62d8df0bb8f",
+    "content-hash": "d7ffd17683326c7fbc235b8ba361d8cd",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2976,6 +2976,105 @@
             "time": "2024-09-11T13:17:53+00:00"
         },
         {
+            "name": "survos/bootstrap-bundle",
+            "version": "1.5.529",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/BootstrapBundle.git",
+                "reference": "3d717823bff090a8e6c7b420cf5a17446eca2fee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/BootstrapBundle/zipball/3d717823bff090a8e6c7b420cf5a17446eca2fee",
+                "reference": "3d717823bff090a8e6c7b420cf5a17446eca2fee",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-menu-bundle": "^3.2",
+                "php": "^8.3",
+                "survos/core-bundle": "^1.5",
+                "survos/installer": "^1.4||^2.0",
+                "symfony/config": "^6.4 || ^7.1",
+                "symfony/dependency-injection": "^6.4 || ^7.1",
+                "symfony/http-kernel": "^6.4 || ^7.1",
+                "symfony/options-resolver": "^6.4 || ^7.1",
+                "symfony/ux-icons": "^2.21",
+                "symfony/ux-twig-component": "^2.8",
+                "twig/intl-extra": "^3.8",
+                "twig/string-extra": "^3.4",
+                "twig/twig": "^3.4"
+            },
+            "conflict": {
+                "survos/api-grid-bundle": "<1.2.57",
+                "survos/auth-bundle": "<1.2.57",
+                "survos/barcode-bundle": "<1.2.57",
+                "survos/command-bundle": "<1.2.57",
+                "survos/crawler-bundle": "<1.2.57",
+                "survos/doc-bundle": "<1.2.57",
+                "survos/faker-bundle": "<1.2.57",
+                "survos/grid-bundle": "<1.2.57",
+                "survos/grid-group-bundle": "<1.2.57",
+                "survos/html-prettify-bundle": "<1.2.57",
+                "survos/import-bridge": "<1.2.57",
+                "survos/inspection-bundle": "<1.2.57",
+                "survos/location-bundle": "<1.2.57",
+                "survos/maker-bundle": "<1.2.57",
+                "survos/providence-bundle": "<1.2.57",
+                "survos/ruler-bundle": "<1.2.57",
+                "survos/stripe-product": "<1.2.57",
+                "survos/tree-bundle": "<1.2.57",
+                "survos/wiki-bundle": "<1.2.57",
+                "survos/workflow-helper-bundle": "<1.2.57"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^11.5",
+                "survos/auth-bundle": "^1.5",
+                "symfony/security-bundle": "^6.4 || ^7.1",
+                "symfony/translation": "^6.4 || ^7.1"
+            },
+            "suggest": {
+                "symfony/security-bundle": "User authentication"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Survos\\BootstrapBundle\\": "src/",
+                    "Survos\\BootstrapBundle\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tac Tacelosky",
+                    "email": "tacman@gmail.com"
+                }
+            ],
+            "description": "Integrates a bootstrap theme with many extras in a Symfony application",
+            "keywords": [
+                "symfony-ux"
+            ],
+            "support": {
+                "issues": "https://github.com/survos/BootstrapBundle/issues",
+                "source": "https://github.com/survos/BootstrapBundle/tree/1.5.529"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-02-13T00:52:54+00:00"
+        },
+        {
             "name": "survos/core-bundle",
             "version": "1.5.529",
             "source": {
@@ -3213,6 +3312,65 @@
             "time": "2025-01-01T23:08:29+00:00"
         },
         {
+            "name": "survos/installer",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/installer.git",
+                "reference": "3645ec5300471068d506e7cd0c5297ad27a335c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/installer/zipball/3645ec5300471068d506e7cd0c5297ad27a335c8",
+                "reference": "3645ec5300471068d506e7cd0c5297ad27a335c8",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0",
+                "survos/quality": "dev-main"
+            },
+            "suggest": {
+                "roave/security-advisories": "Avoids installation of package versions with vulnerabilities"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Survos\\Installer\\Installer",
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Survos\\Installer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tac Tacelosky",
+                    "email": "tacman@gmail.com"
+                }
+            ],
+            "description": "Composer plugin for installing configuration files and updating .env and .gitignore, based on survos/installer",
+            "support": {
+                "source": "https://github.com/survos/installer/tree/2.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-09T14:44:56+00:00"
+        },
+        {
             "name": "survos/js-twig-bundle",
             "version": "1.6.0",
             "source": {
@@ -3330,6 +3488,65 @@
                 }
             ],
             "time": "2024-12-18T17:30:31+00:00"
+        },
+        {
+            "name": "survos/sais-bundle",
+            "version": "1.5.530",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/SurvosSaisBundle.git",
+                "reference": "c6ce47005fdfb66786c5fdc03509a9b3206226c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/SurvosSaisBundle/zipball/c6ce47005fdfb66786c5fdc03509a9b3206226c8",
+                "reference": "c6ce47005fdfb66786c5fdc03509a9b3206226c8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.3",
+                "symfony/config": "^6.4 || ^7.1",
+                "symfony/dependency-injection": "^6.4 || ^7.1",
+                "symfony/http-client": "^6.4 || ^7.1",
+                "symfony/http-kernel": "^6.4 || ^7.1",
+                "twig/twig": "^3.4"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "symfony/browser-kit": "^6.4 || ^7.1",
+                "symfony/framework-bundle": "^6.4 || ^7.1",
+                "symfony/phpunit-bridge": "^6.4 || ^7.1",
+                "symfony/twig-bundle": "^6.4 || ^7.1",
+                "symfony/var-dumper": "^6.4 || ^7.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Survos\\SaisBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Integration with Survos Async Image Server",
+            "keywords": [
+                "Thumbnails",
+                "resize",
+                "symfony",
+                "symfony-ux"
+            ],
+            "support": {
+                "issues": "https://github.com/survos/SurvosSaisBundle/issues",
+                "source": "https://github.com/survos/SurvosSaisBundle/tree/1.5.530"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-04-27T13:26:37+00:00"
         },
         {
             "name": "survos/scraper-bundle",
@@ -9630,6 +9847,73 @@
             ],
             "support": {
                 "source": "https://github.com/twigphp/intl-extra/tree/v3.20.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-01-31T20:45:36+00:00"
+        },
+        {
+            "name": "twig/string-extra",
+            "version": "v3.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/string-extra.git",
+                "reference": "4b3337544ac8f76c280def94e32b53acfaec0589"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/string-extra/zipball/4b3337544ac8f76c280def94e32b53acfaec0589",
+                "reference": "4b3337544ac8f76c280def94e32b53acfaec0589",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1.0",
+                "symfony/string": "^5.4|^6.4|^7.0",
+                "symfony/translation-contracts": "^1.1|^2|^3",
+                "twig/twig": "^3.13|^4.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^6.4|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twig\\Extra\\String\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "A Twig extension for Symfony String",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "html",
+                "string",
+                "twig",
+                "unicode"
+            ],
+            "support": {
+                "source": "https://github.com/twigphp/string-extra/tree/v3.20.0"
             },
             "funding": [
                 {

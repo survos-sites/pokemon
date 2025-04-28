@@ -22,11 +22,13 @@
         "knplabs/knp-menu-bundle": "^3.4",
         "nelmio/cors-bundle": "^2.4",
         "phpdocumentor/reflection-docblock": "^5.3",
+        "survos/bootstrap-bundle": "^1.5",
         "survos/core-bundle": "^1.5",
         "survos/crawler-bundle": "^1.5",
         "survos/deployment-bundle": "^1.5",
         "survos/js-twig-bundle": "^1.6.0",
         "survos/mobile-bundle": "^1.5",
+        "survos/sais-bundle": "^1.5",
         "survos/scraper-bundle": "^1.5",
         "survos/workflow-helper-bundle": "^1.5",
         "symfony/asset": "^7.1",
@@ -70,10 +72,11 @@
     },
     "config": {
         "allow-plugins": {
+            "endroid/installer": true,
             "php-http/discovery": true,
+            "survos/installer": true,
             "symfony/flex": true,
-            "symfony/runtime": true,
-            "endroid/installer": true
+            "symfony/runtime": true
         },
         "sort-packages": true
     },

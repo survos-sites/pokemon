@@ -31,4 +31,6 @@ return [
     Symfony\UX\Icons\UXIconsBundle::class => ['all' => true],
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
     Survos\WorkflowBundle\SurvosWorkflowBundle::class => ['all' => true],
+    Survos\BootstrapBundle\SurvosBootstrapBundle::class => ['all' => true],
+    Survos\SaisBundle\SurvosSaisBundle::class => ['all' => true],
 ];

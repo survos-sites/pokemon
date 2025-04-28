@@ -1,0 +1,5 @@
+survos_sais:
+    root: pokemon
+    api_endpoint:         '%env(SAIS_API_ENDPOINT)%'
+    api_key:              ''
+
