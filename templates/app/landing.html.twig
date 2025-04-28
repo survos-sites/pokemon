@@ -1,8 +1,26 @@
-{% extends 'desktop_base.html.twig' %}
+{#{% extends 'desktop_base.html.twig' %}#}
+{% extends '@EasyAdmin/page/content.html.twig' %}
 {% block title %}Offline???{% endblock %}
 
-{% block body %}
-    Landing page.
+{% block page_content %}
+    <h3>Pokemon Admin</h3>
+
+    <div>
+        This site provides the tools to create a json-ld API interface for use with testing pokemon clients, e.g. OnsenUI and Framework7.
+    </div>
+
+    <div>
+        <pre>rm -rf var/data.db -f && bin/console d:sch:update --force && bin/console app:load --limit 10</pre>
+        <img src="{{ asset('images/PokemonWorkflow.svg') }}" alt="pokemon state machine" />
+    </div>
+
+    <div>
+        Marking chart, status codes, etc.
+    </div>
+
+    <div>
+        Link to live pokemon (onsen)
+    </div>
 
     {% for p in pokemon %}
         <h3>{{ p.name }}

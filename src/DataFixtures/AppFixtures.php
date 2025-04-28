@@ -15,6 +15,8 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
+        // this should only be used for phpunit tests! For production, use bin/console app:load
+
         // $product = new Product();
         // $manager->persist($product);
         $response = $this->scraper->fetchData('https://pokeapi.co/api/v2/pokemon',

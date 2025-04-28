@@ -46,6 +46,7 @@ final class DesktopMenu implements KnpMenuHelperInterface
 
         $this->add($menu, 'app_homepage');
         $this->add($menu, 'api_doc');
+        $this->add($menu, 'admin');
         // for nested menus, don't add a route, just a label, then use it for the argument to addMenuItem
 
         $nestedMenu = $this->addSubmenu($menu, 'Credits');

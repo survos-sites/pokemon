@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PokemonRepository;
 use App\Workflow\IPokemonWorkflow;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,6 +14,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
 #[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get()
+    ],
     shortName: 'pokemon',
     paginationItemsPerPage: 25,
     normalizationContext: ['groups' => ['pokemon.read', 'marking']],

@@ -42,7 +42,7 @@ class AppController extends AbstractController
 //        ]);
 //    }
 
-    #[Route('/', name: 'app_homepage', options: ['expose' => true], methods: ['GET'])]
+    #[Route('/landing', name: 'app_homepage', options: ['expose' => true], methods: ['GET'])]
     #[Template('app/landing.html.twig')]
     public function homepage(Request $request, PokemonRepository $pokemonRepository,
     #[MapQueryParameter()] int $limit = 5

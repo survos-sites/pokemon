@@ -1,0 +1,58 @@
+{
+    "workflow.PokemonWorkflow.completed.fetch": [
+        {
+            "type": "function",
+            "name": "asFetchCompleted",
+            "class": "App\\Workflow\\PokemonWorkflow",
+            "priority": 0
+        }
+    ],
+    "workflow.PokemonWorkflow.guard.download": [
+        {
+            "type": "function",
+            "name": "onTransition",
+            "class": "Symfony\\Component\\Workflow\\EventListener\\GuardListener",
+            "priority": 0
+        }
+    ],
+    "workflow.PokemonWorkflow.guard.fail_fetch": [
+        {
+            "type": "function",
+            "name": "onTransition",
+            "class": "Symfony\\Component\\Workflow\\EventListener\\GuardListener",
+            "priority": 0
+        }
+    ],
+    "workflow.PokemonWorkflow.transition.download": [
+        {
+            "type": "function",
+            "name": "onDownload",
+            "class": "App\\Workflow\\PokemonWorkflow",
+            "priority": 0
+        }
+    ],
+    "workflow.PokemonWorkflow.transition.fail_download": [
+        {
+            "type": "function",
+            "name": "onFailDownload",
+            "class": "App\\Workflow\\PokemonWorkflow",
+            "priority": 0
+        }
+    ],
+    "workflow.PokemonWorkflow.transition.fail_fetch": [
+        {
+            "type": "function",
+            "name": "onFailFetch",
+            "class": "App\\Workflow\\PokemonWorkflow",
+            "priority": 0
+        }
+    ],
+    "workflow.PokemonWorkflow.transition.fetch": [
+        {
+            "type": "function",
+            "name": "onFetch",
+            "class": "App\\Workflow\\PokemonWorkflow",
+            "priority": 0
+        }
+    ]
+}
