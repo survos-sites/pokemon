@@ -4,7 +4,11 @@ A mobile pokemon-collection app, based on https://onsen.io/v2/guide/tutorial.htm
 
 It has been converted to Symfony.
 
-## Setup
+## Fixtures
+
+Fixtures bypass the workflow, so are faster to set up for tests.
+
+## Normal Setup
 
 ```bash
 git clone git@github.com:survos-sites/pokemon.git && cd pokemon
@@ -14,6 +18,13 @@ bin/console app:load --limit 50
 symfony server:start -d
 symfony open:local
 ```
+
+Now fetch the data
+
+```bash
+bin/console workflow:iterate App\\Entity\\Pokemon --marking=new --transition=fetch -vv
+```
+
 
 After opening the page, do a shift-refresh to re-load the page and the pokemon list will show up.
 

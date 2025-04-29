@@ -28,9 +28,12 @@
         </h3>
         <p>
             {% for idx, a in p.details.abilities|default([]) %}
+                {% set ability = a.ability %}
                 <li>
-                    {{ idx }}
-                    {{ a|json_encode }}
+                    <a href="{{ ability.url }}" target="_blank">
+                        {{ ability.name }}
+                    </a>
+{#                    {{ ability|json_encode }}#}
                 </li>
             {% endfor %}
         </p>

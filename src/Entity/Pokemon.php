@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -13,6 +15,7 @@ use Survos\WorkflowBundle\Traits\MarkingTrait;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
+#[ORM\Index(name: 'pokemon_marking', columns: ['marking'])]
 #[ApiResource(
     operations: [
         new GetCollection(),
@@ -22,6 +25,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
     paginationItemsPerPage: 25,
     normalizationContext: ['groups' => ['pokemon.read', 'marking']],
 )]
+#[ApiFilter(SearchFilter::class, properties: ['marking' => 'exact'])]
 #[Groups(['pokemon.read'])]
 class Pokemon implements MarkingInterface
 {
@@ -132,5 +136,10 @@ class Pokemon implements MarkingInterface
         $this->downloadStatusCode = $downloadStatusCode;
 
         return $this;
+    }
+
+    public function getAvatarUrl(): ?string
+    {
+        return $this->details['sprites']['front_default'] ?? null;
     }
 }

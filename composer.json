@@ -5,7 +5,7 @@
     "license": "MIT",
     "keywords": ["tutorial","pwa","symfony"],
     "minimum-stability": "dev",
-    "prefer-stable": true,
+    "prefer-stable": false,
     "require": {
         "php": ">=8.2",
         "ext-ctype": "*",
@@ -124,8 +124,8 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
-            "require": "^7.2"
+            "allow-contrib": true,
+            "require": "7.3.x-dev"
         }
     },
     "require-dev": {

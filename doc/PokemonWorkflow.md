@@ -1,13 +1,10 @@
 Markdown for PokemonWorkflow
 
-![PokemonWorkflow.svg](PokemonWorkflow.svg)
-
 
 
 ## completed.fetch
 
 ```php
-    #[AsCompletedListener(self::WORKFLOW_NAME, self::TRANSITION_FETCH)]
     public function asFetchCompleted(CompletedEvent $event): void
     {
         $pokemon = $this->getPokemon($event);
@@ -20,28 +17,55 @@ blob/main/src/Workflow/PokemonWorkflow.php#L58-64
         
     
 
+## guard.download
+
+```php
+    {
+        if (!isset($this->configuration[$eventName])) {
+            return;
+        }
+
+        $eventConfiguration = (array) $this->configuration[$eventName];
+        foreach ($eventConfiguration as $guard) {
+            if ($guard instanceof GuardExpression) {
+```
+blob/main/vendor/symfony/workflow/EventListener/GuardListener.php#L38-55
+        
+    
+## guard.fail_fetch
+
+```php
+    {
+        if (!isset($this->configuration[$eventName])) {
+            return;
+        }
+
+        $eventConfiguration = (array) $this->configuration[$eventName];
+        foreach ($eventConfiguration as $guard) {
+            if ($guard instanceof GuardExpression) {
+```
+blob/main/vendor/symfony/workflow/EventListener/GuardListener.php#L38-55
+        
+    
+
 ## transition.download
 
 ```php
-    #[AsTransitionListener(self::WORKFLOW_NAME, self::TRANSITION_DOWNLOAD)]
     public function onDownload(TransitionEvent $event): void
     {
         $pokemon = $this->getPokemon($event);
-        $image = $pokemon->getImageUrl();
+//        $image = $this->rootDir . $pokemon->getImageUrl();
+        $imageUrl = sprintf('https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/%03d.png', $pokemon->getId());
         $response = $this->saisClientService->dispatchProcess(new ProcessPayload(
              $this->rootDir,
-            [$image],
-        ));
-        dd($response);
-    }
+            [$imageUrl],
 ```
-blob/main/src/Workflow/PokemonWorkflow.php#L68-77
+blob/main/src/Workflow/PokemonWorkflow.php#L68-79
         
     
 ## transition.fetch
 
 ```php
-    #[AsTransitionListener(self::WORKFLOW_NAME, self::TRANSITION_FETCH)]
     public function onFetch(TransitionEvent $event): void
     {
         $pokemon = $this->getPokemon($event);
@@ -50,9 +74,6 @@ blob/main/src/Workflow/PokemonWorkflow.php#L68-77
         $statusCode = $request->getStatusCode();
         $pokemon
             ->setFetchStatusCode($statusCode);
-        if ($statusCode === 200) {
-            $details = json_decode($request->getContent(), true);
-            $pokemon->setDetails($details);
 ```
 blob/main/src/Workflow/PokemonWorkflow.php#L43-55
         
