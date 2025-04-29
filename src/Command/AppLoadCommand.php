@@ -7,75 +7,76 @@ use App\Repository\PokemonRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Survos\Scraper\Service\ScraperService;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Attribute\Option;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
-use Zenstruck\Console\Attribute\Option;
-use Zenstruck\Console\InvokableServiceCommand;
-use Zenstruck\Console\IO;
-use Zenstruck\Console\RunsCommands;
-use Zenstruck\Console\RunsProcesses;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use function Symfony\Component\String\u;
 
 #[AsCommand('app:load', 'Loads pokemon data from the api')]
-final class AppLoadCommand extends InvokableServiceCommand
+final class AppLoadCommand
 {
-    use RunsCommands;
-    use RunsProcesses;
+
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private PokemonRepository      $pokemonRepository,
+        private ScraperService         $scraper,
+
+    )
+    {
+    }
 
     public function __invoke(
-        IO $io,
-        EntityManagerInterface $entityManager,
-        PokemonRepository $pokemonRepository,
-        ScraperService $scraper,
+        SymfonyStyle                                                   $io,
 
-        #[Option(description: 'limit the number of items loaded')] int $limit=0,
+        #[Option(description: 'limit the number of items loaded')] int $limit = -1,
+        #[Option(description: 'first item')] int                       $start = 0,
         #[Option(description: 'drop all items before loading')]
-        bool $reset = true,
-    ): int {
+        ?bool                                                          $reset = null,
+    ): int
+    {
+        $reset ??= false;
         $existing = [];
-            foreach ($pokemonRepository->findAll() as $pokemon) {
-                if ($reset) {
-                    $entityManager->remove($pokemon);
-                } else {
-                    $existing[$pokemon->getId()] = $pokemon;
-                }
-            }
+        foreach ($this->pokemonRepository->findAll() as $pokemon) {
             if ($reset) {
-                $entityManager->flush();
-                $io->warning('All pokemons have been successfully removed.');
+                $this->entityManager->remove($pokemon);
+            } else {
+                $existing[$pokemon->getId()] = $pokemon;
             }
+        }
+        if ($reset) {
+            $this->entityManager->flush();
+            $io->warning('All pokemon have been successfully removed.');
+        }
 
         // get the count
-        $response = $scraper->fetchData(Pokemon::BASE_URL,
+        $response = $this->scraper->fetchData(Pokemon::BASE_URL,
             ['limit' => 2000], asData: 'object');
-            $total = $response->count;
-        $progressBar = new ProgressBar($io->output(), $total);
+        $total = $response->count;
 
-        foreach ($response->results as $idx => $data) {
-            $progressBar->advance();
+        $limit = $limit ? min($limit, $total) : $total;
+        $progressBar = new ProgressBar($io, $total);
+        $slice = new \LimitIterator(new \ArrayIterator($response->results), $start, $limit);
+        foreach ($progressBar->iterate($slice) as $idx => $data) {
+
             if (preg_match('|/(\d+)/|', $data->url, $matches)) {
-                $id = (int)$matches[1];
+                $id = $matches[1];
             } else {
                 throw new \Exception("bad url " . $data->url);
             }
             assert($id, $id . " " . $data->url);
             if (!$poke = $existing[$id] ?? null) {
                 $poke = (new Pokemon($id));
-                $poke->setOwned(in_array($idx, [2,3,5,8,13,21]));
-                $entityManager->persist($poke);
+                $poke->setOwned(in_array($idx, [2, 3, 5, 8, 13, 21]));
+                $this->entityManager->persist($poke);
             }
             $poke->setName($data->name);
-//            $details = $scraper->fetchData($data->url);
-//            $poke
-//                ->setDetails($details);
-            if ($limit && ($idx >= $limit)) {
-                break;
-            }
-            $entityManager->flush();
+            // moved to workflow
+//            $poke->setDetails($scraper->fetchData($data->url));
         }
-        $progressBar->finish();
+        $this->entityManager->flush();
+        $io->success(self::class . ' success. ' . $this->pokemonRepository->count());
 
-        $io->success($this->getName().' success. ' . $pokemonRepository->count());
-
-        return self::SUCCESS;
+        return Command::SUCCESS;
     }
 }

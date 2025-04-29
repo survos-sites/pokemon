@@ -14,9 +14,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
+use Symfony\Component\DependencyInjection\Attribute\Target;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 class PokemonCrudController extends AbstractCrudController
 {
+    public function __construct(
+        #[Target(IPokemonWorkflow::WORKFLOW_NAME)] private WorkflowInterface $workflow,
+    )
+    {
+    }
+
     public static function getEntityFqcn(): string
     {
         return Pokemon::class;
@@ -46,10 +55,12 @@ class PokemonCrudController extends AbstractCrudController
 
     public function configureFilters(Filters $filters): Filters
     {
+        $places = $this->workflow->getDefinition()->getPlaces();
         return $filters
-            ->add('marking')
+            ->add(ChoiceFilter::new('marking')
+                ->setChoices($places)
+            )
             ->add('name')
-            ->add(BooleanFilter::new('owned'))
-            ;
+            ->add(BooleanFilter::new('owned'));
     }
 }

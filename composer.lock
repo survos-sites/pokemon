@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2d4a1e5b771c45a4e1540eec066b17e",
+    "content-hash": "218782dd8de4aecb2c7ff56b943be39d",
     "packages": [
         {
             "name": "api-platform/core",
@@ -3367,7 +3367,7 @@
         },
         {
             "name": "survos/crawler-bundle",
-            "version": "1.5.529",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosCrawlerBundle.git",
@@ -3420,6 +3420,7 @@
                 "phpunit/phpunit": "^11.4",
                 "zenstruck/browser": "^1.9"
             },
+            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -3515,17 +3516,11 @@
         },
         {
             "name": "survos/installer",
-            "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/survos/installer.git",
-                "reference": "2c8f099ff9616646854c6f41c168a461acbe6d8f"
-            },
+            "version": "dev-main",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/survos/installer/zipball/2c8f099ff9616646854c6f41c168a461acbe6d8f",
-                "reference": "2c8f099ff9616646854c6f41c168a461acbe6d8f",
-                "shasum": ""
+                "type": "path",
+                "url": "/home/tac/sites/installer",
+                "reference": "98718a0d26e10528672243a1518f6facf19df39d"
             },
             "require": {
                 "composer-plugin-api": "^2.0",
@@ -3539,17 +3534,16 @@
             },
             "type": "composer-plugin",
             "extra": {
-                "class": "Survos\\Installer\\Installer",
                 "branch-alias": {
                     "dev-main": "1.x-dev"
-                }
+                },
+                "class": "Survos\\Installer\\Installer"
             },
             "autoload": {
                 "psr-4": {
                     "Survos\\Installer\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3560,16 +3554,9 @@
                 }
             ],
             "description": "Composer plugin for installing configuration files and updating .env and .gitignore, based on survos/installer",
-            "support": {
-                "source": "https://github.com/survos/installer/tree/2.0.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/kbond",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-04-23T14:19:59+00:00"
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "survos/js-twig-bundle",
@@ -11034,12 +11021,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414"
+                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/024473a478be9df5fdaca2c793f2232fe788e414",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/1720ddd719e16cf0db4eb1c6eca108031636d46c",
+                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c",
                 "shasum": ""
             },
             "require": {
@@ -11079,7 +11066,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.0"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.1"
             },
             "funding": [
                 {
@@ -11087,7 +11074,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-12T12:17:51+00:00"
+            "time": "2025-04-29T12:36:36+00:00"
         },
         {
             "name": "nette/php-generator",
@@ -11429,12 +11416,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "3854cbcf2d749b728be69fde9b5ba15d843f24e5"
+                "reference": "f615b1afd19f4553ddaa94badb9155ff368c99d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/3854cbcf2d749b728be69fde9b5ba15d843f24e5",
-                "reference": "3854cbcf2d749b728be69fde9b5ba15d843f24e5",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f615b1afd19f4553ddaa94badb9155ff368c99d7",
+                "reference": "f615b1afd19f4553ddaa94badb9155ff368c99d7",
                 "shasum": ""
             },
             "require": {
@@ -11480,7 +11467,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-29T09:29:21+00:00"
+            "time": "2025-04-29T14:10:29+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -13616,11 +13603,214 @@
                 }
             ],
             "time": "2024-03-03T12:36:25+00:00"
+        },
+        {
+            "name": "zenstruck/assert",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zenstruck/assert.git",
+                "reference": "b9a37a5f49995d606acee31d2bdc3179117a3520"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zenstruck/assert/zipball/b9a37a5f49995d606acee31d2bdc3179117a3520",
+                "reference": "b9a37a5f49995d606acee31d2bdc3179117a3520",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0",
+                "symfony/polyfill-php81": "^1.23",
+                "symfony/var-exporter": "^5.4|^6.0|^7.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.4",
+                "phpunit/phpunit": "^9.5.21",
+                "symfony/phpunit-bridge": "^6.3|^7.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zenstruck\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Bond",
+                    "email": "kevinbond@gmail.com"
+                }
+            ],
+            "description": "Standalone, lightweight, framework agnostic, test assertion library.",
+            "homepage": "https://github.com/zenstruck/assert",
+            "keywords": [
+                "assertion",
+                "phpunit",
+                "test"
+            ],
+            "support": {
+                "issues": "https://github.com/zenstruck/assert/issues",
+                "source": "https://github.com/zenstruck/assert/tree/1.x"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-04-16T01:39:29+00:00"
+        },
+        {
+            "name": "zenstruck/browser",
+            "version": "2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zenstruck/browser.git",
+                "reference": "0c2864d220d2a4533be10aff0c6b7155f24e24a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zenstruck/browser/zipball/0c2864d220d2a4533be10aff0c6b7155f24e24a2",
+                "reference": "0c2864d220d2a4533be10aff0c6b7155f24e24a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/browser-kit": "^6.4|^7.0",
+                "symfony/css-selector": "^6.4|^7.0",
+                "symfony/dom-crawler": "^6.4|^7.0",
+                "symfony/framework-bundle": "^6.4|^7.0",
+                "zenstruck/assert": "^1.4",
+                "zenstruck/callback": "^1.4.2",
+                "zenstruck/dom": "^1.0"
+            },
+            "require-dev": {
+                "dbrekelmans/bdi": "^1.0",
+                "justinrainbow/json-schema": "^5.3",
+                "mtdowling/jmespath.php": "^2.6",
+                "phpstan/phpstan": "^1.4",
+                "phpunit/phpunit": "^9.6.21|^10.4",
+                "symfony/mime": "^6.4|^7.0",
+                "symfony/panther": "^2.1.0",
+                "symfony/phpunit-bridge": "^6.0|^7.0",
+                "symfony/security-bundle": "^6.4|^7.0"
+            },
+            "suggest": {
+                "justinrainbow/json-schema": "Json schema validator. Needed to use Json::assertMatchesSchema().",
+                "mtdowling/jmespath.php": "PHP implementation for JMESPath. Needed to use Json assertions."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zenstruck\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Bond",
+                    "email": "kevinbond@gmail.com"
+                }
+            ],
+            "description": "A fluent interface for your Symfony functional tests.",
+            "homepage": "https://github.com/zenstruck/browser",
+            "keywords": [
+                "dev",
+                "symfony",
+                "test"
+            ],
+            "support": {
+                "issues": "https://github.com/zenstruck/browser/issues",
+                "source": "https://github.com/zenstruck/browser/tree/2.x"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-11-10T00:00:35+00:00"
+        },
+        {
+            "name": "zenstruck/dom",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zenstruck/dom.git",
+                "reference": "9c4415e295d2c5cb55b331bea0286373c82b1df1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zenstruck/dom/zipball/9c4415e295d2c5cb55b331bea0286373c82b1df1",
+                "reference": "9c4415e295d2c5cb55b331bea0286373c82b1df1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/css-selector": "^6.4|^7.0",
+                "symfony/dom-crawler": "^6.4|^7.0"
+            },
+            "conflict": {
+                "php-webdriver/webdriver": "<1.15.1"
+            },
+            "require-dev": {
+                "dbrekelmans/bdi": "^1.1",
+                "phpstan/phpstan": "^1.4",
+                "phpunit/phpunit": "^9.6.0",
+                "symfony/panther": "^2.1",
+                "symfony/phpunit-bridge": "^6.1|^7.0",
+                "symfony/var-dumper": "^5.4|^6.0|^7.0",
+                "zenstruck/assert": "^1.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zenstruck\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Bond",
+                    "email": "kevinbond@gmail.com"
+                }
+            ],
+            "description": "DOM crawler with advanced selector API and assertions.",
+            "homepage": "https://github.com/zenstruck/dom",
+            "support": {
+                "issues": "https://github.com/zenstruck/dom/issues",
+                "source": "https://github.com/zenstruck/dom/tree/1.x"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-02-22T17:08:03+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "survos/crawler-bundle": 20,
+        "survos/installer": 20,
+        "twig/twig": 20,
+        "zenstruck/browser": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

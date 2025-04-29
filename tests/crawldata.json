@@ -1,0 +1,172 @@
+{
+    "|App\\Entity\\User|https://pokemon.wip/": {
+        "/": {
+            "path": "/",
+            "seen": true,
+            "depth": 0,
+            "linkStatus": null,
+            "username": null,
+            "route": "admin",
+            "rp": null,
+            "statusCode": 200,
+            "foundOn": null,
+            "memory": null
+        },
+        "pokemon": {
+            "path": "pokemon",
+            "seen": true,
+            "depth": 1,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": 200,
+            "foundOn": "/",
+            "memory": null
+        },
+        "/api/docs": {
+            "path": "/api/docs",
+            "seen": true,
+            "depth": 1,
+            "linkStatus": null,
+            "username": null,
+            "route": "api_doc",
+            "rp": null,
+            "statusCode": 200,
+            "foundOn": "/",
+            "memory": null
+        },
+        "pokemon?page=1&sort%5Bid%5D=DESC": {
+            "path": "pokemon?page=1&sort%5Bid%5D=DESC",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": 200,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon?page=1&sort%5Bname%5D=DESC": {
+            "path": "pokemon?page=1&sort%5Bname%5D=DESC",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon?page=1&sort%5Bowned%5D=DESC": {
+            "path": "pokemon?page=1&sort%5Bowned%5D=DESC",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon?page=1&sort%5BfetchStatusCode%5D=DESC": {
+            "path": "pokemon?page=1&sort%5BfetchStatusCode%5D=DESC",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon?page=1&sort%5BdownloadStatusCode%5D=DESC": {
+            "path": "pokemon?page=1&sort%5BdownloadStatusCode%5D=DESC",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon?page=1&sort%5Bmarking%5D=DESC": {
+            "path": "pokemon?page=1&sort%5Bmarking%5D=DESC",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon/1": {
+            "path": "pokemon/1",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon/2": {
+            "path": "pokemon/2",
+            "seen": true,
+            "depth": 2,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon",
+            "memory": null
+        },
+        "pokemon?page=1&sort%5Bid%5D=ASC": {
+            "path": "pokemon?page=1&sort%5Bid%5D=ASC",
+            "seen": true,
+            "depth": 3,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon?page=1&sort%5Bid%5D=DESC",
+            "memory": null
+        },
+        "pokemon/2?page=1&sort%5Bid%5D=DESC": {
+            "path": "pokemon/2?page=1&sort%5Bid%5D=DESC",
+            "seen": true,
+            "depth": 3,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon?page=1&sort%5Bid%5D=DESC",
+            "memory": null
+        },
+        "pokemon/1?page=1&sort%5Bid%5D=DESC": {
+            "path": "pokemon/1?page=1&sort%5Bid%5D=DESC",
+            "seen": true,
+            "depth": 3,
+            "linkStatus": null,
+            "username": null,
+            "route": null,
+            "rp": null,
+            "statusCode": null,
+            "foundOn": "pokemon?page=1&sort%5Bid%5D=DESC",
+            "memory": null
+        }
+    }
+}

@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new Get()
     ],
     shortName: 'pokemon',
-    paginationItemsPerPage: 25,
+    paginationItemsPerPage: 5,
     normalizationContext: ['groups' => ['pokemon.read', 'marking']],
 )]
 #[ApiFilter(SearchFilter::class, properties: ['marking' => 'exact'])]

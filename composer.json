@@ -26,8 +26,9 @@
         "survos/bootstrap-bundle": "^1.5",
         "survos/command-bundle": "^1.5",
         "survos/core-bundle": "^1.5",
-        "survos/crawler-bundle": "^1.5",
+        "survos/crawler-bundle": "dev-main",
         "survos/deployment-bundle": "^1.5",
+        "survos/installer": "*@dev",
         "survos/js-twig-bundle": "^1.6.0",
         "survos/mobile-bundle": "^1.5",
         "survos/sais-bundle": "^1.5",
@@ -70,7 +71,7 @@
         "symfony/yaml": "^7.1",
         "twig/extra-bundle": "^3.0",
         "twig/intl-extra": "^3.10",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.3|4.x-dev"
     },
     "config": {
         "allow-plugins": {
@@ -107,7 +108,8 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR% --symlink": "symfony-cmd",
             "importmap:install": "symfony-cmd",
-            "fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js --callback=\"export default \"": "symfony-cmd"
+            "fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js --callback=\"export default \"": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -141,6 +143,13 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^7.0",
         "symfony/stopwatch": "^7.1",
-        "symfony/web-profiler-bundle": "^7.1"
+        "symfony/web-profiler-bundle": "^7.1",
+        "zenstruck/browser": "2.x-dev"
+    },
+    "repositories": {
+        "survos_installer": {
+            "type": "path",
+            "url": "/home/tac/sites/installer"
+        }
     }
 }

@@ -1,4 +1,7 @@
 import { startStimulusApp } from '@symfony/stimulus-bundle';
+
+const app = startStimulusApp();
+import { startStimulusApp } from '@symfony/stimulus-bundle';
 import Timeago from '@stimulus-components/timeago'
 
 const app = startStimulusApp();
