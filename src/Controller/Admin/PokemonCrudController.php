@@ -31,24 +31,38 @@ class PokemonCrudController extends AbstractCrudController
         return Pokemon::class;
     }
 
+    private function markingChoice(): ChoiceField
+    {
+        $choices = [IPokemonWorkflow::PLACE_NEW, IPokemonWorkflow::PLACE_FETCHED];
+        //                dd($choices);
+        return ChoiceField::new('marking')->setChoices(
+            array_combine($choices, $choices)
+        );
+
+    }
+
     public function configureFields(string $pageName): iterable
     {
+
         yield IdField::new('id')->hideOnForm();
         yield AvatarField::new('avatarUrl')
             ->setHeight($pageName === Crud::PAGE_DETAIL ? 96 : 48);
 
-
         /** @var Field $field */
         foreach (parent::configureFields($pageName) as $field) {
-            if ($field->getAsDto()->getPropertyNameWithSuffix() === 'marking') {
-                $choices = [IPokemonWorkflow::PLACE_NEW, IPokemonWorkflow::PLACE_FETCHED];
-//                dd($choices);
-                yield ChoiceField::new('marking')->setChoices(
-                    array_combine($choices, $choices)
-                );
+            $propertyName = $field->getAsDto()->getPropertyNameWithSuffix();
+            $easyadminField =  match ($propertyName) {
+                'marking' => $this->markingChoice(),
+                'id' => null,
+                'fetchStatusCode' =>
+                    $field->setLabel('Fetch Status'),
+                'downloadStatusCode' =>
+                    $field->setLabel('Download Status'),
 
-            } else {
-                yield $field;
+                default => $field,
+            };
+            if ($easyadminField) {
+                yield $easyadminField;
             }
         }
     }
