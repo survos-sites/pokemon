@@ -47,6 +47,7 @@
         "symfony/framework-bundle": "^7.1",
         "symfony/http-client": "^7.1",
         "symfony/intl": "^7.1",
+        "symfony/joli-notif-notifier": "7.3.x-dev",
         "symfony/mailer": "^7.1",
         "symfony/mime": "^7.1",
         "symfony/monolog-bundle": "^3.0",
@@ -71,7 +72,8 @@
         "symfony/yaml": "^7.1",
         "twig/extra-bundle": "^3.0",
         "twig/intl-extra": "^3.10",
-        "twig/twig": "^3.3|4.x-dev"
+        "twig/twig": "^3.3|4.x-dev",
+        "zenstruck/console-extra": "1.x-dev"
     },
     "config": {
         "allow-plugins": {

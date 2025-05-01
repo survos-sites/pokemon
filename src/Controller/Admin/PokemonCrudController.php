@@ -33,12 +33,9 @@ class PokemonCrudController extends AbstractCrudController
 
     private function markingChoice(): ChoiceField
     {
-        $choices = [IPokemonWorkflow::PLACE_NEW, IPokemonWorkflow::PLACE_FETCHED];
-        //                dd($choices);
         return ChoiceField::new('marking')->setChoices(
-            array_combine($choices, $choices)
+            $this->workflow->getDefinition()->getPlaces()
         );
-
     }
 
     public function configureFields(string $pageName): iterable
@@ -51,13 +48,13 @@ class PokemonCrudController extends AbstractCrudController
         /** @var Field $field */
         foreach (parent::configureFields($pageName) as $field) {
             $propertyName = $field->getAsDto()->getPropertyNameWithSuffix();
-            $easyadminField =  match ($propertyName) {
-                'marking' => $this->markingChoice(),
+            $easyadminField = match ($propertyName) {
+                'marking' => ChoiceField::new('marking')->setChoices(
+                    $this->workflow->getDefinition()->getPlaces()
+                ),
                 'id' => null,
-                'fetchStatusCode' =>
-                    $field->setLabel('Fetch Status'),
-                'downloadStatusCode' =>
-                    $field->setLabel('Download Status'),
+                'fetchStatusCode' => $field->setLabel('Fetch Status'),
+                'downloadStatusCode' => $field->setLabel('Download Status'),
 
                 default => $field,
             };

@@ -11,6 +11,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
+use Symfony\Component\Notifier\Message\DesktopMessage;
+use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -20,9 +22,11 @@ class AppController extends AbstractController
     public function __construct(
         private EventDispatcherInterface $eventDispatcher,
         protected FactoryInterface $factory,
+        private TexterInterface $texter,
     )
     {
     }
+
 
     /**
      * @return Response
@@ -110,6 +114,18 @@ class AppController extends AbstractController
     {
         return $this->render('app/share.html.twig', [
         ]);
+    }
+
+    #[Route('/webhook', name: 'app_webhook')]
+    public function webhook(Request $request): Response
+    {
+        $message = new DesktopMessage(
+            'New subscription! 🎉',
+            json_encode($request->query->all())
+        );
+
+        $this->texter->send($message);
+        return $this->json($request->query->all());
     }
 
     #[Route('/pokemon', name: 'app_pokemon')]
