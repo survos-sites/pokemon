@@ -9,9 +9,9 @@ digraph workflow {
   place_finished [label=<<B>finished</B><BR/><I>resize finished</I>>, shape=oval fillcolor="lightgreen" style="filled"];
   place_fetch_error [label=<<B>fetch_error</B>>, shape=oval fillcolor="lightgreen" style="filled"];
   place_download_error [label=<<B>download_error</B>>, shape=oval fillcolor="lightgreen" style="filled"];
-  transition_0 [label=<<B>fetch</B><SUP>1</SUP><BR/>completed: fail if statusCode<BR/>!= 200>, shape="box" regular=""];
-  transition_1 [label=<<B>download</B><SUP>1</SUP><BR/>completed: fail_download if<BR/>statusCode != 200<BR/><U>subject.statusCode<BR/>!= 200</U>>, shape="box" regular=""];
-  transition_2 [label=<<B>fail_fetch</B><SUP>1</SUP><BR/><U>subject.statusCode<BR/>!= 200</U>>, shape="box" regular=""];
+  transition_0 [label=<<B>fetch</B><SUP>1</SUP><BR/>completed: fail if<BR/>fetchStatusCode !=<BR/>200>, shape="box" regular=""];
+  transition_1 [label=<<B>download</B><SUP>1</SUP><BR/>completed: fail_download if<BR/>statusCode != 200<BR/><U>subject.fetchStatusC<BR/>ode == 200</U>>, shape="box" regular=""];
+  transition_2 [label=<<B>fail_fetch</B><SUP>1</SUP><BR/><U>subject.fetchStatusC<BR/>ode != 200</U>>, shape="box" regular=""];
   transition_3 [label=<<B>resize finished</B><SUP>1</SUP>>, shape="box" regular=""];
   place_new -> transition_0 [style="solid", comment="new"];
   transition_0 -> place_fetched [style="solid"];

@@ -151,7 +151,7 @@
     "repositories": {
         "survos_installer": {
             "type": "path",
-            "url": "/home/tac/sites/installer"
+            "url": "../installer"
         }
     }
 }
