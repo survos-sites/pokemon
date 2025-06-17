@@ -4,7 +4,7 @@
     "type": "project",
     "license": "MIT",
     "keywords": ["tutorial","pwa","symfony"],
-    "minimum-stability": "dev",
+    "minimum-stability": "RC",
     "prefer-stable": false,
     "require": {
         "php": ">=8.2",
@@ -129,7 +129,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "7.3.x-dev"
+            "require": "^7.3"
         }
     },
     "require-dev": {
@@ -146,7 +146,7 @@
         "symfony/phpunit-bridge": "^7.0",
         "symfony/stopwatch": "^7.1",
         "symfony/web-profiler-bundle": "^7.1",
-        "zenstruck/browser": "2.x-dev"
+        "zenstruck/browser": "^1.0"
     },
     "repositories": {
         "survos_installer": {

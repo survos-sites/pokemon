@@ -24,9 +24,6 @@ interface IPokemonWorkflow
 	#[Place]
 	public const PLACE_FETCH_ERROR = 'fetch_error';
 
-	#[Place]
-	public const PLACE_DOWNLOAD_ERROR = 'download_error';
-
 	#[Transition(from: [self::PLACE_NEW], to: self::PLACE_FETCHED,
         metadata: [
             'completed' => "fail if fetchStatusCode != 200"
