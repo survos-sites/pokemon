@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3df95b7679093b4bc3c9f1659feb0319",
+    "content-hash": "53a1b8b2bfa3f6be1716ae2b2475c3fc",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1779,6 +1779,67 @@
             "time": "2025-06-09T20:14:41+00:00"
         },
         {
+            "name": "ecourty/mcp-server-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EdouardCourty/mcp-server-bundle.git",
+                "reference": "5cb2ff63b75c8dbaaa87e51be33ad13a4b43a3cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EdouardCourty/mcp-server-bundle/zipball/5cb2ff63b75c8dbaaa87e51be33ad13a4b43a3cd",
+                "reference": "5cb2ff63b75c8dbaaa87e51be33ad13a4b43a3cd",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "^7.3",
+                "symfony/framework-bundle": "^7.3",
+                "symfony/http-kernel": "^7.3",
+                "symfony/runtime": "^7.3",
+                "symfony/serializer-pack": "^1.3",
+                "symfony/validator": "^7.3",
+                "zircote/swagger-php": "^5.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.75",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12.1",
+                "symfony/browser-kit": "^7.3",
+                "symfony/yaml": "^7.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Ecourty\\McpServerBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edouard Courty",
+                    "email": "edouard.courty2@gmail.com",
+                    "homepage": "https://github.com/EdouardCourty"
+                }
+            ],
+            "description": "A Symfony Bundle to create MCP servers",
+            "keywords": [
+                "Model Context Protocol",
+                "bundle",
+                "mcp",
+                "server",
+                "symfony"
+            ],
+            "support": {
+                "issues": "https://github.com/EdouardCourty/mcp-server-bundle/issues",
+                "source": "https://github.com/EdouardCourty/mcp-server-bundle/tree/1.0.0"
+            },
+            "time": "2025-06-17T11:41:08+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "4.0.4",
             "source": {
@@ -2047,6 +2108,51 @@
                 }
             ],
             "time": "2024-10-21T23:18:20+00:00"
+        },
+        {
+            "name": "fguillot/json-rpc",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matasarei/json-rpc.git",
+                "reference": "c251e12f6560b40f23b9e141bd287412c554c57a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matasarei/json-rpc/zipball/c251e12f6560b40f23b9e141bd287412c554c57a",
+                "reference": "c251e12f6560b40f23b9e141bd287412c554c57a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6",
+                "squizlabs/php_codesniffer": "^3.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonRPC": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frédéric Guillot"
+                }
+            ],
+            "description": "Simple JSON-RPC client/server library that just works",
+            "homepage": "https://github.com/matasarei/json-rpc",
+            "support": {
+                "issues": "https://github.com/matasarei/json-rpc/issues",
+                "source": "https://github.com/matasarei/json-rpc/tree/v1.3.1"
+            },
+            "time": "2024-11-30T10:30:04+00:00"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -2371,6 +2477,50 @@
             "time": "2024-12-25T16:34:19+00:00"
         },
         {
+            "name": "logiscape/mcp-sdk-php",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/logiscape/mcp-sdk-php.git",
+                "reference": "f3db17913f36d649b97a3554b2e9c743d17cde2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/logiscape/mcp-sdk-php/zipball/f3db17913f36d649b97a3554b2e9c743d17cde2d",
+                "reference": "f3db17913f36d649b97a3554b2e9c743d17cde2d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=8.1",
+                "psr/log": "^2.0 ||^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^10.0"
+            },
+            "suggest": {
+                "ext-pcntl": "For better process handling in CLI environments",
+                "monolog/monolog": "^3.0 - For debugging and logging capabilities"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mcp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Model Context Protocol SDK for PHP",
+            "support": {
+                "issues": "https://github.com/logiscape/mcp-sdk-php/issues",
+                "source": "https://github.com/logiscape/mcp-sdk-php/tree/v1.2.0"
+            },
+            "time": "2025-06-12T19:08:29+00:00"
+        },
+        {
             "name": "masterminds/html5",
             "version": "2.9.0",
             "source": {
@@ -2601,6 +2751,64 @@
                 "source": "https://github.com/nelmio/NelmioCorsBundle/tree/2.5.0"
             },
             "time": "2024-06-24T21:25:28+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v5.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ae59794362fe85e051a58ad36b289443f57be7a9",
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "ircmaxell/php-yacc": "^0.0.7",
+                "phpunit/phpunit": "^9.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/nikic/PHP-Parser/issues",
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
+            },
+            "time": "2025-05-31T08:24:38+00:00"
         },
         {
             "name": "php-webdriver/webdriver",
@@ -8562,6 +8770,57 @@
             "time": "2025-05-12T14:48:23+00:00"
         },
         {
+            "name": "symfony/serializer-pack",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/serializer-pack.git",
+                "reference": "2844d81a5fc86b617b82f44a8bfcaaba1d583eee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/serializer-pack/zipball/2844d81a5fc86b617b82f44a8bfcaaba1d583eee",
+                "reference": "2844d81a5fc86b617b82f44a8bfcaaba1d583eee",
+                "shasum": ""
+            },
+            "require": {
+                "phpdocumentor/reflection-docblock": "*",
+                "phpstan/phpdoc-parser": "*",
+                "symfony/property-access": "*",
+                "symfony/property-info": "*",
+                "symfony/serializer": "*"
+            },
+            "conflict": {
+                "symfony/property-info": "<5.4",
+                "symfony/serializer": "<5.4"
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for the Symfony serializer",
+            "support": {
+                "issues": "https://github.com/symfony/serializer-pack/issues",
+                "source": "https://github.com/symfony/serializer-pack/tree/v1.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-06-03T13:55:25+00:00"
+        },
+        {
             "name": "symfony/service-contracts",
             "version": "v3.6.0",
             "source": {
@@ -10889,6 +11148,92 @@
                 }
             ],
             "time": "2025-04-16T01:59:51+00:00"
+        },
+        {
+            "name": "zircote/swagger-php",
+            "version": "5.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zircote/swagger-php.git",
+                "reference": "b8ba6bd99805c0ae09a38d1b26c1c92820509bd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zircote/swagger-php/zipball/b8ba6bd99805c0ae09a38d1b26c1c92820509bd0",
+                "reference": "b8ba6bd99805c0ae09a38d1b26c1c92820509bd0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "nikic/php-parser": "^4.19 || ^5.0",
+                "php": ">=7.4",
+                "psr/log": "^1.1 || ^2.0 || ^3.0",
+                "symfony/deprecation-contracts": "^2 || ^3",
+                "symfony/finder": "^5.0 || ^6.0 || ^7.0",
+                "symfony/yaml": "^5.0 || ^6.0 || ^7.0"
+            },
+            "conflict": {
+                "symfony/process": ">=6, <6.4.14"
+            },
+            "require-dev": {
+                "composer/package-versions-deprecated": "^1.11",
+                "doctrine/annotations": "^2.0",
+                "friendsofphp/php-cs-fixer": "^3.62.0",
+                "phpstan/phpstan": "^1.6 || ^2.0",
+                "phpunit/phpunit": "^9.0",
+                "rector/rector": "^1.0 || ^2.0",
+                "vimeo/psalm": "^4.30 || ^5.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "^2.0"
+            },
+            "bin": [
+                "bin/openapi"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OpenApi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Allen",
+                    "email": "zircote@gmail.com"
+                },
+                {
+                    "name": "Bob Fanger",
+                    "email": "bfanger@gmail.com",
+                    "homepage": "https://bfanger.nl"
+                },
+                {
+                    "name": "Martin Rademacher",
+                    "email": "mano@radebatz.net",
+                    "homepage": "https://radebatz.net"
+                }
+            ],
+            "description": "Generate interactive documentation for your RESTful API using PHP attributes (preferred) or PHPDoc annotations",
+            "homepage": "https://github.com/zircote/swagger-php",
+            "keywords": [
+                "api",
+                "json",
+                "rest",
+                "service discovery"
+            ],
+            "support": {
+                "issues": "https://github.com/zircote/swagger-php/issues",
+                "source": "https://github.com/zircote/swagger-php/tree/5.1.3"
+            },
+            "time": "2025-05-20T03:35:10+00:00"
         }
     ],
     "packages-dev": [
@@ -11438,64 +11783,6 @@
                 "source": "https://github.com/nette/utils/tree/v4.0.7"
             },
             "time": "2025-06-03T04:55:08+00:00"
-        },
-        {
-            "name": "nikic/php-parser",
-            "version": "v5.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ae59794362fe85e051a58ad36b289443f57be7a9",
-                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-json": "*",
-                "ext-tokenizer": "*",
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "ircmaxell/php-yacc": "^0.0.7",
-                "phpunit/phpunit": "^9.0"
-            },
-            "bin": [
-                "bin/php-parse"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Nikita Popov"
-                }
-            ],
-            "description": "A PHP parser written in PHP",
-            "keywords": [
-                "parser",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
-            },
-            "time": "2025-05-31T08:24:38+00:00"
         },
         {
             "name": "phar-io/manifest",
