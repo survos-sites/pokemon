@@ -36,5 +36,4 @@ return [
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     Survos\CommandBundle\SurvosCommandBundle::class => ['all' => true],
     Bizkit\VersioningBundle\BizkitVersioningBundle::class => ['all' => true],
-    Ecourty\McpServerBundle\McpServerBundle::class => ['all' => true],
 ];

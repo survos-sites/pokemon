@@ -85,9 +85,6 @@
             "config/routes/easyadmin.yaml"
         ]
     },
-    "ecourty/mcp-server-bundle": {
-        "version": "1.0.0"
-    },
     "endroid/qr-code-bundle": {
         "version": "dev-main"
     },
