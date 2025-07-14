@@ -1,13 +1,13 @@
 {
     "name": "survos-sites/pokemon",
-    "description": "onsenui pokemon tutorial as a Symfony PWA",
+    "description": "framework7 pokemon tutorial as a Symfony PWA",
     "type": "project",
     "license": "MIT",
     "keywords": ["tutorial","pwa","symfony"],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.2",
+        "php": "^8.4",
         "ext-ctype": "*",
         "ext-gd": "*",
         "ext-iconv": "*",
@@ -119,7 +119,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "^7.2"
+            "require": "^7.3"
         }
     },
     "require-dev": {
