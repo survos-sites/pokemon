@@ -62,9 +62,12 @@ onDownload()
             [$imageUrl],
             // @todo: resize callback,
         ));
-        dump($response);
+        if ($resized = $response[0]['resized']??false) {
+            $pokemon->resized = $resized;
+        }
+        dump($resized);
     }
 ```
-[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L73-L84)
+[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L73-L87)
 
 
