@@ -41,7 +41,7 @@ final class AppLoadCommand
             if ($reset) {
                 $this->entityManager->remove($pokemon);
             } else {
-                $existing[$pokemon->getId()] = $pokemon;
+                $existing[$pokemon->id] = $pokemon;
             }
         }
         if ($reset) {
@@ -66,13 +66,10 @@ final class AppLoadCommand
             }
             assert($id, $id . " " . $data->url);
             if (!$poke = $existing[$id] ?? null) {
-                $poke = (new Pokemon($id));
+                $poke = (new Pokemon($id, $data->name));
                 $poke->setOwned(in_array($idx, [2, 3, 5, 8, 13, 21]));
                 $this->entityManager->persist($poke);
             }
-            $poke->setName($data->name);
-            // moved to workflow
-//            $poke->setDetails($scraper->fetchData($data->url));
         }
         $this->entityManager->flush();
         $io->success(self::class . ' success. ' . $this->pokemonRepository->count());

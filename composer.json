@@ -30,6 +30,7 @@
         "survos/crawler-bundle": "dev-main",
         "survos/installer": "*@dev",
         "survos/js-twig-bundle": "^1.6.0",
+        "survos/meili-bundle": "^1.6",
         "survos/mobile-bundle": "^1.5",
         "survos/sais-bundle": "^1.5",
         "survos/scraper-bundle": "^1.5",

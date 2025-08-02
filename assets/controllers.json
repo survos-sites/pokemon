@@ -19,6 +19,22 @@
                 "autoimport": []
             }
         },
+        "@survos/meili-bundle": {
+            "insta": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                    "flag-icons/css/flag-icons.min.css": true,
+                    "instantsearch.css/themes/algolia.min.css": false,
+                    "pretty-print-json/dist/css/pretty-print-json.min.css": true
+                }
+            },
+            "json": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": []
+            }
+        },
         "@survos/mobile-bundle": {
             "mobile": {
                 "enabled": true,

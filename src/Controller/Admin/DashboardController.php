@@ -80,6 +80,12 @@ class DashboardController extends AbstractDashboardController
             ->setLinkTarget(
                 '_blank'
             );
+        yield MenuItem::linkToRoute('Search', 'mdi:search',
+            routeName: 'meili_insta', routeParameters: ['indexName' => 'poke_Pokemon']
+        )
+            ->setLinkTarget(
+                '_blank'
+            );
 
     }
 

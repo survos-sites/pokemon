@@ -1,3 +1,5 @@
+import 'instantsearch.css/themes/algolia.min.css';
+
 import './styles/app.css';
 // is this really needed? Or is it leftover from Monaca/Cordova
 import './components/loader.js';

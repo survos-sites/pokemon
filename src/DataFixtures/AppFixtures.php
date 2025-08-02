@@ -23,9 +23,9 @@ class AppFixtures extends Fixture
             ['limit' => 2], asData: 'object');
         foreach ($response->results as $idx => $data) {
             $details = $this->scraper->fetchData($data->url);
-            $poke = (new Pokemon($details['id']))
+            $poke = (new Pokemon($details['id'], $data->name))
                 ->setDetails($details)
-                ->setName($data->name);
+            ;
             $poke->setOwned(in_array($idx, [2,3,5,8,13,21]));
             $manager->persist($poke);
         }

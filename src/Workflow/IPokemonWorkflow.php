@@ -36,7 +36,8 @@ interface IPokemonWorkflow
         // notes.  Could be more
         metadata: [
             'completed' => "fail if fetchStatusCode != 200"
-        ]
+        ],
+        next: [self::TRANSITION_FAIL_FETCH, self::TRANSITION_DOWNLOAD]
     )]
 	public const TRANSITION_FETCH = 'fetch';
     // note: do not use <> in the comments until we properly escape them!

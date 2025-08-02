@@ -20,35 +20,23 @@ public function onFetch(TransitionEvent $event): void
 {
     $pokemon = $this->getPokemon($event);
     $url = $pokemon->getDetailUrl();
-    $request = $this->httpClient->request('GET', $url);
-    $statusCode = $request->getStatusCode();
-    $pokemon
-        ->setFetchStatusCode($statusCode);
-    if ($statusCode === 200) {
-        $details = json_decode($request->getContent(), true);
-        $pokemon->setDetails($details);
+
+    try {
+        $response = $this->httpClient->request('GET', $url);
+        $statusCode = $response->getStatusCode();
+        $pokemon->fetchStatusCode = $statusCode;
+
+        if ($statusCode === 200) {
+            $details = $response->toArray(false); // false = suppress exception on non-2xx
+            $pokemon->setDetails($details);
+        }
+    } catch (\Throwable $e) {
+        $this->logger->warning(sprintf('Failed to fetch details from %s: %s', $url, $e->getMessage()));
+        $pokemon->setFetchStatusCode(0); // or some custom error code
     }
 }
 ```
-[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L43-L55)
-
-### fetch.Completed
-
-asFetchCompleted()
-        // fetch individual JSON
-        // fetch from https://pokeapi.co/api/v2/pokemon//id
-
-```php
-#[AsCompletedListener(self::WORKFLOW_NAME, self::TRANSITION_FETCH)]
-public function asFetchCompleted(CompletedEvent $event): void
-{
-    $pokemon = $this->getPokemon($event);
-    if ($pokemon->getFetchStatusCode() !== 200) {
-        $this->workflow->apply($pokemon, self::TRANSITION_FAIL_FETCH);
-    }
-}
-```
-[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L58-L64)
+[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L41-L59)
 
 
 
@@ -68,7 +56,7 @@ onDownload()
     {
         $pokemon = $this->getPokemon($event);
 //        $image = $this->rootDir . $pokemon->getImageUrl();
-        $imageUrl = sprintf('https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/%03d.png', $pokemon->getId());
+        $imageUrl = sprintf('https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/%03d.png', $pokemon->id);
         $response = $this->saisClientService->dispatchProcess(new ProcessPayload(
              $this->rootDir,
             [$imageUrl],
@@ -77,6 +65,6 @@ onDownload()
         dump($response);
     }
 ```
-[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L68-L79)
+[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L73-L84)
 
 

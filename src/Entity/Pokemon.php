@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
@@ -10,6 +11,8 @@ use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PokemonRepository;
 use App\Workflow\IPokemonWorkflow;
 use Doctrine\ORM\Mapping as ORM;
+use Survos\MeiliBundle\Api\Filter\FacetsFieldSearchFilter;
+use Survos\MeiliBundle\Metadata\MeiliIndex;
 use Survos\WorkflowBundle\Traits\MarkingInterface;
 use Survos\WorkflowBundle\Traits\MarkingTrait;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -27,26 +30,30 @@ use Symfony\Component\Serializer\Attribute\Groups;
 )]
 #[ApiFilter(SearchFilter::class, properties: ['marking' => 'exact'])]
 #[Groups(['pokemon.read'])]
-class Pokemon implements MarkingInterface
+#[MeiliIndex()]
+#[ApiFilter(FacetsFieldSearchFilter::class, properties: ['marking'])]
+#[ApiFilter(OrderFilter::class, properties: [
+    'objCount','imgCount','listingObjectCount'
+])]
+
+class Pokemon implements MarkingInterface, \Stringable
 {
     use MarkingTrait;
 
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
 
     #[ORM\Column]
-    private array $details = [];
+    #[Groups(['pokemon.read'])]
+    public array $details = [];
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['pokemon.read'])]
     private ?bool $owned = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['pokemon.read'])]
     public ?int $fetchStatusCode = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $downloadStatusCode = null;
 
     /**
      * @param int|null $id
@@ -54,20 +61,15 @@ class Pokemon implements MarkingInterface
     public function __construct(
         #[ORM\Id]
         #[ORM\Column]
-        private int $id
-    )
+        #[Groups(['pokemon.read'])]
+        private(set) int $id,
+
+        #[ORM\Column(length: 255)]
+        #[Groups(['pokemon.read'])]
+        private(set) ?string $name = null
+)
     {
         $this->marking = IPokemonWorkflow::PLACE_NEW;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
     }
 
     public function setName(string $name): static
@@ -81,13 +83,13 @@ class Pokemon implements MarkingInterface
     public function getImageUrl(): ?string
     {
         // we may refactor this someday
-        return self::BASE_URL . sprintf('/img/%d.png', $this->getId());
+        return self::BASE_URL . sprintf('/img/%d.png', $this->id);
     }
 
     public function getDetailUrl(): ?string
     {
         // we may refactor this someday
-        return self::BASE_URL . $this->getId();
+        return self::BASE_URL . $this->id;
     }
 
     public function getDetails(): array
@@ -114,10 +116,6 @@ class Pokemon implements MarkingInterface
         return $this;
     }
 
-    public function getFetchStatusCode(): ?int
-    {
-        return $this->fetchStatusCode;
-    }
 
     public function setFetchStatusCode(?int $fetchStatusCode): static
     {
@@ -126,20 +124,13 @@ class Pokemon implements MarkingInterface
         return $this;
     }
 
-    public function getDownloadStatusCode(): ?int
-    {
-        return $this->downloadStatusCode;
-    }
-
-    public function setDownloadStatusCode(?int $downloadStatusCode): static
-    {
-        $this->downloadStatusCode = $downloadStatusCode;
-
-        return $this;
-    }
-
     public function getAvatarUrl(): ?string
     {
         return $this->details['sprites']['front_default'] ?? null;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

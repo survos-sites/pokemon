@@ -87,7 +87,7 @@ return [
         'version' => '1.0.3',
     ],
     'stimulus-attributes' => [
-        'version' => '1.0.1',
+        'version' => '1.0.2',
     ],
     'fos-routing' => [
         'version' => '0.0.6',
@@ -117,6 +117,81 @@ return [
     ],
     '@tabler/core/dist/css/tabler.min.css' => [
         'version' => '1.2.0',
+        'type' => 'css',
+    ],
+    'flag-icons' => [
+        'version' => '7.5.0',
+    ],
+    'flag-icons/css/flag-icons.min.css' => [
+        'version' => '7.5.0',
+        'type' => 'css',
+    ],
+    'instantsearch.js' => [
+        'version' => '4.79.2',
+    ],
+    '@algolia/events' => [
+        'version' => '4.0.1',
+    ],
+    'algoliasearch-helper' => [
+        'version' => '3.26.0',
+    ],
+    'qs' => [
+        'version' => '6.9.7',
+    ],
+    'algoliasearch-helper/types/algoliasearch.js' => [
+        'version' => '3.26.0',
+    ],
+    'instantsearch.js/es/widgets' => [
+        'version' => '4.79.2',
+    ],
+    'instantsearch-ui-components' => [
+        'version' => '0.11.2',
+    ],
+    'preact' => [
+        'version' => '10.26.9',
+    ],
+    'hogan.js' => [
+        'version' => '3.0.2',
+    ],
+    'htm/preact' => [
+        'version' => '3.1.1',
+    ],
+    'preact/hooks' => [
+        'version' => '10.26.9',
+    ],
+    '@babel/runtime/helpers/extends' => [
+        'version' => '7.27.6',
+    ],
+    '@babel/runtime/helpers/defineProperty' => [
+        'version' => '7.27.6',
+    ],
+    '@babel/runtime/helpers/objectWithoutProperties' => [
+        'version' => '7.27.6',
+    ],
+    'htm' => [
+        'version' => '3.1.1',
+    ],
+    'instantsearch.css/themes/algolia.min.css' => [
+        'version' => '8.5.1',
+        'type' => 'css',
+    ],
+    '@meilisearch/instant-meilisearch' => [
+        'version' => '0.27.0',
+    ],
+    'meilisearch' => [
+        'version' => '0.51.0',
+    ],
+    '@stimulus-components/dialog' => [
+        'version' => '1.0.1',
+    ],
+    '@andypf/json-viewer' => [
+        'version' => '2.2.0',
+    ],
+    'pretty-print-json' => [
+        'version' => '3.0.5',
+    ],
+    'pretty-print-json/dist/css/pretty-print-json.min.css' => [
+        'version' => '3.0.5',
         'type' => 'css',
     ],
 ];
