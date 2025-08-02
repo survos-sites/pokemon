@@ -4,10 +4,10 @@ digraph workflow {
   edge [fontsize="7" fontname="Arial" color="#333333" arrowhead="normal" arrowsize="0.5"];
 
   place_basic [label=<<B>basic</B><BR/><I>basic from app:load</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place basic: minimal, basic data from https://pokeapi.co/api/v2/pokemon/"];
-  place_fetched [label=<<B>fetched</B><BR/><I>details loaded from JSON</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place fetched: details from https://pokeapi.co/api/v2/pokemon//{id} stored in Pokemon::details"];
+  place_fetched [label=<<B>fetched</B><BR/><I>details from JSON</I><BR/><BR/>Then: <U>fail_fetch</U> <U>download</U> >, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place fetched: details from https://pokeapi.co/api/v2/pokemon//{id} stored in Pokemon::details"];
   place_downloaded [label=<<B>downloaded</B><BR/><I>media downloaded</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place downloaded: "];
   place_fetch_error [label=<<B>fetch_error</B><BR/><I>invalid http response</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place fetch_error: "];
-  transition_fetch [label=<<B>fetch</B><BR/>completed: fail if fetchStatusCode != 200<BR/><I>fetch individual JSON</I><BR/><BR/>Then: <U>fail_fetch</U> <U>download</U> >, shape="box" regular="" xlabel="Transition fetch: fetch from https://pokeapi.co/api/v2/pokemon//id"];
+  transition_fetch [label=<<B>fetch</B><BR/>completed: fail if fetchStatusCode != 200<BR/><I>fetch individual JSON</I>>, shape="box" regular="" xlabel="Transition fetch: fetch from https://pokeapi.co/api/v2/pokemon//id"];
   transition_download [label=<<B>download</B><BR/>completed: fail_download if statusCode != 200<BR/><U>fetchStatusCode == 200</U><BR/><I>valid http response</I>>, shape="box" regular="" xlabel="Transition download: "];
   transition_fail_fetch [label=<<B>fail_fetch</B><BR/><U>fetchStatusCode != 200</U>>, shape="box" regular="" xlabel="Transition fail_fetch: "];
   place_basic -> transition_fetch [style="solid", comment="basic"];

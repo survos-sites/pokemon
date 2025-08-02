@@ -16,8 +16,9 @@ interface IPokemonWorkflow
 	public const PLACE_NEW = 'basic';
 
 	#[Place(
-        info: "details loaded from JSON",
+        info: "details from JSON",
         description: "details from " . Pokemon::BASE_URL . "/{id} stored in Pokemon::details",
+        next: [self::TRANSITION_FAIL_FETCH, self::TRANSITION_DOWNLOAD]
     )]
 	public const PLACE_FETCHED = 'fetched';
 
@@ -36,8 +37,7 @@ interface IPokemonWorkflow
         // notes.  Could be more
         metadata: [
             'completed' => "fail if fetchStatusCode != 200"
-        ],
-        next: [self::TRANSITION_FAIL_FETCH, self::TRANSITION_DOWNLOAD]
+        ]
     )]
 	public const TRANSITION_FETCH = 'fetch';
     // note: do not use <> in the comments until we properly escape them!
