@@ -88,6 +88,9 @@
             "config/routes/fos_js_routing.yaml"
         ]
     },
+    "jwage/phpamqplib-messenger": {
+        "version": "0.8.5"
+    },
     "knplabs/knp-menu-bundle": {
         "version": "dev-master"
     },

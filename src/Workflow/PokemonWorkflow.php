@@ -80,7 +80,10 @@ class PokemonWorkflow implements IPokemonWorkflow
             [$imageUrl],
             // @todo: resize callback,
         ));
-        dump($response);
+        if ($resized = $response[0]['resized']??false) {
+            $pokemon->resized = $resized;
+        }
+        dump($resized);
     }
 
 

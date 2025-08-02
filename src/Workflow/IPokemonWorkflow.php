@@ -20,7 +20,7 @@ interface IPokemonWorkflow
         description: "details from " . Pokemon::BASE_URL . "/{id} stored in Pokemon::details",
         next: [self::TRANSITION_FAIL_FETCH, self::TRANSITION_DOWNLOAD]
     )]
-	public const PLACE_FETCHED = 'fetched';
+	public const PLACE_FETCHED = 'detailed';
 
     #[Place(info: "media downloaded")]
 	public const PLACE_DOWNLOADED = 'downloaded';
@@ -43,10 +43,8 @@ interface IPokemonWorkflow
     // note: do not use <> in the comments until we properly escape them!
 	#[Transition(from: [self::PLACE_FETCHED], to: self::PLACE_DOWNLOADED,
         guard: "subject.fetchStatusCode == 200",
-        info: "valid http response",
-        metadata: [
-            'completed' => "fail_download if statusCode != 200"
-        ]
+        info: "valid http response"
+
     )]
 	public const TRANSITION_DOWNLOAD = 'download';
 

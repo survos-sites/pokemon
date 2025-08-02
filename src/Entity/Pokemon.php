@@ -49,6 +49,10 @@ class Pokemon implements MarkingInterface, \Stringable
 
     #[ORM\Column(nullable: true)]
     #[Groups(['pokemon.read'])]
+    public array $resized = [];
+
+    #[ORM\Column(nullable: true)]
+    #[Groups(['pokemon.read'])]
     private ?bool $owned = null;
 
     #[ORM\Column(nullable: true)]
