@@ -3,7 +3,7 @@ digraph workflow {
   node [fontsize="8" fontname="Arial" color="lightBlue" style="filled" fixedsize="false" width="2" height="1"];
   edge [fontsize="7" fontname="Arial" color="#333333" arrowhead="normal" arrowsize="0.5"];
 
-  place_basic [label=<<B>basic</B><BR/><I>After app:load</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place basic: minimal, basic data after app:load"];
+  place_basic [label=<<B>basic</B><BR/><I>basic from app:load</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place basic: minimal, basic data from https://pokeapi.co/api/v2/pokemon/"];
   place_fetched [label=<<B>fetched</B><BR/><I>details loaded from JSON</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place fetched: details from https://pokeapi.co/api/v2/pokemon//{id} stored in Pokemon::details"];
   place_downloaded [label=<<B>downloaded</B><BR/><I>media downloaded</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place downloaded: "];
   place_fetch_error [label=<<B>fetch_error</B><BR/><I>invalid http response</I>>, shape=oval fillcolor="lightgreen" style="filled" xlabel="Place fetch_error: "];

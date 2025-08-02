@@ -11,8 +11,8 @@ interface IPokemonWorkflow
 	public const WORKFLOW_NAME = 'PokemonWorkflow';
 
 	#[Place(initial: true,
-        info: "After app:load",
-        description: "minimal, basic data after app:load")]
+        info: "basic from app:load",
+        description: "minimal, basic data from " . Pokemon::BASE_URL,)]
 	public const PLACE_NEW = 'basic';
 
 	#[Place(
@@ -33,6 +33,7 @@ interface IPokemonWorkflow
 	#[Transition(from: [self::PLACE_NEW], to: self::PLACE_FETCHED,
         description: "fetch from " . Pokemon::BASE_URL . "/id",
         info: "fetch individual JSON",
+        // notes.  Could be more
         metadata: [
             'completed' => "fail if fetchStatusCode != 200"
         ]

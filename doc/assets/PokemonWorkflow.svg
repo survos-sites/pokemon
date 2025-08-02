@@ -15,8 +15,8 @@
 <title>place_basic</title>
 <ellipse fill="lightgreen" stroke="lightBlue" cx="402" cy="-491" rx="72" ry="36"/>
 <text text-anchor="start" x="391" y="-493.6" font-family="Arial" font-weight="bold" font-size="8.00">basic</text>
-<text text-anchor="start" x="376.5" y="-485.6" font-family="Arial" font-style="italic" font-size="8.00">After app:load</text>
-<text text-anchor="middle" x="248" y="-529.6" font-family="Arial" font-size="8.00">Place basic: minimal, basic data after app:load</text>
+<text text-anchor="start" x="367" y="-485.6" font-family="Arial" font-style="italic" font-size="8.00">basic from app:load</text>
+<text text-anchor="middle" x="202" y="-529.6" font-family="Arial" font-size="8.00">Place basic: minimal, basic data from https://pokeapi.co/api/v2/pokemon/</text>
 </g>
 <!-- transition_fetch -->
 <g id="node5" class="node">
