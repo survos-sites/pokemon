@@ -13,7 +13,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use function Symfony\Component\String\u;
 
-#[AsCommand('app:load', 'Loads pokemon data from the api')]
+#[AsCommand('load:Pokemon', 'Loads pokemon data from the api at ' . Pokemon::BASE_URL)]
 final class AppLoadCommand
 {
 
