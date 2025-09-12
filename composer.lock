@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33fc3de2f71a526116707793bddd7dca",
+    "content-hash": "a101f2d9c6cd25436ccb91b536ed2c60",
     "packages": [
         {
             "name": "api-platform/core",
@@ -3216,6 +3216,72 @@
                 }
             ],
             "time": "2025-01-01T23:08:29+00:00"
+        },
+        {
+            "name": "survos/fw-bundle",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/fw-bundle.git",
+                "reference": "bb16b72c330b098e2dc8a7568d305901939c45f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/fw-bundle/zipball/bb16b72c330b098e2dc8a7568d305901939c45f9",
+                "reference": "bb16b72c330b098e2dc8a7568d305901939c45f9",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-menu-bundle": "^3.2",
+                "php": "^8.4",
+                "survos/core-bundle": "^1.5",
+                "symfony/config": "^7.3",
+                "symfony/console": "^7.3",
+                "symfony/dependency-injection": "^7.3",
+                "symfony/event-dispatcher": "^7.3",
+                "symfony/http-kernel": "^7.3",
+                "symfony/options-resolver": "^7.3",
+                "symfony/ux-twig-component": "^2.8",
+                "twig/twig": "^3.4"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "survos/auth-bundle": "^1.5",
+                "symfony/browser-kit": "^7.3",
+                "symfony/framework-bundle": "^7.3",
+                "symfony/phpunit-bridge": "^7.3",
+                "symfony/security-bundle": "^7.3",
+                "symfony/twig-bundle": "^7.3",
+                "symfony/var-dumper": "^7.3"
+            },
+            "suggest": {
+                "intl-extra": "For better performance, install the intl-extra package to use the IntlDateFormatter class."
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Survos\\FwBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Bundle with utilities for creating a Symfony-based mobile app with framework7",
+            "keywords": [
+                "symfony-ux"
+            ],
+            "support": {
+                "issues": "https://github.com/survos/fw-bundle/issues",
+                "source": "https://github.com/survos/fw-bundle/tree/2.0.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-09-10T15:07:43+00:00"
         },
         {
             "name": "survos/js-twig-bundle",
@@ -12683,7 +12749,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2",
+        "php": "^8.4",
         "ext-ctype": "*",
         "ext-gd": "*",
         "ext-iconv": "*",

@@ -25,6 +25,7 @@
         "survos/core-bundle": "^1.5",
         "survos/crawler-bundle": "^1.5",
         "survos/deployment-bundle": "^1.5",
+        "survos/fw-bundle": "^2.0",
         "survos/js-twig-bundle": "^1.6.0",
         "survos/mobile-bundle": "^1.5",
         "survos/scraper-bundle": "^1.5",
