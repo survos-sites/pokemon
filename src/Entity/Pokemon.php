@@ -13,8 +13,8 @@ use App\Workflow\IPokemonWorkflow;
 use Doctrine\ORM\Mapping as ORM;
 use Survos\MeiliBundle\Api\Filter\FacetsFieldSearchFilter;
 use Survos\MeiliBundle\Metadata\MeiliIndex;
-use Survos\WorkflowBundle\Traits\MarkingInterface;
-use Survos\WorkflowBundle\Traits\MarkingTrait;
+use Survos\StateBundle\Traits\MarkingInterface;
+use Survos\StateBundle\Traits\MarkingTrait;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
@@ -58,6 +58,10 @@ class Pokemon implements MarkingInterface, \Stringable
     #[ORM\Column(nullable: true)]
     #[Groups(['pokemon.read'])]
     public ?int $fetchStatusCode = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Groups(['pokemon.read'])]
+    public ?string $mediaCode = null; // points to media table.  Primary image, not (yet) audio, etc.
 
     /**
      * @param int|null $id

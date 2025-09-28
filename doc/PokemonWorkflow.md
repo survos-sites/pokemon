@@ -28,15 +28,25 @@ public function onFetch(TransitionEvent $event): void
 
         if ($statusCode === 200) {
             $details = $response->toArray(false); // false = suppress exception on non-2xx
-            $pokemon->setDetails($details);
+            $pokemon->details = $details;
         }
+
+        // add the image
+        $imageUrl = $pokemon->getImageUrl();
+        $code = SaisClientService::calculateCode($imageUrl, $this->rootDir);
+        if (!$media = $this->mediaRepository->find($code)) {
+            $media = new Media($code, $imageUrl);
+            $this->entityManager->persist($media);
+        }
+
     } catch (\Throwable $e) {
         $this->logger->warning(sprintf('Failed to fetch details from %s: %s', $url, $e->getMessage()));
         $pokemon->setFetchStatusCode(0); // or some custom error code
     }
+    $this->entityManager->flush();
 }
 ```
-[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L41-L59)
+[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L46-L74)
 
 
 
@@ -51,23 +61,16 @@ onDownload()
         // 
 
 ```php
-    #[AsTransitionListener(self::WORKFLOW_NAME, self::TRANSITION_DOWNLOAD)]
-    public function onDownload(TransitionEvent $event): void
-    {
-        $pokemon = $this->getPokemon($event);
-//        $image = $this->rootDir . $pokemon->getImageUrl();
-        $imageUrl = sprintf('https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/%03d.png', $pokemon->id);
-        $response = $this->saisClientService->dispatchProcess(new ProcessPayload(
-             $this->rootDir,
-            [$imageUrl],
-            // @todo: resize callback,
-        ));
-        if ($resized = $response[0]['resized']??false) {
-            $pokemon->resized = $resized;
-        }
-        dump($resized);
-    }
+#[AsTransitionListener(self::WORKFLOW_NAME, self::TRANSITION_DOWNLOAD)]
+public function onDownload(TransitionEvent $event): void
+{
+    $pokemon = $this->getPokemon($event);
+    //        $image = $this->rootDir . $pokemon->getImageUrl();
+    $imageUrl = sprintf('https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/%03d.png', $pokemon->id);
+
+
+}
 ```
-[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L73-L87)
+[View source](pokemon/blob/main/src/Workflow/PokemonWorkflow.php#L88-L95)
 
 

@@ -185,6 +185,9 @@
     "survos/js-twig-bundle": {
         "version": "1.6.0"
     },
+    "survos/mcp-bundle": {
+        "version": "dev-main"
+    },
     "survos/meili-bundle": {
         "version": "1.6.20"
     },
@@ -197,8 +200,8 @@
     "survos/scraper-bundle": {
         "version": "1.5.529"
     },
-    "survos/workflow-helper-bundle": {
-        "version": "1.5.529"
+    "survos/state-bundle": {
+        "version": "dev-main"
     },
     "symfony/asset-mapper": {
         "version": "7.3",

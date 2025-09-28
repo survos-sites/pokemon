@@ -42,12 +42,6 @@
                 "autoimport": []
             }
         },
-        "@survos/workflow-helper-bundle": {
-            "workflow": {
-                "enabled": true,
-                "fetch": "eager"
-            }
-        },
         "@symfony/ux-live-component": {
             "live": {
                 "enabled": true,

@@ -2,10 +2,13 @@
 
 namespace App\Workflow;
 
+use App\Entity\Media;
 use App\Entity\Pokemon;
+use App\Repository\MediaRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Survos\SaisBundle\Model\ProcessPayload;
 use Survos\SaisBundle\Service\SaisClientService;
-use Survos\WorkflowBundle\Attribute\Workflow;
+use Survos\StateBundle\Attribute\Workflow;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpClient\HttpClient;
@@ -25,9 +28,10 @@ class PokemonWorkflow implements IPokemonWorkflow
 
     public function __construct(
         private HttpClientInterface                              $httpClient,
+        private MediaRepository $mediaRepository,
+        private EntityManagerInterface $entityManager,
         private SaisClientService                                $saisClientService,
         #[Target(self::WORKFLOW_NAME)] private WorkflowInterface $workflow,
-        #[Autowire('%env(SAIS_ROOT)%')] private string $rootDir,
     )
     {
     }
@@ -50,12 +54,22 @@ class PokemonWorkflow implements IPokemonWorkflow
 
             if ($statusCode === 200) {
                 $details = $response->toArray(false); // false = suppress exception on non-2xx
-                $pokemon->setDetails($details);
+                $pokemon->details = $details;
             }
+
+            // add the image
+            $imageUrl = $pokemon->getImageUrl();
+            $code = SaisClientService::calculateCode($imageUrl, MediaFlowDefinition::SAIS_CODE);
+            if (!$media = $this->mediaRepository->find($code)) {
+                $media = new Media($code, $imageUrl);
+                $this->entityManager->persist($media);
+            }
+
         } catch (\Throwable $e) {
             $this->logger->warning(sprintf('Failed to fetch details from %s: %s', $url, $e->getMessage()));
             $pokemon->setFetchStatusCode(0); // or some custom error code
         }
+        $this->entityManager->flush();
     }
 
 //    #[AsCompletedListener(self::WORKFLOW_NAME, self::TRANSITION_FETCH)]
@@ -73,17 +87,10 @@ class PokemonWorkflow implements IPokemonWorkflow
     public function onDownload(TransitionEvent $event): void
     {
         $pokemon = $this->getPokemon($event);
-//        $image = $this->rootDir . $pokemon->getImageUrl();
+        //        $image = $this->rootDir . $pokemon->getImageUrl();
         $imageUrl = sprintf('https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/%03d.png', $pokemon->id);
-        $response = $this->saisClientService->dispatchProcess(new ProcessPayload(
-             $this->rootDir,
-            [$imageUrl],
-            // @todo: resize callback,
-        ));
-        if ($resized = $response[0]['resized']??false) {
-            $pokemon->resized = $resized;
-        }
-        dump($resized);
+
+
     }
 
 

@@ -69,6 +69,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Pokemon', 'fas fa-list', Pokemon::class);
+        yield MenuItem::linkToCrud('Media', 'fas fa-image', Media::class);
 
         yield MenuItem::section('external', icon: 'tabler:external-link');
 

@@ -3,8 +3,8 @@
 namespace App\Workflow;
 
 use App\Entity\Pokemon;
-use Survos\WorkflowBundle\Attribute\Place;
-use Survos\WorkflowBundle\Attribute\Transition;
+use Survos\StateBundle\Attribute\Place;
+use Survos\StateBundle\Attribute\Transition;
 
 interface IPokemonWorkflow
 {
@@ -18,6 +18,7 @@ interface IPokemonWorkflow
 	#[Place(
         info: "details from JSON",
         description: "details from " . Pokemon::BASE_URL . "/{id} stored in Pokemon::details",
+        // when we get here, check first if it failed, and if not, then dispatch a download request
         next: [self::TRANSITION_FAIL_FETCH, self::TRANSITION_DOWNLOAD]
     )]
 	public const PLACE_FETCHED = 'detailed';
@@ -34,7 +35,9 @@ interface IPokemonWorkflow
 	#[Transition(from: [self::PLACE_NEW], to: self::PLACE_FETCHED,
         description: "fetch from " . Pokemon::BASE_URL . "/id",
         info: "fetch individual JSON",
+        async: true,
         // notes.  Could be more
+
         metadata: [
             'completed' => "fail if fetchStatusCode != 200"
         ]
@@ -43,8 +46,8 @@ interface IPokemonWorkflow
     // note: do not use <> in the comments until we properly escape them!
 	#[Transition(from: [self::PLACE_FETCHED], to: self::PLACE_DOWNLOADED,
         guard: "subject.fetchStatusCode == 200",
-        info: "valid http response"
-
+        info: "valid http response",
+        async: true,
     )]
 	public const TRANSITION_DOWNLOAD = 'download';
 

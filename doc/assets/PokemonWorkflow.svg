@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 540)">
 <title>workflow</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-540 560,-540 560,4 -4,4"/>
-<text text-anchor="start" x="221" y="-8.8" font-family="Times,serif" font-weight="bold" font-size="14.00">PokemonWorkflow</text>
+<text text-anchor="start" x="205.5" y="-8.8" font-family="Times,serif" font-weight="bold" font-size="14.00">PokemonWorkflow</text>
 <!-- place_basic -->
 <g id="node1" class="node">
 <title>place_basic</title>
@@ -22,10 +22,11 @@
 <g id="node5" class="node">
 <title>transition_fetch</title>
 <polygon fill="lightBlue" stroke="lightBlue" points="483,-419 323,-419 323,-347 483,-347 483,-419"/>
-<text text-anchor="start" x="392.5" y="-389.6" font-family="Arial" font-weight="bold" font-size="8.00">fetch</text>
-<text text-anchor="start" x="331" y="-381.6" font-family="Arial" font-size="8.00">completed: fail if fetchStatusCode != 200</text>
-<text text-anchor="start" x="365" y="-373.6" font-family="Arial" font-style="italic" font-size="8.00">fetch individual JSON</text>
-<text text-anchor="middle" x="209" y="-421.6" font-family="Arial" font-size="8.00">Transition fetch: fetch from https://pokeapi.co/api/v2/pokemon//id</text>
+<text text-anchor="start" x="392.5" y="-393.6" font-family="Arial" font-weight="bold" font-size="8.00">fetch</text>
+<text text-anchor="start" x="331" y="-385.6" font-family="Arial" font-size="8.00">completed: fail if fetchStatusCode != 200</text>
+<text text-anchor="start" x="365" y="-377.6" font-family="Arial" font-style="italic" font-size="8.00">fetch individual JSON</text>
+<text text-anchor="start" x="390.5" y="-369.6" font-family="Arial" font-size="8.00">async: </text>
+<text text-anchor="middle" x="208.5" y="-421.6" font-family="Arial" font-size="8.00">Transition fetch: fetch from https://pokeapi.co/api/v2/pokemon//id</text>
 </g>
 <!-- place_basic&#45;&gt;transition_fetch -->
 <!-- basic -->
@@ -52,8 +53,8 @@
 <title>transition_download</title>
 <polygon fill="lightBlue" stroke="lightBlue" points="394,-203 250,-203 250,-131 394,-131 394,-203"/>
 <text text-anchor="start" x="302" y="-173.6" font-family="Arial" font-weight="bold" font-size="8.00">download</text>
-<text text-anchor="start" x="278.5" y="-165.6" font-family="Arial" text-decoration="underline" font-size="8.00">fetchStatusCode == 200</text>
-<text text-anchor="start" x="288.5" y="-157.6" font-family="Arial" font-style="italic" font-size="8.00">valid http response</text>
+<text text-anchor="start" x="288.5" y="-165.6" font-family="Arial" font-style="italic" font-size="8.00">valid http response</text>
+<text text-anchor="start" x="309.5" y="-157.6" font-family="Arial" font-size="8.00">async: </text>
 <text text-anchor="middle" x="212" y="-205.6" font-family="Arial" font-size="8.00">Transition download: </text>
 </g>
 <!-- place_detailed&#45;&gt;transition_download -->
@@ -67,8 +68,7 @@
 <g id="node7" class="node">
 <title>transition_fail_fetch</title>
 <polygon fill="lightBlue" stroke="lightBlue" points="556,-203 412,-203 412,-131 556,-131 556,-203"/>
-<text text-anchor="start" x="465.5" y="-169.6" font-family="Arial" font-weight="bold" font-size="8.00">fail_fetch</text>
-<text text-anchor="start" x="441.5" y="-161.6" font-family="Arial" text-decoration="underline" font-size="8.00">fetchStatusCode != 200</text>
+<text text-anchor="start" x="465.5" y="-166.1" font-family="Arial" font-weight="bold" font-size="8.00">fail_fetch</text>
 <text text-anchor="middle" x="375.5" y="-205.6" font-family="Arial" font-size="8.00">Transition fail_fetch: </text>
 </g>
 <!-- place_detailed&#45;&gt;transition_fail_fetch -->

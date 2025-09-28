@@ -19,6 +19,12 @@ symfony server:start -d
 symfony open:local
 ```
 
+## Workflows
+
+This is the first bundle to use survos/state-bundle with dynamic async queues (doctrine).
+At the moment, it still requires rabbitMq for the meili updates.
+Best practice is to use postgres.
+
 Now fetch the data
 
 ```bash
