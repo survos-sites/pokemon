@@ -194,4 +194,20 @@ return [
         'version' => '3.0.5',
         'type' => 'css',
     ],
+    'debug' => [
+        'version' => '4.4.3',
+    ],
+    'ms' => [
+        'version' => '2.1.3',
+    ],
+    'bootstrap' => [
+        'version' => '5.3.8',
+    ],
+    '@popperjs/core' => [
+        'version' => '2.11.8',
+    ],
+    'bootstrap/dist/css/bootstrap.min.css' => [
+        'version' => '5.3.8',
+        'type' => 'css',
+    ],
 ];

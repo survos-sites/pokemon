@@ -16,7 +16,7 @@ use Survos\MeiliBundle\Service\MeiliService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-#[AdminDashboard(routePath: '/', routeName: 'admin')]
+#[AdminDashboard(routePath: '/original-admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(

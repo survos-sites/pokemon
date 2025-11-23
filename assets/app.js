@@ -5,6 +5,8 @@ import './styles/app.css';
 import './components/loader.js';
 import './bootstrap.js'; // stimulus
 
+import '@tabler/core';
+import '@tabler/core/dist/css/tabler.min.css'
 // without icons
 // import 'onsenui/css/onsenui-core.min.css'
 

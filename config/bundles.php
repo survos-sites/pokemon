@@ -36,4 +36,6 @@ return [
     Survos\StateBundle\SurvosStateBundle::class => ['all' => true],
     Jwage\PhpAmqpLibMessengerBundle\PhpAmqpLibMessengerBundle::class => ['all' => true],
     Survos\JsonlBundle\SurvosJsonlBundle::class => ['all' => true],
+    Survos\CodeBundle\SurvosCodeBundle::class => ['dev' => true, 'test' => true],
+    Survos\EzBundle\SurvosEzBundle::class => ['all' => true],
 ];
