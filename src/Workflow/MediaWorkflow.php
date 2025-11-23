@@ -9,6 +9,7 @@ use Survos\SaisBundle\Service\SaisClientService;
 use Symfony\Component\Workflow\Attribute\AsTransitionListener;
 use Symfony\Component\Workflow\Event\Event;
 use Symfony\Component\Workflow\Event\TransitionEvent;
+use App\Workflow\MediaFlowDefinition as WF;
 
 final class MediaWorkflow
 {
@@ -21,14 +22,14 @@ final class MediaWorkflow
         return $media;
     }
 
-    #[AsTransitionListener(MediaFlowDefinition::WORKFLOW_NAME, MediaFlowDefinition::TRANSITION_DISPATCH)]
+    #[AsTransitionListener(WF::WORKFLOW_NAME, WF::TRANSITION_DISPATCH)]
     public function onDispatch(TransitionEvent $event): void
     {
         $media = $this->getMedia($event);
 
         // example call; replace with your actual params
         $response = $this->saisClientService->dispatchProcess(new ProcessPayload(
-            root: MediaFlowDefinition::SAIS_CODE,
+            root: WF::SAIS_CODE,
             images: [$media->originalUrl]
         ));
         dd($response);

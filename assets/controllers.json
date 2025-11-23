@@ -38,7 +38,7 @@
         "@survos/mobile-bundle": {
             "mobile": {
                 "enabled": true,
-                "fetch": "eager",
+                "fetch": "lazy",
                 "autoimport": []
             }
         },

@@ -36,5 +36,4 @@ return [
     Survos\MeiliBundle\SurvosMeiliBundle::class => ['all' => true],
     Survos\StateBundle\SurvosStateBundle::class => ['all' => true],
     Jwage\PhpAmqpLibMessengerBundle\PhpAmqpLibMessengerBundle::class => ['all' => true],
-    Survos\McpBundle\SurvosMcpBundle::class => ['all' => true],
 ];

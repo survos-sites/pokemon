@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MediaRepository;
 use App\Workflow\MediaFlow;
+use App\Workflow\MediaFlowDefinition;
 use Doctrine\ORM\Mapping as ORM;
 use Survos\StateBundle\Traits\MarkingInterface;
 use Survos\StateBundle\Traits\MarkingTrait;
@@ -21,7 +22,7 @@ class Media implements \Stringable, MarkingInterface
         private(set) ?string $originalUrl = null,
     )
     {
-        $this->marking = MediaFlow::PLACE_NEW;
+        $this->marking = MediaFlowDefinition::PLACE_NEW;
     }
 
     public function __toString()

@@ -6,6 +6,7 @@ use App\Entity\Media;
 use App\Entity\Pokemon;
 use App\Repository\MediaRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Survos\SaisBundle\Model\ProcessPayload;
 use Survos\SaisBundle\Service\SaisClientService;
 use Survos\StateBundle\Attribute\Workflow;
@@ -31,6 +32,7 @@ class PokemonWorkflow implements IPokemonWorkflow
         private MediaRepository $mediaRepository,
         private EntityManagerInterface $entityManager,
         private SaisClientService                                $saisClientService,
+        private LoggerInterface $logger,
         #[Target(self::WORKFLOW_NAME)] private WorkflowInterface $workflow,
     )
     {
@@ -46,6 +48,7 @@ class PokemonWorkflow implements IPokemonWorkflow
     {
         $pokemon = $this->getPokemon($event);
         $url = $pokemon->getDetailUrl();
+        $this->logger->warning('Fetching pokemon from ' . $url);
 
         try {
             $response = $this->httpClient->request('GET', $url);

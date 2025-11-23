@@ -30,14 +30,17 @@ use Symfony\Component\Serializer\Attribute\Groups;
 )]
 #[ApiFilter(SearchFilter::class, properties: ['marking' => 'exact'])]
 #[Groups(['pokemon.read'])]
-#[MeiliIndex()]
-#[ApiFilter(FacetsFieldSearchFilter::class, properties: ['marking'])]
-#[ApiFilter(OrderFilter::class, properties: [
-    'objCount','imgCount','listingObjectCount'
-])]
+#[MeiliIndex(
+    filterable: self::FACETS,
+    sortable: self::SORT_PROPERTIES,
+)]
+#[ApiFilter(FacetsFieldSearchFilter::class, properties: self::FACETS)]
+#[ApiFilter(OrderFilter::class, properties: self::SORT_PROPERTIES)]
 
 class Pokemon implements MarkingInterface, \Stringable
 {
+    public const array SORT_PROPERTIES = ['objCount','imgCount','listingObjectCount'];
+    public const array FACETS = ['marking'];
     use MarkingTrait;
 
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';

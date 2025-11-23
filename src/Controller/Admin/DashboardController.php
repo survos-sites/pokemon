@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use Survos\MeiliBundle\Service\MeiliService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -19,8 +20,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(
-        private PokemonRepository $pokemonRepository,
+        private PokemonRepository     $pokemonRepository,
         private UrlGeneratorInterface $urlGenerator,
+        private readonly MeiliService $meiliService,
     )
     {
     }
@@ -81,12 +83,15 @@ class DashboardController extends AbstractDashboardController
             ->setLinkTarget(
                 '_blank'
             );
-        yield MenuItem::linkToRoute('Search', 'mdi:search',
-            routeName: 'meili_insta', routeParameters: ['indexName' => 'poke_Pokemon']
-        )
-            ->setLinkTarget(
-                '_blank'
-            );
+        foreach ($this->meiliService->settings as $indexName => $meiliSetting) {
+            yield MenuItem::linkToRoute($meiliSetting['rawName'], 'mdi:search',
+                routeName: 'meili_insta', routeParameters: ['indexName' => $indexName]
+            )
+                ->setLinkTarget(
+                    '_blank'
+                );
+
+        }
 
     }
 
