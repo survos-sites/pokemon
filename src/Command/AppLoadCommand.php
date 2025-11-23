@@ -71,8 +71,6 @@ final class AppLoadCommand
         $progressBar = new ProgressBar($io, $total);
         $slice = new \LimitIterator(new \ArrayIterator($response->results), $start, $limit);
         foreach ($progressBar->iterate($slice) as $idx => $data) {
-            dd($data);
-
             if (preg_match('|/(\d+)/|', $data->url, $matches)) {
                 $id = $matches[1];
             } else {
