@@ -32,8 +32,8 @@ return [
     Survos\SaisBundle\SurvosSaisBundle::class => ['all' => true],
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     Survos\CommandBundle\SurvosCommandBundle::class => ['all' => true],
-    Survos\InspectionBundle\SurvosInspectionBundle::class => ['all' => true],
     Survos\MeiliBundle\SurvosMeiliBundle::class => ['all' => true],
     Survos\StateBundle\SurvosStateBundle::class => ['all' => true],
     Jwage\PhpAmqpLibMessengerBundle\PhpAmqpLibMessengerBundle::class => ['all' => true],
+    Survos\JsonlBundle\SurvosJsonlBundle::class => ['all' => true],
 ];
