@@ -41,6 +41,12 @@
                 "autoimport": []
             }
         },
+        "@symfony/ux-chartjs": {
+            "chart": {
+                "enabled": true,
+                "fetch": "eager"
+            }
+        },
         "@symfony/ux-live-component": {
             "live": {
                 "enabled": true,

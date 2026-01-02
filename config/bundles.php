@@ -38,4 +38,5 @@ return [
     Survos\JsonlBundle\SurvosJsonlBundle::class => ['all' => true],
     Survos\CodeBundle\SurvosCodeBundle::class => ['dev' => true, 'test' => true],
     Survos\EzBundle\SurvosEzBundle::class => ['all' => true],
+    Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
 ];
