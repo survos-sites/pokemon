@@ -123,7 +123,7 @@
             "@auto-scripts"
         ],
         "compile": [
-            "php -d memory_limit=512M bin/console app:load --limit 100"
+            "php -d memory_limit=512M bin/console load:Pokemon --limit 100"
         ]
     },
     "conflict": {
