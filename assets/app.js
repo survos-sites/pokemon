@@ -1,1 +1,1 @@
-import './bootstrap.js'; // stimulus
+import './stimulus_bootstrap.js';
