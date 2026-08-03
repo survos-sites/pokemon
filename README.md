@@ -4,6 +4,13 @@ A mobile pokemon-collection app, based on https://onsen.io/v2/guide/tutorial.htm
 
 It has been converted to Symfony.
 
+## Project Scope
+
+This repository is intentionally an Onsen UI demo. Keep it as a reference for
+the Symfony and Onsen UI integration. Do not use it as the starting point for
+Framework7 or survos/fw-bundle work; start those experiments from a dedicated
+Framework7 demo instead.
+
 ## Fixtures
 
 Fixtures bypass the workflow, so are faster to set up for tests.
